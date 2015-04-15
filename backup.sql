@@ -10,7 +10,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Дамп структуры для таблица cms.loc.accounting1c
+-- Дамп структуры для таблица avto.loc.accounting1c
 DROP TABLE IF EXISTS `accounting1c`;
 CREATE TABLE IF NOT EXISTS `accounting1c` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -22,12 +22,12 @@ CREATE TABLE IF NOT EXISTS `accounting1c` (
   KEY `external_id` (`external_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.accounting1c: 0 rows
+-- Дамп данных таблицы avto.loc.accounting1c: 0 rows
 /*!40000 ALTER TABLE `accounting1c` DISABLE KEYS */;
 /*!40000 ALTER TABLE `accounting1c` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.ActionLog
+-- Дамп структуры для таблица avto.loc.ActionLog
 DROP TABLE IF EXISTS `ActionLog`;
 CREATE TABLE IF NOT EXISTS `ActionLog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `ActionLog` (
   KEY `event` (`event`),
   KEY `datetime` (`datetime`),
   KEY `model_name` (`model_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.ActionLog: 9 rows
+-- Дамп данных таблицы avto.loc.ActionLog: 28 rows
 /*!40000 ALTER TABLE `ActionLog` DISABLE KEYS */;
 INSERT INTO `ActionLog` (`id`, `username`, `event`, `model_name`, `model_title`, `datetime`) VALUES
 	(1, 'admin', 3, 'SystemModules', 'pages', '2015-03-25 13:28:08'),
@@ -54,11 +54,30 @@ INSERT INTO `ActionLog` (`id`, `username`, `event`, `model_name`, `model_title`,
 	(6, 'admin', 3, 'SystemModules', 'banners', '2015-03-26 12:26:34'),
 	(7, 'admin', 1, 'SystemModules', 'banners', '2015-03-26 12:26:56'),
 	(8, 'admin', 3, 'SystemModules', 'banners', '2015-03-26 14:56:40'),
-	(9, 'admin', 1, 'SystemModules', 'banners', '2015-03-26 14:56:43');
+	(9, 'admin', 1, 'SystemModules', 'banners', '2015-03-26 14:56:43'),
+	(10, 'admin', 2, 'StoreProduct', 'Acer ASPIRE 5943G-7748G75TWiss', '2015-04-15 17:36:53'),
+	(11, 'admin', 2, 'StoreProduct', 'Acer ASPIRE 5943G-7748G75TWiss', '2015-04-15 17:37:19'),
+	(12, 'admin', 1, 'StoreProduct', 'test', '2015-04-15 17:40:00'),
+	(13, 'admin', 3, 'StoreProduct', 'test', '2015-04-15 17:50:11'),
+	(14, 'admin', 2, 'StoreCategory', 'catalog', '2015-04-15 17:52:27'),
+	(15, 'admin', 1, 'StoreCategory', 'Каталог автомобилей', '2015-04-15 17:58:37'),
+	(16, 'admin', 2, 'StoreCategory', 'Телефоны', '2015-04-15 17:58:42'),
+	(17, 'admin', 2, 'StoreCategory', 'Мониторы', '2015-04-15 17:58:44'),
+	(18, 'admin', 2, 'StoreCategory', 'Компьютеры', '2015-04-15 17:58:47'),
+	(19, 'admin', 2, 'StoreCategory', 'Ноутбуки', '2015-04-15 17:58:50'),
+	(20, 'admin', 2, 'StoreCategory', 'root', '2015-04-15 17:59:13'),
+	(21, 'admin', 2, 'StoreCategory', 'Телефоны', '2015-04-15 18:19:00'),
+	(22, 'admin', 2, 'StoreCategory', 'Мониторы', '2015-04-15 18:41:19'),
+	(23, 'admin', 2, 'StoreCategory', 'Мониторы', '2015-04-15 18:50:19'),
+	(24, 'admin', 2, 'StoreCategory', 'Телефоны', '2015-04-15 18:50:37'),
+	(25, 'admin', 2, 'StoreCategory', 'Компьютеры', '2015-04-15 18:50:45'),
+	(26, 'admin', 2, 'StoreCategory', 'Ноутбуки', '2015-04-15 18:51:33'),
+	(27, 'admin', 2, 'StoreCategory', 'Мониторы', '2015-04-15 19:07:29'),
+	(28, 'admin', 2, 'StoreCategory', 'Телефоны', '2015-04-15 19:09:55');
 /*!40000 ALTER TABLE `ActionLog` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.AuthAssignment
+-- Дамп структуры для таблица avto.loc.AuthAssignment
 DROP TABLE IF EXISTS `AuthAssignment`;
 CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
@@ -68,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   PRIMARY KEY (`itemname`,`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.AuthAssignment: 8 rows
+-- Дамп данных таблицы avto.loc.AuthAssignment: 8 rows
 /*!40000 ALTER TABLE `AuthAssignment` DISABLE KEYS */;
 INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 	('Admin', '1', NULL, NULL),
@@ -82,7 +101,7 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 /*!40000 ALTER TABLE `AuthAssignment` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.AuthItem
+-- Дамп структуры для таблица avto.loc.AuthItem
 DROP TABLE IF EXISTS `AuthItem`;
 CREATE TABLE IF NOT EXISTS `AuthItem` (
   `name` varchar(64) NOT NULL,
@@ -93,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `AuthItem` (
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.AuthItem: 18 rows
+-- Дамп данных таблицы avto.loc.AuthItem: 18 rows
 /*!40000 ALTER TABLE `AuthItem` DISABLE KEYS */;
 INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 	('Admin', 2, NULL, NULL, 'N;'),
@@ -117,7 +136,7 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 /*!40000 ALTER TABLE `AuthItem` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.AuthItemChild
+-- Дамп структуры для таблица avto.loc.AuthItemChild
 DROP TABLE IF EXISTS `AuthItemChild`;
 CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   `parent` varchar(64) NOT NULL,
@@ -126,12 +145,12 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   KEY `child` (`child`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.AuthItemChild: 0 rows
+-- Дамп данных таблицы avto.loc.AuthItemChild: 0 rows
 /*!40000 ALTER TABLE `AuthItemChild` DISABLE KEYS */;
 /*!40000 ALTER TABLE `AuthItemChild` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Banners
+-- Дамп структуры для таблица avto.loc.Banners
 DROP TABLE IF EXISTS `Banners`;
 CREATE TABLE IF NOT EXISTS `Banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -140,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `Banners` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Banners: ~0 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.Banners: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `Banners` DISABLE KEYS */;
 INSERT INTO `Banners` (`id`, `name`, `status`) VALUES
 	(1, 'test', 1),
@@ -148,7 +167,7 @@ INSERT INTO `Banners` (`id`, `name`, `status`) VALUES
 /*!40000 ALTER TABLE `Banners` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.BannersImages
+-- Дамп структуры для таблица avto.loc.BannersImages
 DROP TABLE IF EXISTS `BannersImages`;
 CREATE TABLE IF NOT EXISTS `BannersImages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -159,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `BannersImages` (
   KEY `banner_id` (`banner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.BannersImages: ~4 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.BannersImages: ~5 rows (приблизительно)
 /*!40000 ALTER TABLE `BannersImages` DISABLE KEYS */;
 INSERT INTO `BannersImages` (`id`, `banner_id`, `image`, `sort`) VALUES
 	(20, 1, '/uploads/banners/Koala.jpg', 4),
@@ -170,7 +189,7 @@ INSERT INTO `BannersImages` (`id`, `banner_id`, `image`, `sort`) VALUES
 /*!40000 ALTER TABLE `BannersImages` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.BannersImagesTranslate
+-- Дамп структуры для таблица avto.loc.BannersImagesTranslate
 DROP TABLE IF EXISTS `BannersImagesTranslate`;
 CREATE TABLE IF NOT EXISTS `BannersImagesTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -184,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `BannersImagesTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.BannersImagesTranslate: ~8 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.BannersImagesTranslate: ~10 rows (приблизительно)
 /*!40000 ALTER TABLE `BannersImagesTranslate` DISABLE KEYS */;
 INSERT INTO `BannersImagesTranslate` (`id`, `object_id`, `language_id`, `title`, `description`, `link`) VALUES
 	(39, 20, 1, 'test', 'test', 'dsafdasfdsafd'),
@@ -200,7 +219,7 @@ INSERT INTO `BannersImagesTranslate` (`id`, `object_id`, `language_id`, `title`,
 /*!40000 ALTER TABLE `BannersImagesTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Comments
+-- Дамп структуры для таблица avto.loc.Comments
 DROP TABLE IF EXISTS `Comments`;
 CREATE TABLE IF NOT EXISTS `Comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -219,12 +238,12 @@ CREATE TABLE IF NOT EXISTS `Comments` (
   KEY `class_name_index` (`class_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Comments: 0 rows
+-- Дамп данных таблицы avto.loc.Comments: 0 rows
 /*!40000 ALTER TABLE `Comments` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Comments` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Discount
+-- Дамп структуры для таблица avto.loc.Discount
 DROP TABLE IF EXISTS `Discount`;
 CREATE TABLE IF NOT EXISTS `Discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -240,14 +259,14 @@ CREATE TABLE IF NOT EXISTS `Discount` (
   KEY `end_date` (`end_date`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Discount: 1 rows
+-- Дамп данных таблицы avto.loc.Discount: 1 rows
 /*!40000 ALTER TABLE `Discount` DISABLE KEYS */;
 INSERT INTO `Discount` (`id`, `name`, `active`, `sum`, `start_date`, `end_date`, `roles`) VALUES
 	(1, 'Скидка на всю технику Apple', 1, '5%', '2015-03-25 12:44:10', '2016-01-01 12:00:00', NULL);
 /*!40000 ALTER TABLE `Discount` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.DiscountCategory
+-- Дамп структуры для таблица avto.loc.DiscountCategory
 DROP TABLE IF EXISTS `DiscountCategory`;
 CREATE TABLE IF NOT EXISTS `DiscountCategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -258,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `DiscountCategory` (
   KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=317 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.DiscountCategory: 9 rows
+-- Дамп данных таблицы avto.loc.DiscountCategory: 9 rows
 /*!40000 ALTER TABLE `DiscountCategory` DISABLE KEYS */;
 INSERT INTO `DiscountCategory` (`id`, `discount_id`, `category_id`) VALUES
 	(308, 1, 1),
@@ -273,7 +292,7 @@ INSERT INTO `DiscountCategory` (`id`, `discount_id`, `category_id`) VALUES
 /*!40000 ALTER TABLE `DiscountCategory` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.DiscountManufacturer
+-- Дамп структуры для таблица avto.loc.DiscountManufacturer
 DROP TABLE IF EXISTS `DiscountManufacturer`;
 CREATE TABLE IF NOT EXISTS `DiscountManufacturer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -284,14 +303,14 @@ CREATE TABLE IF NOT EXISTS `DiscountManufacturer` (
   KEY `manufacturer_id` (`manufacturer_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.DiscountManufacturer: 1 rows
+-- Дамп данных таблицы avto.loc.DiscountManufacturer: 1 rows
 /*!40000 ALTER TABLE `DiscountManufacturer` DISABLE KEYS */;
 INSERT INTO `DiscountManufacturer` (`id`, `discount_id`, `manufacturer_id`) VALUES
 	(29, 1, 6);
 /*!40000 ALTER TABLE `DiscountManufacturer` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.grid_view_filter
+-- Дамп структуры для таблица avto.loc.grid_view_filter
 DROP TABLE IF EXISTS `grid_view_filter`;
 CREATE TABLE IF NOT EXISTS `grid_view_filter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -302,12 +321,12 @@ CREATE TABLE IF NOT EXISTS `grid_view_filter` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.grid_view_filter: 0 rows
+-- Дамп данных таблицы avto.loc.grid_view_filter: 0 rows
 /*!40000 ALTER TABLE `grid_view_filter` DISABLE KEYS */;
 /*!40000 ALTER TABLE `grid_view_filter` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.notifications
+-- Дамп структуры для таблица avto.loc.notifications
 DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -317,12 +336,12 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.notifications: ~0 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.notifications: ~0 rows (приблизительно)
 /*!40000 ALTER TABLE `notifications` DISABLE KEYS */;
 /*!40000 ALTER TABLE `notifications` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Order
+-- Дамп структуры для таблица avto.loc.Order
 DROP TABLE IF EXISTS `Order`;
 CREATE TABLE IF NOT EXISTS `Order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -350,12 +369,12 @@ CREATE TABLE IF NOT EXISTS `Order` (
   KEY `status_id` (`status_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Order: 0 rows
+-- Дамп данных таблицы avto.loc.Order: 0 rows
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Order` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.OrderHistory
+-- Дамп структуры для таблица avto.loc.OrderHistory
 DROP TABLE IF EXISTS `OrderHistory`;
 CREATE TABLE IF NOT EXISTS `OrderHistory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -371,12 +390,12 @@ CREATE TABLE IF NOT EXISTS `OrderHistory` (
   KEY `created_index` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.OrderHistory: ~0 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.OrderHistory: ~0 rows (приблизительно)
 /*!40000 ALTER TABLE `OrderHistory` DISABLE KEYS */;
 /*!40000 ALTER TABLE `OrderHistory` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.OrderProduct
+-- Дамп структуры для таблица avto.loc.OrderProduct
 DROP TABLE IF EXISTS `OrderProduct`;
 CREATE TABLE IF NOT EXISTS `OrderProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -396,12 +415,12 @@ CREATE TABLE IF NOT EXISTS `OrderProduct` (
   KEY `configurable_id` (`configurable_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.OrderProduct: 0 rows
+-- Дамп данных таблицы avto.loc.OrderProduct: 0 rows
 /*!40000 ALTER TABLE `OrderProduct` DISABLE KEYS */;
 /*!40000 ALTER TABLE `OrderProduct` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.OrderStatus
+-- Дамп структуры для таблица avto.loc.OrderStatus
 DROP TABLE IF EXISTS `OrderStatus`;
 CREATE TABLE IF NOT EXISTS `OrderStatus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -411,7 +430,7 @@ CREATE TABLE IF NOT EXISTS `OrderStatus` (
   KEY `position` (`position`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.OrderStatus: 2 rows
+-- Дамп данных таблицы avto.loc.OrderStatus: 2 rows
 /*!40000 ALTER TABLE `OrderStatus` DISABLE KEYS */;
 INSERT INTO `OrderStatus` (`id`, `name`, `position`) VALUES
 	(1, 'Новый', 0),
@@ -419,7 +438,7 @@ INSERT INTO `OrderStatus` (`id`, `name`, `position`) VALUES
 /*!40000 ALTER TABLE `OrderStatus` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Page
+-- Дамп структуры для таблица avto.loc.Page
 DROP TABLE IF EXISTS `Page`;
 CREATE TABLE IF NOT EXISTS `Page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -442,7 +461,7 @@ CREATE TABLE IF NOT EXISTS `Page` (
   KEY `status` (`status`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Page: 7 rows
+-- Дамп данных таблицы avto.loc.Page: 7 rows
 /*!40000 ALTER TABLE `Page` DISABLE KEYS */;
 INSERT INTO `Page` (`id`, `user_id`, `category_id`, `url`, `created`, `updated`, `publish_date`, `status`, `layout`, `view`) VALUES
 	(8, 1, NULL, 'help', '2012-06-10 22:35:51', '2012-07-07 11:47:09', '2012-06-10 22:35:29', 'published', '', ''),
@@ -455,7 +474,7 @@ INSERT INTO `Page` (`id`, `user_id`, `category_id`, `url`, `created`, `updated`,
 /*!40000 ALTER TABLE `Page` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.PageCategory
+-- Дамп структуры для таблица avto.loc.PageCategory
 DROP TABLE IF EXISTS `PageCategory`;
 CREATE TABLE IF NOT EXISTS `PageCategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -474,7 +493,7 @@ CREATE TABLE IF NOT EXISTS `PageCategory` (
   KEY `updated` (`updated`)
 ) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.PageCategory: 3 rows
+-- Дамп данных таблицы avto.loc.PageCategory: 3 rows
 /*!40000 ALTER TABLE `PageCategory` DISABLE KEYS */;
 INSERT INTO `PageCategory` (`id`, `parent_id`, `url`, `full_url`, `layout`, `view`, `created`, `updated`, `page_size`) VALUES
 	(7, NULL, 'news', 'news', '', '', '2012-07-07 12:06:03', '2013-04-29 23:24:05', NULL),
@@ -483,7 +502,7 @@ INSERT INTO `PageCategory` (`id`, `parent_id`, `url`, `full_url`, `layout`, `vie
 /*!40000 ALTER TABLE `PageCategory` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.PageCategoryTranslate
+-- Дамп структуры для таблица avto.loc.PageCategoryTranslate
 DROP TABLE IF EXISTS `PageCategoryTranslate`;
 CREATE TABLE IF NOT EXISTS `PageCategoryTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -499,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `PageCategoryTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.PageCategoryTranslate: 6 rows
+-- Дамп данных таблицы avto.loc.PageCategoryTranslate: 6 rows
 /*!40000 ALTER TABLE `PageCategoryTranslate` DISABLE KEYS */;
 INSERT INTO `PageCategoryTranslate` (`id`, `object_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 	(13, 7, 1, 'Новости', '', '', '', ''),
@@ -511,7 +530,7 @@ INSERT INTO `PageCategoryTranslate` (`id`, `object_id`, `language_id`, `name`, `
 /*!40000 ALTER TABLE `PageCategoryTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.PageTranslate
+-- Дамп структуры для таблица avto.loc.PageTranslate
 DROP TABLE IF EXISTS `PageTranslate`;
 CREATE TABLE IF NOT EXISTS `PageTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -528,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `PageTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.PageTranslate: 14 rows
+-- Дамп данных таблицы avto.loc.PageTranslate: 14 rows
 /*!40000 ALTER TABLE `PageTranslate` DISABLE KEYS */;
 INSERT INTO `PageTranslate` (`id`, `object_id`, `language_id`, `title`, `short_description`, `full_description`, `meta_title`, `meta_keywords`, `meta_description`) VALUES
 	(22, 11, 9, 'Доставка и оплата', '', '', '', '', ''),
@@ -548,7 +567,7 @@ INSERT INTO `PageTranslate` (`id`, `object_id`, `language_id`, `title`, `short_d
 /*!40000 ALTER TABLE `PageTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.Rights
+-- Дамп структуры для таблица avto.loc.Rights
 DROP TABLE IF EXISTS `Rights`;
 CREATE TABLE IF NOT EXISTS `Rights` (
   `itemname` varchar(64) NOT NULL,
@@ -557,12 +576,12 @@ CREATE TABLE IF NOT EXISTS `Rights` (
   PRIMARY KEY (`itemname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.Rights: 0 rows
+-- Дамп данных таблицы avto.loc.Rights: 0 rows
 /*!40000 ALTER TABLE `Rights` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Rights` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreAttribute
+-- Дамп структуры для таблица avto.loc.StoreAttribute
 DROP TABLE IF EXISTS `StoreAttribute`;
 CREATE TABLE IF NOT EXISTS `StoreAttribute` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -584,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `StoreAttribute` (
   KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreAttribute: 19 rows
+-- Дамп данных таблицы avto.loc.StoreAttribute: 19 rows
 /*!40000 ALTER TABLE `StoreAttribute` DISABLE KEYS */;
 INSERT INTO `StoreAttribute` (`id`, `name`, `type`, `display_on_front`, `use_in_filter`, `use_in_variants`, `use_in_compare`, `select_many`, `position`, `required`) VALUES
 	(1, 'processor_manufacturer', 3, 1, 1, NULL, 1, NULL, 0, NULL),
@@ -609,7 +628,7 @@ INSERT INTO `StoreAttribute` (`id`, `name`, `type`, `display_on_front`, `use_in_
 /*!40000 ALTER TABLE `StoreAttribute` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreAttributeOption
+-- Дамп структуры для таблица avto.loc.StoreAttributeOption
 DROP TABLE IF EXISTS `StoreAttributeOption`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeOption` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -620,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `StoreAttributeOption` (
   KEY `position` (`position`)
 ) ENGINE=MyISAM AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreAttributeOption: 75 rows
+-- Дамп данных таблицы avto.loc.StoreAttributeOption: 75 rows
 /*!40000 ALTER TABLE `StoreAttributeOption` DISABLE KEYS */;
 INSERT INTO `StoreAttributeOption` (`id`, `attribute_id`, `position`) VALUES
 	(86, 1, NULL),
@@ -701,7 +720,7 @@ INSERT INTO `StoreAttributeOption` (`id`, `attribute_id`, `position`) VALUES
 /*!40000 ALTER TABLE `StoreAttributeOption` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreAttributeOptionTranslate
+-- Дамп структуры для таблица avto.loc.StoreAttributeOptionTranslate
 DROP TABLE IF EXISTS `StoreAttributeOptionTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeOptionTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -713,7 +732,7 @@ CREATE TABLE IF NOT EXISTS `StoreAttributeOptionTranslate` (
   KEY `object_id` (`object_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=321 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreAttributeOptionTranslate: 150 rows
+-- Дамп данных таблицы avto.loc.StoreAttributeOptionTranslate: 150 rows
 /*!40000 ALTER TABLE `StoreAttributeOptionTranslate` DISABLE KEYS */;
 INSERT INTO `StoreAttributeOptionTranslate` (`id`, `language_id`, `object_id`, `value`) VALUES
 	(171, 1, 86, 'Celeron'),
@@ -869,7 +888,7 @@ INSERT INTO `StoreAttributeOptionTranslate` (`id`, `language_id`, `object_id`, `
 /*!40000 ALTER TABLE `StoreAttributeOptionTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreAttributeTranslate
+-- Дамп структуры для таблица avto.loc.StoreAttributeTranslate
 DROP TABLE IF EXISTS `StoreAttributeTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -881,7 +900,7 @@ CREATE TABLE IF NOT EXISTS `StoreAttributeTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreAttributeTranslate: 38 rows
+-- Дамп данных таблицы avto.loc.StoreAttributeTranslate: 38 rows
 /*!40000 ALTER TABLE `StoreAttributeTranslate` DISABLE KEYS */;
 INSERT INTO `StoreAttributeTranslate` (`id`, `object_id`, `language_id`, `title`) VALUES
 	(41, 1, 1, 'Тип процессора'),
@@ -925,7 +944,7 @@ INSERT INTO `StoreAttributeTranslate` (`id`, `object_id`, `language_id`, `title`
 /*!40000 ALTER TABLE `StoreAttributeTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreCategory
+-- Дамп структуры для таблица avto.loc.StoreCategory
 DROP TABLE IF EXISTS `StoreCategory`;
 CREATE TABLE IF NOT EXISTS `StoreCategory` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -934,6 +953,7 @@ CREATE TABLE IF NOT EXISTS `StoreCategory` (
   `level` smallint(5) unsigned DEFAULT NULL,
   `url` varchar(255) DEFAULT '',
   `full_path` varchar(255) DEFAULT '',
+  `image` varchar(255) DEFAULT '',
   `layout` varchar(255) DEFAULT '',
   `view` varchar(255) DEFAULT '',
   `description` text,
@@ -943,24 +963,25 @@ CREATE TABLE IF NOT EXISTS `StoreCategory` (
   KEY `level` (`level`),
   KEY `url` (`url`),
   KEY `full_path` (`full_path`)
-) ENGINE=MyISAM AUTO_INCREMENT=238 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=239 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreCategory: 9 rows
+-- Дамп данных таблицы avto.loc.StoreCategory: 10 rows
 /*!40000 ALTER TABLE `StoreCategory` DISABLE KEYS */;
-INSERT INTO `StoreCategory` (`id`, `lft`, `rgt`, `level`, `url`, `full_path`, `layout`, `view`, `description`) VALUES
-	(1, 1, 26, 1, 'root', '', '', '', NULL),
-	(230, 10, 15, 2, 'noutbuki', 'noutbuki', '', '', NULL),
-	(231, 11, 12, 3, 'byudzhetnii', 'noutbuki/byudzhetnii', '', '', NULL),
-	(232, 13, 14, 3, 'igrovoi', 'noutbuki/igrovoi', '', '', NULL),
-	(233, 16, 21, 2, 'kompyuteri', 'kompyuteri', '', '', NULL),
-	(234, 17, 18, 3, 'kompyuternaya-akustika', 'kompyuteri/kompyuternaya-akustika', '', '', NULL),
-	(235, 22, 23, 2, 'monitori', 'monitori', '', '', NULL),
-	(236, 24, 25, 2, 'telefoni', 'telefoni', '', '', NULL),
-	(237, 19, 20, 3, 'plansheti', 'kompyuteri/plansheti', '', '', NULL);
+INSERT INTO `StoreCategory` (`id`, `lft`, `rgt`, `level`, `url`, `full_path`, `image`, `layout`, `view`, `description`) VALUES
+	(1, 1, 28, 1, 'root', '', '', '', '', ''),
+	(230, 21, 26, 3, 'noutbuki', 'katalog-avtomobilei/noutbuki', '/uploads/logo/logo-mitsubishi.png', '', '', ''),
+	(231, 22, 23, 4, 'byudzhetnii', 'noutbuki/byudzhetnii', '', '', '', NULL),
+	(232, 24, 25, 4, 'igrovoi', 'noutbuki/igrovoi', '', '', '', NULL),
+	(233, 15, 20, 3, 'kompyuteri', 'katalog-avtomobilei/kompyuteri', '/uploads/logo/logo-dodge.png', '', '', ''),
+	(234, 16, 17, 4, 'kompyuternaya-akustika', 'kompyuteri/kompyuternaya-akustika', '', '', '', NULL),
+	(235, 13, 14, 3, 'monitori', 'katalog-avtomobilei/monitori', '/uploads/logo/logo-acura.png', '', '', ''),
+	(236, 11, 12, 3, 'telefoni', 'katalog-avtomobilei/telefoni', '/uploads/logo/logo-corvette.png', '', '', ''),
+	(237, 18, 19, 4, 'plansheti', 'kompyuteri/plansheti', '', '', '', NULL),
+	(238, 10, 27, 2, 'katalog-avtomobilei', 'katalog-avtomobilei', '', '', '', '');
 /*!40000 ALTER TABLE `StoreCategory` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreCategoryTranslate
+-- Дамп структуры для таблица avto.loc.StoreCategoryTranslate
 DROP TABLE IF EXISTS `StoreCategoryTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreCategoryTranslate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -975,37 +996,39 @@ CREATE TABLE IF NOT EXISTS `StoreCategoryTranslate` (
   KEY `object_id` (`object_id`),
   KEY `language_id` (`language_id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreCategoryTranslate: 22 rows
+-- Дамп данных таблицы avto.loc.StoreCategoryTranslate: 24 rows
 /*!40000 ALTER TABLE `StoreCategoryTranslate` DISABLE KEYS */;
 INSERT INTO `StoreCategoryTranslate` (`id`, `object_id`, `language_id`, `name`, `meta_title`, `meta_keywords`, `meta_description`, `description`) VALUES
-	(1, 1, 1, 'root', '', '', '', NULL),
+	(1, 1, 1, 'root', '', '', '', ''),
 	(22, 219, 1, 'Планшеты', '', '', '', NULL),
 	(23, 219, 9, 'Планшеты', '', '', '', NULL),
 	(24, 220, 1, 'Ассортимент', '', '', '', NULL),
 	(25, 220, 9, 'Ассортимент', '', '', '', NULL),
 	(28, 1, 9, 'root', '', '', '', NULL),
-	(45, 230, 1, 'Ноутбуки', NULL, NULL, NULL, NULL),
+	(45, 230, 1, 'Ноутбуки', '', '', '', ''),
 	(46, 230, 9, 'Ноутбуки', NULL, NULL, NULL, NULL),
 	(47, 231, 1, 'Бюджетный', NULL, NULL, NULL, NULL),
 	(48, 231, 9, 'Бюджетный', NULL, NULL, NULL, NULL),
 	(49, 232, 1, 'Игровой', NULL, NULL, NULL, NULL),
 	(50, 232, 9, 'Игровой', NULL, NULL, NULL, NULL),
-	(51, 233, 1, 'Компьютеры', NULL, NULL, NULL, NULL),
+	(51, 233, 1, 'Компьютеры', '', '', '', ''),
 	(52, 233, 9, 'Компьютеры', NULL, NULL, NULL, NULL),
 	(53, 234, 1, 'Компьютерная акустика', NULL, NULL, NULL, NULL),
 	(54, 234, 9, 'Компьютерная акустика', NULL, NULL, NULL, NULL),
-	(55, 235, 1, 'Мониторы', NULL, NULL, NULL, NULL),
+	(55, 235, 1, 'Мониторы', '', '', '', ''),
 	(56, 235, 9, 'Мониторы', NULL, NULL, NULL, NULL),
-	(57, 236, 1, 'Телефоны', NULL, NULL, NULL, NULL),
+	(57, 236, 1, 'Телефоны', '', '', '', ''),
 	(58, 236, 9, 'Телефоны', NULL, NULL, NULL, NULL),
 	(59, 237, 1, 'Планшеты', NULL, NULL, NULL, NULL),
-	(60, 237, 9, 'Планшеты', NULL, NULL, NULL, NULL);
+	(60, 237, 9, 'Планшеты', NULL, NULL, NULL, NULL),
+	(61, 238, 1, 'Каталог автомобилей', '', '', '', ''),
+	(62, 238, 9, 'Каталог автомобилей', '', '', '', '');
 /*!40000 ALTER TABLE `StoreCategoryTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreCurrency
+-- Дамп структуры для таблица avto.loc.StoreCurrency
 DROP TABLE IF EXISTS `StoreCurrency`;
 CREATE TABLE IF NOT EXISTS `StoreCurrency` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1018,7 +1041,7 @@ CREATE TABLE IF NOT EXISTS `StoreCurrency` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreCurrency: 2 rows
+-- Дамп данных таблицы avto.loc.StoreCurrency: 2 rows
 /*!40000 ALTER TABLE `StoreCurrency` DISABLE KEYS */;
 INSERT INTO `StoreCurrency` (`id`, `name`, `iso`, `symbol`, `rate`, `main`, `default`) VALUES
 	(1, 'Доллары', 'USD', '$', 1.000, 1, 1),
@@ -1026,7 +1049,7 @@ INSERT INTO `StoreCurrency` (`id`, `name`, `iso`, `symbol`, `rate`, `main`, `def
 /*!40000 ALTER TABLE `StoreCurrency` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreDeliveryMethod
+-- Дамп структуры для таблица avto.loc.StoreDeliveryMethod
 DROP TABLE IF EXISTS `StoreDeliveryMethod`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryMethod` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1038,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `StoreDeliveryMethod` (
   KEY `position` (`position`)
 ) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreDeliveryMethod: 3 rows
+-- Дамп данных таблицы avto.loc.StoreDeliveryMethod: 3 rows
 /*!40000 ALTER TABLE `StoreDeliveryMethod` DISABLE KEYS */;
 INSERT INTO `StoreDeliveryMethod` (`id`, `price`, `free_from`, `position`, `active`) VALUES
 	(14, 10.00, 1000.00, 0, 1),
@@ -1047,7 +1070,7 @@ INSERT INTO `StoreDeliveryMethod` (`id`, `price`, `free_from`, `position`, `acti
 /*!40000 ALTER TABLE `StoreDeliveryMethod` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreDeliveryMethodTranslate
+-- Дамп структуры для таблица avto.loc.StoreDeliveryMethodTranslate
 DROP TABLE IF EXISTS `StoreDeliveryMethodTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryMethodTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1060,7 +1083,7 @@ CREATE TABLE IF NOT EXISTS `StoreDeliveryMethodTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreDeliveryMethodTranslate: 6 rows
+-- Дамп данных таблицы avto.loc.StoreDeliveryMethodTranslate: 6 rows
 /*!40000 ALTER TABLE `StoreDeliveryMethodTranslate` DISABLE KEYS */;
 INSERT INTO `StoreDeliveryMethodTranslate` (`id`, `object_id`, `language_id`, `name`, `description`) VALUES
 	(1, 14, 1, 'Курьером', ''),
@@ -1072,7 +1095,7 @@ INSERT INTO `StoreDeliveryMethodTranslate` (`id`, `object_id`, `language_id`, `n
 /*!40000 ALTER TABLE `StoreDeliveryMethodTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreDeliveryPayment
+-- Дамп структуры для таблица avto.loc.StoreDeliveryPayment
 DROP TABLE IF EXISTS `StoreDeliveryPayment`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryPayment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1081,7 +1104,7 @@ CREATE TABLE IF NOT EXISTS `StoreDeliveryPayment` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='Saves relations between delivery and payment methods ';
 
--- Дамп данных таблицы cms.loc.StoreDeliveryPayment: 19 rows
+-- Дамп данных таблицы avto.loc.StoreDeliveryPayment: 19 rows
 /*!40000 ALTER TABLE `StoreDeliveryPayment` DISABLE KEYS */;
 INSERT INTO `StoreDeliveryPayment` (`id`, `delivery_id`, `payment_id`) VALUES
 	(24, 12, 14),
@@ -1106,7 +1129,7 @@ INSERT INTO `StoreDeliveryPayment` (`id`, `delivery_id`, `payment_id`) VALUES
 /*!40000 ALTER TABLE `StoreDeliveryPayment` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreManufacturer
+-- Дамп структуры для таблица avto.loc.StoreManufacturer
 DROP TABLE IF EXISTS `StoreManufacturer`;
 CREATE TABLE IF NOT EXISTS `StoreManufacturer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1117,7 +1140,7 @@ CREATE TABLE IF NOT EXISTS `StoreManufacturer` (
   KEY `url` (`url`)
 ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreManufacturer: 18 rows
+-- Дамп данных таблицы avto.loc.StoreManufacturer: 18 rows
 /*!40000 ALTER TABLE `StoreManufacturer` DISABLE KEYS */;
 INSERT INTO `StoreManufacturer` (`id`, `url`, `layout`, `view`) VALUES
 	(1, 'lenovo', '', ''),
@@ -1141,7 +1164,7 @@ INSERT INTO `StoreManufacturer` (`id`, `url`, `layout`, `view`) VALUES
 /*!40000 ALTER TABLE `StoreManufacturer` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreManufacturerTranslate
+-- Дамп структуры для таблица avto.loc.StoreManufacturerTranslate
 DROP TABLE IF EXISTS `StoreManufacturerTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreManufacturerTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1157,7 +1180,7 @@ CREATE TABLE IF NOT EXISTS `StoreManufacturerTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreManufacturerTranslate: 36 rows
+-- Дамп данных таблицы avto.loc.StoreManufacturerTranslate: 36 rows
 /*!40000 ALTER TABLE `StoreManufacturerTranslate` DISABLE KEYS */;
 INSERT INTO `StoreManufacturerTranslate` (`id`, `object_id`, `language_id`, `name`, `description`, `meta_title`, `meta_keywords`, `meta_description`) VALUES
 	(23, 1, 1, 'Lenovo', NULL, NULL, NULL, NULL),
@@ -1199,7 +1222,7 @@ INSERT INTO `StoreManufacturerTranslate` (`id`, `object_id`, `language_id`, `nam
 /*!40000 ALTER TABLE `StoreManufacturerTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StorePaymentMethod
+-- Дамп структуры для таблица avto.loc.StorePaymentMethod
 DROP TABLE IF EXISTS `StorePaymentMethod`;
 CREATE TABLE IF NOT EXISTS `StorePaymentMethod` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1211,7 +1234,7 @@ CREATE TABLE IF NOT EXISTS `StorePaymentMethod` (
   KEY `currency_id` (`currency_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StorePaymentMethod: 5 rows
+-- Дамп данных таблицы avto.loc.StorePaymentMethod: 5 rows
 /*!40000 ALTER TABLE `StorePaymentMethod` DISABLE KEYS */;
 INSERT INTO `StorePaymentMethod` (`id`, `currency_id`, `active`, `payment_system`, `position`) VALUES
 	(17, 1, 1, 'webmoney', 0),
@@ -1222,7 +1245,7 @@ INSERT INTO `StorePaymentMethod` (`id`, `currency_id`, `active`, `payment_system
 /*!40000 ALTER TABLE `StorePaymentMethod` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StorePaymentMethodTranslate
+-- Дамп структуры для таблица avto.loc.StorePaymentMethodTranslate
 DROP TABLE IF EXISTS `StorePaymentMethodTranslate`;
 CREATE TABLE IF NOT EXISTS `StorePaymentMethodTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1235,7 +1258,7 @@ CREATE TABLE IF NOT EXISTS `StorePaymentMethodTranslate` (
   KEY `language_id` (`language_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StorePaymentMethodTranslate: 10 rows
+-- Дамп данных таблицы avto.loc.StorePaymentMethodTranslate: 10 rows
 /*!40000 ALTER TABLE `StorePaymentMethodTranslate` DISABLE KEYS */;
 INSERT INTO `StorePaymentMethodTranslate` (`id`, `object_id`, `language_id`, `name`, `description`) VALUES
 	(1, 17, 1, 'WebMoney', 'WebMoney — это универсальное средство для расчетов в Сети, целая среда финансовых взаимоотношений, которой сегодня пользуются миллионы людей по всему миру.'),
@@ -1251,7 +1274,7 @@ INSERT INTO `StorePaymentMethodTranslate` (`id`, `object_id`, `language_id`, `na
 /*!40000 ALTER TABLE `StorePaymentMethodTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProduct
+-- Дамп структуры для таблица avto.loc.StoreProduct
 DROP TABLE IF EXISTS `StoreProduct`;
 CREATE TABLE IF NOT EXISTS `StoreProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1287,9 +1310,9 @@ CREATE TABLE IF NOT EXISTS `StoreProduct` (
   KEY `updated` (`updated`),
   KEY `added_to_cart_count` (`added_to_cart_count`),
   KEY `views_count` (`views_count`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProduct: 44 rows
+-- Дамп данных таблицы avto.loc.StoreProduct: 44 rows
 /*!40000 ALTER TABLE `StoreProduct` DISABLE KEYS */;
 INSERT INTO `StoreProduct` (`id`, `manufacturer_id`, `type_id`, `use_configurations`, `url`, `price`, `max_price`, `is_active`, `layout`, `view`, `sku`, `quantity`, `availability`, `auto_decrease_quantity`, `views_count`, `created`, `updated`, `added_to_cart_count`, `votes`, `rating`, `discount`, `video`) VALUES
 	(1, 1, 2, 0, 'lenovo-b570', 345.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:48', '2015-03-25 12:43:48', NULL, NULL, NULL, NULL, 'Intel GMA HD'),
@@ -1303,7 +1326,7 @@ INSERT INTO `StoreProduct` (`id`, `manufacturer_id`, `type_id`, `use_configurati
 	(9, 6, 2, 0, 'apple-macbook-pro-15-late-2011', 2600.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, 5, '2015-03-25 12:43:49', '2015-03-25 12:43:49', NULL, NULL, NULL, NULL, 'ATI Radeon HD 6770М'),
 	(10, 1, 2, 0, 'lenovo-thinkpad-w520', 2450.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:49', '2015-03-25 12:43:49', NULL, NULL, NULL, NULL, 'NVIDIA Quadro 2000M'),
 	(11, 7, 2, 0, 'sony-vaio-vpc-f13s8r', 1950.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-03-25 12:43:50', NULL, NULL, NULL, NULL, 'NVIDIA GeForce GT 425M'),
-	(12, 8, 2, 0, 'acer-aspire-5943g-7748g75twiss', 2350.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-03-25 12:43:50', NULL, NULL, NULL, NULL, 'ATI Mobility Radeon HD 5850'),
+	(12, 8, 2, 0, 'acer-aspire-5943g-7748g75twiss', 2350.00, 0.00, 1, '', '', '', 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-04-15 17:37:19', NULL, NULL, NULL, '', 'ATI Mobility Radeon HD 5850'),
 	(13, 9, 3, 0, 'logitech-x-530', 99.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-03-25 12:43:50', NULL, NULL, NULL, NULL, NULL),
 	(14, 10, 3, 0, 'microlab-m-860', 89.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-03-25 12:43:50', NULL, NULL, NULL, NULL, NULL),
 	(15, 11, 3, 0, 'edifier-m3700', 115.00, 0.00, 1, NULL, NULL, NULL, 0, 1, 1, NULL, '2015-03-25 12:43:50', '2015-03-25 12:43:50', NULL, NULL, NULL, NULL, NULL),
@@ -1339,7 +1362,7 @@ INSERT INTO `StoreProduct` (`id`, `manufacturer_id`, `type_id`, `use_configurati
 /*!40000 ALTER TABLE `StoreProduct` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductAttributeEAV
+-- Дамп структуры для таблица avto.loc.StoreProductAttributeEAV
 DROP TABLE IF EXISTS `StoreProductAttributeEAV`;
 CREATE TABLE IF NOT EXISTS `StoreProductAttributeEAV` (
   `entity` int(11) unsigned NOT NULL,
@@ -1350,7 +1373,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductAttributeEAV` (
   KEY `value` (`value`(50))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductAttributeEAV: 183 rows
+-- Дамп данных таблицы avto.loc.StoreProductAttributeEAV: 183 rows
 /*!40000 ALTER TABLE `StoreProductAttributeEAV` DISABLE KEYS */;
 INSERT INTO `StoreProductAttributeEAV` (`entity`, `attribute`, `value`) VALUES
 	(1, 'processor_manufacturer', '86'),
@@ -1419,12 +1442,9 @@ INSERT INTO `StoreProductAttributeEAV` (`entity`, `attribute`, `value`) VALUES
 	(11, 'memmory_type', '89'),
 	(11, 'screen', '106'),
 	(11, 'screen_dimension', '99'),
-	(12, 'processor_manufacturer', '96'),
-	(12, 'freq', '107'),
-	(12, 'memmory', '98'),
 	(12, 'memmory_type', '89'),
-	(12, 'screen', '90'),
-	(12, 'screen_dimension', '99'),
+	(12, 'memmory', '98'),
+	(12, 'freq', '107'),
 	(13, 'rms_power', '108'),
 	(13, 'corpus_material', '109'),
 	(13, 'sound_type', '110'),
@@ -1535,11 +1555,14 @@ INSERT INTO `StoreProductAttributeEAV` (`entity`, `attribute`, `value`) VALUES
 	(44, 'tablet_screen_size', '157'),
 	(44, 'screen_dimension', '158'),
 	(44, 'memmory_size', '149'),
-	(44, 'weight', '160');
+	(44, 'weight', '160'),
+	(12, 'processor_manufacturer', '96'),
+	(12, 'screen', '90'),
+	(12, 'screen_dimension', '99');
 /*!40000 ALTER TABLE `StoreProductAttributeEAV` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductCategoryRef
+-- Дамп структуры для таблица avto.loc.StoreProductCategoryRef
 DROP TABLE IF EXISTS `StoreProductCategoryRef`;
 CREATE TABLE IF NOT EXISTS `StoreProductCategoryRef` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1550,9 +1573,9 @@ CREATE TABLE IF NOT EXISTS `StoreProductCategoryRef` (
   KEY `category` (`category`),
   KEY `product` (`product`),
   KEY `is_main` (`is_main`)
-) ENGINE=MyISAM AUTO_INCREMENT=232 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=234 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductCategoryRef: 70 rows
+-- Дамп данных таблицы avto.loc.StoreProductCategoryRef: 70 rows
 /*!40000 ALTER TABLE `StoreProductCategoryRef` DISABLE KEYS */;
 INSERT INTO `StoreProductCategoryRef` (`id`, `product`, `category`, `is_main`) VALUES
 	(162, 1, 231, 1),
@@ -1578,7 +1601,7 @@ INSERT INTO `StoreProductCategoryRef` (`id`, `product`, `category`, `is_main`) V
 	(182, 11, 232, 1),
 	(183, 11, 230, 0),
 	(184, 12, 232, 1),
-	(185, 12, 230, 0),
+	(232, 12, 230, 0),
 	(186, 13, 234, 1),
 	(187, 13, 233, 0),
 	(188, 14, 234, 1),
@@ -1628,7 +1651,7 @@ INSERT INTO `StoreProductCategoryRef` (`id`, `product`, `category`, `is_main`) V
 /*!40000 ALTER TABLE `StoreProductCategoryRef` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductConfigurableAttributes
+-- Дамп структуры для таблица avto.loc.StoreProductConfigurableAttributes
 DROP TABLE IF EXISTS `StoreProductConfigurableAttributes`;
 CREATE TABLE IF NOT EXISTS `StoreProductConfigurableAttributes` (
   `product_id` int(11) NOT NULL COMMENT 'Attributes available to configure product',
@@ -1636,12 +1659,12 @@ CREATE TABLE IF NOT EXISTS `StoreProductConfigurableAttributes` (
   UNIQUE KEY `product_attribute_index` (`product_id`,`attribute_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductConfigurableAttributes: 0 rows
+-- Дамп данных таблицы avto.loc.StoreProductConfigurableAttributes: 0 rows
 /*!40000 ALTER TABLE `StoreProductConfigurableAttributes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreProductConfigurableAttributes` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductConfigurations
+-- Дамп структуры для таблица avto.loc.StoreProductConfigurations
 DROP TABLE IF EXISTS `StoreProductConfigurations`;
 CREATE TABLE IF NOT EXISTS `StoreProductConfigurations` (
   `product_id` int(11) NOT NULL COMMENT 'Saves relations beetwen product and configurations',
@@ -1649,12 +1672,12 @@ CREATE TABLE IF NOT EXISTS `StoreProductConfigurations` (
   UNIQUE KEY `idsunique` (`product_id`,`configurable_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductConfigurations: 0 rows
+-- Дамп данных таблицы avto.loc.StoreProductConfigurations: 0 rows
 /*!40000 ALTER TABLE `StoreProductConfigurations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreProductConfigurations` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductImage
+-- Дамп структуры для таблица avto.loc.StoreProductImage
 DROP TABLE IF EXISTS `StoreProductImage`;
 CREATE TABLE IF NOT EXISTS `StoreProductImage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1667,7 +1690,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductImage` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductImage: 44 rows
+-- Дамп данных таблицы avto.loc.StoreProductImage: 44 rows
 /*!40000 ALTER TABLE `StoreProductImage` DISABLE KEYS */;
 INSERT INTO `StoreProductImage` (`id`, `product_id`, `name`, `is_main`, `uploaded_by`, `date_uploaded`, `title`) VALUES
 	(140, 1, '1_-998481373.jpg', 1, NULL, '2015-03-25 12:43:49', NULL),
@@ -1681,7 +1704,7 @@ INSERT INTO `StoreProductImage` (`id`, `product_id`, `name`, `is_main`, `uploade
 	(148, 9, '9_-2053272864.jpg', 1, NULL, '2015-03-25 12:43:49', NULL),
 	(149, 10, '10_1156825074.jpg', 1, NULL, '2015-03-25 12:43:49', NULL),
 	(150, 11, '11_1718686233.jpg', 1, NULL, '2015-03-25 12:43:50', NULL),
-	(151, 12, '12_-1816129508.jpg', 1, NULL, '2015-03-25 12:43:50', NULL),
+	(151, 12, '12_-1816129508.jpg', 1, NULL, '2015-03-25 12:43:50', ''),
 	(152, 13, '13_-1072024467.jpg', 1, NULL, '2015-03-25 12:43:50', NULL),
 	(153, 14, '14_438282316.jpg', 1, NULL, '2015-03-25 12:43:50', NULL),
 	(154, 15, '15_1959926883.jpg', 1, NULL, '2015-03-25 12:43:50', NULL),
@@ -1717,7 +1740,7 @@ INSERT INTO `StoreProductImage` (`id`, `product_id`, `name`, `is_main`, `uploade
 /*!40000 ALTER TABLE `StoreProductImage` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductTranslate
+-- Дамп структуры для таблица avto.loc.StoreProductTranslate
 DROP TABLE IF EXISTS `StoreProductTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreProductTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1732,9 +1755,9 @@ CREATE TABLE IF NOT EXISTS `StoreProductTranslate` (
   PRIMARY KEY (`id`),
   KEY `object_id` (`object_id`),
   KEY `language_id` (`language_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=353 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=355 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductTranslate: 88 rows
+-- Дамп данных таблицы avto.loc.StoreProductTranslate: 88 rows
 /*!40000 ALTER TABLE `StoreProductTranslate` DISABLE KEYS */;
 INSERT INTO `StoreProductTranslate` (`id`, `object_id`, `language_id`, `name`, `short_description`, `full_description`, `meta_title`, `meta_keywords`, `meta_description`) VALUES
 	(265, 1, 1, 'Lenovo B570', 'Celeron / Pentium, 1500-2200 МГц, 2048-4096 Мб, 320-500 Гб, 15.6 дюйм, Intel GMA HD, DVD-RW, Wi-Fi, Bluetooth (опционально), 2.35 кг', NULL, NULL, NULL, NULL),
@@ -1759,7 +1782,7 @@ INSERT INTO `StoreProductTranslate` (`id`, `object_id`, `language_id`, `name`, `
 	(284, 10, 9, 'Lenovo THINKPAD W520', 'Core i7 / Core i7 Extreme, 2000-2700 МГц, 4096-8192 Мб, 160-580 Гб, 15.6 дюйм, NVIDIA Quadro 2000M, DVD-RW, Wi-Fi, Bluetooth, 2.45 кг', NULL, NULL, NULL, NULL),
 	(285, 11, 1, 'Sony VAIO VPC-F13S8R', 'Core i5, 2660 МГц, 4096 Мб, 640 Гб, 16.4 дюйм, NVIDIA GeForce GT 425M, Blu-Ray, Wi-Fi, Bluetooth, 3.1 кг', NULL, NULL, NULL, NULL),
 	(286, 11, 9, 'Sony VAIO VPC-F13S8R', 'Core i5, 2660 МГц, 4096 Мб, 640 Гб, 16.4 дюйм, NVIDIA GeForce GT 425M, Blu-Ray, Wi-Fi, Bluetooth, 3.1 кг', NULL, NULL, NULL, NULL),
-	(287, 12, 1, 'Acer ASPIRE 5943G-7748G75TWiss', 'Core i7, 1730 МГц, 8192 Мб, 750 Гб, 15.6 дюйм, ATI Mobility Radeon HD 5850, BD-RE, Wi-Fi, Bluetooth, 3.3 кг', NULL, NULL, NULL, NULL),
+	(287, 12, 1, 'Acer ASPIRE 5943G-7748G75TWiss', 'Core i7, 1730 МГц, 8192 Мб, 750 Гб, 15.6 дюйм, ATI Mobility Radeon HD 5850, BD-RE, Wi-Fi, Bluetooth, 3.3 кг', '', '', '', ''),
 	(288, 12, 9, 'Acer ASPIRE 5943G-7748G75TWiss', 'Core i7, 1730 МГц, 8192 Мб, 750 Гб, 15.6 дюйм, ATI Mobility Radeon HD 5850, BD-RE, Wi-Fi, Bluetooth, 3.3 кг', NULL, NULL, NULL, NULL),
 	(289, 13, 1, 'Logitech X-530', 'число каналов: 5.1, мощность 71.20 Вт, 40-20000 Гц, материал колонок: пластик, материал сабвуфера: MDF, разъем для наушников, магнитное экранирование', NULL, NULL, NULL, NULL),
 	(290, 13, 9, 'Logitech X-530', 'число каналов: 5.1, мощность 71.20 Вт, 40-20000 Гц, материал колонок: пластик, материал сабвуфера: MDF, разъем для наушников, магнитное экранирование', NULL, NULL, NULL, NULL),
@@ -1828,7 +1851,7 @@ INSERT INTO `StoreProductTranslate` (`id`, `object_id`, `language_id`, `name`, `
 /*!40000 ALTER TABLE `StoreProductTranslate` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductType
+-- Дамп структуры для таблица avto.loc.StoreProductType
 DROP TABLE IF EXISTS `StoreProductType`;
 CREATE TABLE IF NOT EXISTS `StoreProductType` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1838,7 +1861,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductType` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductType: 6 rows
+-- Дамп данных таблицы avto.loc.StoreProductType: 6 rows
 /*!40000 ALTER TABLE `StoreProductType` DISABLE KEYS */;
 INSERT INTO `StoreProductType` (`id`, `name`, `categories_preset`, `main_category`) VALUES
 	(1, 'Простой продукт', NULL, 0),
@@ -1850,7 +1873,7 @@ INSERT INTO `StoreProductType` (`id`, `name`, `categories_preset`, `main_categor
 /*!40000 ALTER TABLE `StoreProductType` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreProductVariant
+-- Дамп структуры для таблица avto.loc.StoreProductVariant
 DROP TABLE IF EXISTS `StoreProductVariant`;
 CREATE TABLE IF NOT EXISTS `StoreProductVariant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1866,12 +1889,12 @@ CREATE TABLE IF NOT EXISTS `StoreProductVariant` (
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=298 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreProductVariant: 0 rows
+-- Дамп данных таблицы avto.loc.StoreProductVariant: 0 rows
 /*!40000 ALTER TABLE `StoreProductVariant` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreProductVariant` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreRelatedProduct
+-- Дамп структуры для таблица avto.loc.StoreRelatedProduct
 DROP TABLE IF EXISTS `StoreRelatedProduct`;
 CREATE TABLE IF NOT EXISTS `StoreRelatedProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1881,12 +1904,12 @@ CREATE TABLE IF NOT EXISTS `StoreRelatedProduct` (
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='Handle related products';
 
--- Дамп данных таблицы cms.loc.StoreRelatedProduct: 0 rows
+-- Дамп данных таблицы avto.loc.StoreRelatedProduct: 0 rows
 /*!40000 ALTER TABLE `StoreRelatedProduct` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreRelatedProduct` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreTypeAttribute
+-- Дамп структуры для таблица avto.loc.StoreTypeAttribute
 DROP TABLE IF EXISTS `StoreTypeAttribute`;
 CREATE TABLE IF NOT EXISTS `StoreTypeAttribute` (
   `type_id` int(11) NOT NULL,
@@ -1894,7 +1917,7 @@ CREATE TABLE IF NOT EXISTS `StoreTypeAttribute` (
   PRIMARY KEY (`type_id`,`attribute_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreTypeAttribute: 19 rows
+-- Дамп данных таблицы avto.loc.StoreTypeAttribute: 19 rows
 /*!40000 ALTER TABLE `StoreTypeAttribute` DISABLE KEYS */;
 INSERT INTO `StoreTypeAttribute` (`type_id`, `attribute_id`) VALUES
 	(2, 1),
@@ -1919,7 +1942,7 @@ INSERT INTO `StoreTypeAttribute` (`type_id`, `attribute_id`) VALUES
 /*!40000 ALTER TABLE `StoreTypeAttribute` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreWishlist
+-- Дамп структуры для таблица avto.loc.StoreWishlist
 DROP TABLE IF EXISTS `StoreWishlist`;
 CREATE TABLE IF NOT EXISTS `StoreWishlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1930,12 +1953,12 @@ CREATE TABLE IF NOT EXISTS `StoreWishlist` (
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreWishlist: 0 rows
+-- Дамп данных таблицы avto.loc.StoreWishlist: 0 rows
 /*!40000 ALTER TABLE `StoreWishlist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreWishlist` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.StoreWishlistProducts
+-- Дамп структуры для таблица avto.loc.StoreWishlistProducts
 DROP TABLE IF EXISTS `StoreWishlistProducts`;
 CREATE TABLE IF NOT EXISTS `StoreWishlistProducts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1948,12 +1971,12 @@ CREATE TABLE IF NOT EXISTS `StoreWishlistProducts` (
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.StoreWishlistProducts: 0 rows
+-- Дамп данных таблицы avto.loc.StoreWishlistProducts: 0 rows
 /*!40000 ALTER TABLE `StoreWishlistProducts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `StoreWishlistProducts` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemLanguage
+-- Дамп структуры для таблица avto.loc.SystemLanguage
 DROP TABLE IF EXISTS `SystemLanguage`;
 CREATE TABLE IF NOT EXISTS `SystemLanguage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1966,7 +1989,7 @@ CREATE TABLE IF NOT EXISTS `SystemLanguage` (
   KEY `code` (`code`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemLanguage: 2 rows
+-- Дамп данных таблицы avto.loc.SystemLanguage: 2 rows
 /*!40000 ALTER TABLE `SystemLanguage` DISABLE KEYS */;
 INSERT INTO `SystemLanguage` (`id`, `name`, `code`, `locale`, `default`, `flag_name`) VALUES
 	(1, 'Русский', 'ru', 'ru', 1, 'ru.png'),
@@ -1974,7 +1997,7 @@ INSERT INTO `SystemLanguage` (`id`, `name`, `code`, `locale`, `default`, `flag_n
 /*!40000 ALTER TABLE `SystemLanguage` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemLayouts
+-- Дамп структуры для таблица avto.loc.SystemLayouts
 DROP TABLE IF EXISTS `SystemLayouts`;
 CREATE TABLE IF NOT EXISTS `SystemLayouts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1983,7 +2006,7 @@ CREATE TABLE IF NOT EXISTS `SystemLayouts` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemLayouts: ~2 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.SystemLayouts: ~3 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemLayouts` DISABLE KEYS */;
 INSERT INTO `SystemLayouts` (`id`, `name`, `route`) VALUES
 	(1, 'default', '%/%/%'),
@@ -1992,7 +2015,7 @@ INSERT INTO `SystemLayouts` (`id`, `name`, `route`) VALUES
 /*!40000 ALTER TABLE `SystemLayouts` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemLayoutsWidgets
+-- Дамп структуры для таблица avto.loc.SystemLayoutsWidgets
 DROP TABLE IF EXISTS `SystemLayoutsWidgets`;
 CREATE TABLE IF NOT EXISTS `SystemLayoutsWidgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2006,7 +2029,7 @@ CREATE TABLE IF NOT EXISTS `SystemLayoutsWidgets` (
   KEY `position` (`position`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemLayoutsWidgets: ~2 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.SystemLayoutsWidgets: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemLayoutsWidgets` DISABLE KEYS */;
 INSERT INTO `SystemLayoutsWidgets` (`id`, `layout_id`, `widget_id`, `position`, `sort`) VALUES
 	(14, 2, 5, 'Top', 0),
@@ -2014,7 +2037,7 @@ INSERT INTO `SystemLayoutsWidgets` (`id`, `layout_id`, `widget_id`, `position`, 
 /*!40000 ALTER TABLE `SystemLayoutsWidgets` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemModules
+-- Дамп структуры для таблица avto.loc.SystemModules
 DROP TABLE IF EXISTS `SystemModules`;
 CREATE TABLE IF NOT EXISTS `SystemModules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2024,7 +2047,7 @@ CREATE TABLE IF NOT EXISTS `SystemModules` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemModules: 18 rows
+-- Дамп данных таблицы avto.loc.SystemModules: 18 rows
 /*!40000 ALTER TABLE `SystemModules` DISABLE KEYS */;
 INSERT INTO `SystemModules` (`id`, `name`, `enabled`) VALUES
 	(7, 'users', 1),
@@ -2048,7 +2071,7 @@ INSERT INTO `SystemModules` (`id`, `name`, `enabled`) VALUES
 /*!40000 ALTER TABLE `SystemModules` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemSettings
+-- Дамп структуры для таблица avto.loc.SystemSettings
 DROP TABLE IF EXISTS `SystemSettings`;
 CREATE TABLE IF NOT EXISTS `SystemSettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2060,7 +2083,7 @@ CREATE TABLE IF NOT EXISTS `SystemSettings` (
   KEY `key` (`key`)
 ) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemSettings: 41 rows
+-- Дамп данных таблицы avto.loc.SystemSettings: 41 rows
 /*!40000 ALTER TABLE `SystemSettings` DISABLE KEYS */;
 INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 	(9, 'feedback', 'max_message_length', '1000'),
@@ -2083,7 +2106,7 @@ INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 	(28, 'core', 'siteName', 'cms'),
 	(29, 'core', 'productsPerPage', '12,18,24'),
 	(30, 'core', 'productsPerPageAdmin', '30'),
-	(31, 'core', 'theme', 'default'),
+	(31, 'core', 'theme', 'avto'),
 	(32, '20_QiwiPaymentSystem', 'shop_id', ''),
 	(33, '20_QiwiPaymentSystem', 'password', ''),
 	(34, '21_QiwiPaymentSystem', 'shop_id', '211182'),
@@ -2107,7 +2130,7 @@ INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 /*!40000 ALTER TABLE `SystemSettings` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.SystemWidgets
+-- Дамп структуры для таблица avto.loc.SystemWidgets
 DROP TABLE IF EXISTS `SystemWidgets`;
 CREATE TABLE IF NOT EXISTS `SystemWidgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2122,14 +2145,14 @@ CREATE TABLE IF NOT EXISTS `SystemWidgets` (
   KEY `module_id` (`module_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemWidgets: ~2 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.SystemWidgets: ~1 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemWidgets` DISABLE KEYS */;
 INSERT INTO `SystemWidgets` (`id`, `module_id`, `group`, `name`, `description`, `class`, `params`, `status`) VALUES
 	(5, 62, 'sliders', 'home slider', NULL, 'application.modules.banners.widgets.nivoslider.NivoSlider', 'a:3:{s:5:"width";s:4:"1000";s:6:"height";s:3:"500";s:9:"banner_id";s:1:"2";}', 1);
 /*!40000 ALTER TABLE `SystemWidgets` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.tbl_migration
+-- Дамп структуры для таблица avto.loc.tbl_migration
 DROP TABLE IF EXISTS `tbl_migration`;
 CREATE TABLE IF NOT EXISTS `tbl_migration` (
   `version` varchar(255) NOT NULL,
@@ -2137,7 +2160,7 @@ CREATE TABLE IF NOT EXISTS `tbl_migration` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.tbl_migration: ~13 rows (приблизительно)
+-- Дамп данных таблицы avto.loc.tbl_migration: ~13 rows (приблизительно)
 /*!40000 ALTER TABLE `tbl_migration` DISABLE KEYS */;
 INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 	('m000000_000000_base', 1361214193),
@@ -2156,7 +2179,7 @@ INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 /*!40000 ALTER TABLE `tbl_migration` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.user
+-- Дамп структуры для таблица avto.loc.user
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2173,14 +2196,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Saves user accounts';
 
--- Дамп данных таблицы cms.loc.user: 1 rows
+-- Дамп данных таблицы avto.loc.user: 1 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `created_at`, `last_login`, `login_ip`, `recovery_key`, `recovery_password`, `discount`, `banned`) VALUES
-	(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@mail.ru', '2015-03-25 12:44:10', '2015-03-25 12:51:33', '127.0.0.1', NULL, NULL, NULL, 0);
+	(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@mail.ru', '2015-03-25 12:44:10', '2015-04-15 15:53:50', '127.0.0.1', NULL, NULL, NULL, 0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
--- Дамп структуры для таблица cms.loc.user_profile
+-- Дамп структуры для таблица avto.loc.user_profile
 DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2192,7 +2215,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.user_profile: 1 rows
+-- Дамп данных таблицы avto.loc.user_profile: 1 rows
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
 INSERT INTO `user_profile` (`id`, `user_id`, `full_name`, `phone`, `delivery_address`) VALUES
 	(1, 1, 'admin', NULL, NULL);

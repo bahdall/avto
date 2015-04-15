@@ -84,10 +84,13 @@ class ServerFileInput extends CInputWidget
             $src = $this->value;
         }
 
+        if( ! $src)$class = 'hide';
+
         echo CHtml::image($src,'',array(
             'id' => $id.'_image',
             'width' => 95,
-        ));
+            'class' => $class,
+        ))." &nbsp;";
 
         $inputOptions = array('id' => $id, 'style' => 'float:left;' /*, 'readonly' => 'readonly'*/);
         if ($this->hasModel())
@@ -95,7 +98,7 @@ class ServerFileInput extends CInputWidget
         else
             echo CHtml::hiddenField($name, $this->value, $inputOptions);
 
-        echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn'));
+        echo CHtml::button('Browse', array('id' => $id . 'browse', 'class' => 'btn', 'style' => 'vertical-align: top;'));
         echo CHtml::closeTag('div');
 
         $settings = array_merge(array(

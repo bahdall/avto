@@ -1,0 +1,295 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body, h1, h2, h3, h4, h5, ul, ol, li, p {
+    margin: 0; padding: 0;
+}
+body {
+    font-family: Roboto;
+    background: #fff;
+    color: #333;
+    min-width: 960px;
+
+}
+ul {
+    list-style-type: none;
+}
+input,
+textarea,
+button,
+select {
+    outline: none;
+}
+button {
+    cursor: pointer;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    margin: 0; padding: 0;
+    border: 0;
+}
+::-webkit-input-placeholder { color: #aaa; }
+:-moz-placeholder { color: #aaa; } /* FF18- */
+::-moz-placeholder { color: #aaa; } /* FF19+ */
+:-ms-input-placeholder { color: #aaa; }
+
+a {
+    transition: all .25s ease;
+    color: #B0BEC5;
+}
+a:hover {
+    color: #ffa726;
+}
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+td,
+th {
+    padding: 0;
+}
+
+/* grid */
+
+/* .row {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1280px;
+} */
+
+.row--negativemargin {
+    margin: 0 -14px
+}
+
+.row--nopad [class^="col-"],
+.row--nopad [class*=" col-"] {
+    padding: 0;
+}
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+.row:after {
+    clear: both;
+}
+.row__inner {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1280px;
+    overflow: hidden;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+    float: left;
+    padding-left: 14px;
+    padding-right: 14px;
+    min-height: 1px;
+}
+
+.col-1 {
+    width:8.33333333333%;
+}
+.col-2 {
+    width:16.6666666667%;
+}
+.col-3 {
+    width:25.0%;
+}
+.col-4 {
+    width:33.3333333333%;
+}
+.col-5 {
+    width:41.6666666667%;
+}
+.col-6 {
+    width:50.0%;
+}
+.col-7 {
+    width:58.3333333333%;
+}
+.col-8 {
+    width:66.6666666667%;
+}
+.col-9 {
+    width:75.0%;
+}
+.col-10 {
+    width:83.3333333333%;
+}
+.col-11 {
+    width:91.6666666667%;
+}
+.col-12 {
+    margin-left:0;
+    width:100%;
+}
+
+/* form elements */
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: none;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.btn--primary,
+.btn--secondary {
+    padding: 10px 15px;
+    background: #ffa726;
+    color: #fff !important;
+}
+.btn--secondary {
+    background: #78909c;
+}
+.btn--light {
+    background: #fff;
+}
+
+.input-text {
+  padding: 7px;
+  border-radius: 2px;
+  font-size: 14px;
+  background-color: #cfd8dc;
+  border: 0;
+  color: #546e7a; 
+  
+    
+}
+textarea.input-text {
+    min-height: 100px;
+}
+.input-text--lg {
+    padding: 10px 10px;
+    font-size: 24px;
+}
+.input-text--mw {
+    width: 400px !important;
+}
+.btn--lg {
+    padding: 10px 30px;
+    font-size: 24px;
+}
+.btn--block {
+    display: block;
+    width: 100%;
+}
+
+.radio-group {
+    margin: 0 0 10px;
+    overflow: hidden;
+    border-radius: 2px;
+    font-size: 14px;
+}
+.radio-group input[type="radio"] {
+    display: none;
+}
+.radio-group label {
+    padding: 10px 15px;
+    color: #455a64;
+    background: #cfd8dc;
+    cursor: pointer;
+    border-right: 1px solid #b0bec5;
+}
+.radio-group label:last-child {
+    border-radius: 0 2px 2px 0;
+    border: 0;
+}
+
+.radio-group input:checked + label {
+    color: #fff;
+    background: #ffa726;
+}
+
+
+/* images */
+
+.sprite {
+    background-image: url(../../img/sprite.png);
+}
+
+
+/* global classes */
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.group:before,
+.group:after {
+    content: " ";
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.text-right {
+    text-align: right;
+}
+.text-muted {
+    color: #b0bec5;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #546E7A;
+}
+
+.table th {
+    padding: 10px;
+    font-weight: normal;
+    text-align: left;
+    border-bottom: 1px solid #EBEFF0;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #B0BEC5;
+}
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #EBEFF0;
+    vertical-align: top;
+}
+
+
+
+
+

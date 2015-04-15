@@ -17,6 +17,12 @@ return array(
 				'description'=>array(
 					'type'=>'textarea',
 				),
+				'image' => array(
+					'type' => 'ext.elFinder.ServerFileInput',
+					'attributes' => array(
+						'connectorRoute' => 'filemanager/elfinderconnector',
+					),
+				),
 			),
 		),
 		'seo'=>array(

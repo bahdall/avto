@@ -5,188 +5,195 @@
 
 	$assetsManager = Yii::app()->clientScript;
 	$assetsManager->registerCoreScript('jquery');
-	$assetsManager->registerCoreScript('jquery.ui');
-
-	// jGrowl notifications
-	Yii::import('ext.jgrowl.Jgrowl');
-	Jgrowl::register();
-
-	// Disable jquery-ui default theme
-	$assetsManager->scriptMap=array(
-		'jquery-ui.css'=>false,
-	);
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 <html>
 <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title><?php echo CHtml::encode($this->pageTitle) ?></title>
 	<meta charset="UTF-8"/>
 	<meta name="description" content="<?php echo CHtml::encode($this->pageDescription) ?>">
 	<meta name="keywords" content="<?php echo CHtml::encode($this->pageKeywords) ?>">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/reset.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/style.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/catalog.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/forms.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jqueryui/css/custom-theme/jquery-ui-1.8.19.custom.css">
 
-	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/common.js"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/menu.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>
+
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/response.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/fontello.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/jquery.selectbox.css" />
+
+
+	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jquery.selectbox-0.2.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/script.js"></script>
+
+
+	<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+<!--	<script type="text/javascript" src="--><?php //echo Yii::app()->theme->baseUrl ?><!--/assets/js/common.js"></script>-->
 </head>
 <body>
 
 <?php
 	// Notifier module form
 	Yii::import('application.modules.notifier.NotifierModule');
-	NotifierModule::renderDialog();
+	//NotifierModule::renderDialog();
 ?>
+	<header>
+		<div class="container">
+			<div class="top">
+				<ul class="nav-list nav-list-left">
+					<li class="logo"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/images/logo.png" /></li>
+					<li><div class="text">Красивые финансовые решения</div></li>
+				</ul>
 
-<div id="header">
-	<!-- Small top menu -->
-	<div id="top_menu">
-		<div class="left">
-			<?php
+				<ul class="nav-list nav-list-right">
+					<li class="phone">
+						+998 71 987 65 43
+						<div>
+							<a href="#">info@avtokredit.uz</a>
+						</div>
+					</li>
+
+				</ul>
+				<div style="clear: both;"></div>
+			</div>
+			<nav class="menu">
+
+				<?php
 				$this->widget('zii.widgets.CMenu', array(
 					'items'=>array(
-						array('label'=>Yii::t('core', 'Помощь'), 'url'=>array('/pages/pages/view', 'url'=>'help')),
+						array('label'=>Yii::t('core', 'Каталог автомобилей'), 'url'=>array('/store/category/view', 'url'=>'root')),
 						array('label'=>Yii::t('core', 'Как сделать заказ'), 'url'=>array('/pages/pages/view', 'url'=>'how-to-create-order')),
 						array('label'=>Yii::t('core', 'Гарантия'), 'url'=>array('/pages/pages/view', 'url'=>'garantiya')),
 						array('label'=>Yii::t('core', 'Доставка и оплата'), 'url'=>array('/pages/pages/view', 'url'=>'dostavka-i-oplata')),
 						array('label'=>Yii::t('core', 'Обратная связь'), 'url'=>array('/feedback/default/index')),
 					),
+					'htmlOptions' => array('class' => 'nav-list',),
 				));
-			?>
-		</div>
-		<div class="right">
-			<ul>
-				<li>
-					<a href="<?php echo Yii::app()->createUrl('/store/compare/index') ?>">
-						<span class="icon compare"></span><?php echo Yii::t('core', 'Товары на сравнение ({c})', array('{c}'=>SCompareProducts::countSession())) ?>
-					</a>
-				</li>
-				<li>
-					<a href="<?php echo Yii::app()->createUrl('/store/wishlist/index') ?>">
-						<span class="icon heart"></span><?php echo Yii::t('core', 'Список желаний ({c})', array('{c}'=>StoreWishlist::countByUser())) ?>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="blocks">
-		<div class="left">
-			<a href="/"><img id="logo" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/images/logo.png"></a>
-		</div>
-		<div class="middle">
-			<span class="icon phone"></span>
-			<?$this->widget( 'application.modules.core.widgets.IncludeFile.IncludeFile' ,array('file' => 'phone'))?>
-
-
-			<div class="currencies">
-				<?php echo Yii::t('core','Валюта:') ?>
-				<?php
-					foreach(Yii::app()->currency->currencies as $currency)
-					{
-						echo CHtml::ajaxLink($currency->symbol, '/store/ajax/activateCurrency/'.$currency->id, array(
-							'success'=>'js:function(){window.location.reload(true)}',
-						),array('id'=>'sw'.$currency->id,'class'=>Yii::app()->currency->active->id===$currency->id?'active':''));
-					}
 				?>
+			</nav>
+			<div style="clear: both;"></div>
+
+			<div class="short">
+				<div class="short_text">
+					3 простых шага к вашему автомобилю
+				</div>
+				<ul class="in-short">
+					<li>
+						<span class="in-short_icon">1</span>
+						<div class="in-short_text">Оформите заявку<br /> онлайн</div>
+						<div class="short_pointer"></div>
+						<div class="short_pointer_mini"></div>
+					</li>
+					<li>
+						<span class="in-short_icon">2</span>
+						<div class="in-short_text">Широкий выбор <br />кредитных программ</div>
+						<div class="short_pointer"></div>
+						<div class="short_pointer_mini"></div>
+					</li>
+					<li>
+						<span class="in-short_icon">3</span>
+						<div class="in-short_text">Оплачивайте как <br />вам удобно</div>
+
+					</li>
+				</ul>
 			</div>
 
-			<div class="search_box">
-				<?php echo CHtml::form($this->createUrl('/store/category/search')) ?>
-					<input type="text" value="Поиск товаров" name="q" id="searchQuery">
-					<button type="submit">Поиск</button>
-				<?php echo CHtml::endForm() ?>
-			</div>
+
 		</div>
-		<div class="right">
-			<div id="auth">
-				<?php if(Yii::app()->user->isGuest): ?>
-					<?php echo CHtml::link(Yii::t('core','Вход'), array('/users/login/login'), array('class'=>'light')) ?>
-					/
-					<?php echo CHtml::link(Yii::t('core','Регистрация'), array('/users/register'), array('class'=>'light')) ?>
-				<?php else: ?>
-					<?php echo CHtml::link(Yii::t('core','Личный кабинет'), array('/users/profile/index'), array('class'=>'light')) ?>
-					/
-					<?php echo CHtml::link(Yii::t('core','Мои заказы'), array('/users/profile/orders'), array('class'=>'light')) ?>
-					/
-					<?php echo CHtml::link(Yii::t('core','Выход'), array('/users/login/logout'), array('class'=>'light')) ?>
-				<?php endif; ?>
-			</div>
+	</header>
 
-			<div id="cart">
-				<?php $this->renderFile(Yii::getPathOfAlias('orders.views.cart._small_cart').'.php'); ?>
+
+	<div class="content">
+		<div class="container">
+			<div class="left">
+				<?=$content?>
+			</div>
+			<div class="right">
+				<div class="search">
+					<div class="text">
+						Поиск по параметрам
+					</div>
+					<form class="main_search">
+
+						<div id="styled-select">
+							<select>
+								<option value="">Марка авто</option>
+								<option value="">BMW</option>
+								<option value="">Chevrolet</option>
+								<option value="">Chrysler </option>
+								<option value="">Citroen</option>
+							</select>
+						</div>
+						<div class="form_group">
+							<label>Цена</label>
+							<br />
+
+							<input type="text" name="from" class=""  placeholder="от" />
+							<div id="from"></div>
+
+							<input type="text" name="prior"  class="" placeholder="до"/>
+							<div id="prior"></div>
+
+						</div>
+						<button class="btn btn-search" type="submit">Найти</button>
+					</form>
+
+
+
+
+				</div>
+				<div class="right_box">
+					<div class="text">Реклама</div>
+					<img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/images/main-reklama.png"/>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div style="clear: both;"></div>
 
-	<div class="mainm">
-		<?php
-			Yii::import('application.modules.store.models.StoreCategory');
-			$items = StoreCategory::model()->findByPk(1)->asCMenuArray();
-			if(isset($items['items']))
-			{
-				$this->widget('application.extensions.mbmenu.MbMenu',array(
-					'cssFile'=>Yii::app()->theme->baseUrl.'/assets/css/menu.css',
-					'htmlOptions'=>array('class'=>'dropdown', 'id'=>'nav'),
-					'items'=>$items['items'])
-				);
-			}
-		?>
-	</div>
-</div>
 
-<div id="content">
-	<?php if(($messages = Yii::app()->user->getFlash('messages'))): ?>
-		<div class="flash_messages">
-			<button class="close">×</button>
-			<?php
-				if(is_array($messages))
-					echo implode('<br>', $messages);
-				else
-					echo $messages;
-			?>
-		</div>
-	<?php endif; ?>
-
-	<?
-	$this->runLayout("top");
-	?>
-
-	<?php echo $content; ?>
-</div><!-- content end -->
-
-<div style="clear:both;"></div>
-
-<?php if (isset($this->clips['underFooter'])) echo $this->clips['underFooter']; ?>
-
-<div id="footer">
-	<div class="centered">
-		<div class="left">
-			© «Интернет магазин», <?=date('Y')?>
-			<span class="light">Все права защищены</span>
-		</div>
-
-		<div class="middle">
+	<footer>
+		<div class="container">
 			<?php
 			$this->widget('zii.widgets.CMenu', array(
 				'items'=>array(
-					array('label'=>Yii::t('core', 'Помощь'), 'url'=>array('/pages/pages/view', 'url'=>'help')),
+					array('label'=>Yii::t('core', 'Каталог автомобилей'), 'url'=>array('/store/category/view', 'url'=>'root')),
 					array('label'=>Yii::t('core', 'Как сделать заказ'), 'url'=>array('/pages/pages/view', 'url'=>'how-to-create-order')),
 					array('label'=>Yii::t('core', 'Гарантия'), 'url'=>array('/pages/pages/view', 'url'=>'garantiya')),
-					array('label'=>Yii::t('core', 'Доставка и оплата'), 'url'=>array('/pages/pages/view', 'url'=>'dostavka-i-oplata')),
-					array('label'=>Yii::t('core', 'Обратная связь'), 'url'=>array('/feedback/default/index')),
+					array('label'=>Yii::t('core', 'Контакты'), 'url'=>array('/feedback/default/index')),
 				),
+				'htmlOptions' => array('class' => 'nav-list',),
 			));
 			?>
+
+			<div class="social">
+				<div class="text">Мы в соц. сетях</div>
+				<ul class="nav-list">
+					<li><a href="#"><i class="icon-facebook"></i></a></li>
+					<li><a href="#"><i class="icon-twitter" ></i></a></li>
+				</ul>
+			</div>
+			<div style="clear: both;"></div>
+			<div class="footer_bottom">ООО “AvtoKredit”. Все права защищены.</div>
+			<div style="clear: both;"></div>
 		</div>
-		<div class="right">
-			Контактная информация
-			<br/>
-			<?$this->widget( 'application.modules.core.widgets.IncludeFile.IncludeFile' ,array('file' => 'phone'))?>
-		</div>
-	</div>
-</div>
+	</footer>
+
+
 </body>
 </html>

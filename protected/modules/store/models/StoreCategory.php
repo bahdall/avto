@@ -65,7 +65,7 @@ class StoreCategory extends BaseModel
 		return array(
 			array('name', 'required'),
 			array('url', 'LocalUrlValidator'),
-			array('name, url, meta_keywords, meta_title, meta_description, layout, view', 'length', 'max'=>255),
+			array('name, url, meta_keywords, meta_title, meta_description, layout, view, image', 'length', 'max'=>255),
 			array('description', 'type', 'type'=>'string'),
 			// Search
 			array('id, name, url', 'safe', 'on'=>'search'),
@@ -170,6 +170,7 @@ class StoreCategory extends BaseModel
 			'name'             => Yii::t('StoreModule.core', 'Название'),
 			'url'              => Yii::t('StoreModule.core', 'URL'),
 			'full_path'        => Yii::t('StoreModule.core', 'Полный путь'),
+			'image'			   => Yii::t('StoreModule.core', 'Изображение'),
 			'meta_title'       => Yii::t('StoreModule.core', 'Meta Title'),
 			'meta_keywords'    => Yii::t('StoreModule.core', 'Meta Keywords'),
 			'meta_description' => Yii::t('StoreModule.core', 'Meta Description'),
@@ -315,4 +316,45 @@ class StoreCategory extends BaseModel
 	{
 		Yii::app()->cache->delete('SStoreCategoryUrlRule');
 	}
+
+
+
+
+	public function getImage($size = false, $resizeMethod = false, $random = false)
+	{
+		if($size !== false)
+		{
+
+			$thumbPath = Yii::getPathOfAlias(StoreImagesConfig::get('thumbPath')).'/'.$size;
+			if(!file_exists($thumbPath))
+				mkdir($thumbPath, 0777, true);
+
+			// Path to source image
+			$fullPath  = Yii::getPathOfAlias('webroot').$this->image;
+			$imageName = explode('/',$this->image);
+			$imageName = array_pop($imageName);
+			// Path to thumb
+			$thumbPath = $thumbPath.'/'.$imageName;
+
+
+			if(!file_exists($thumbPath))
+			{
+				// Resize if needed
+				Yii::import('ext.phpthumb.PhpThumbFactory');
+				$sizes  = explode('x', $size);
+				$thumb  = PhpThumbFactory::create($fullPath);
+
+				if($resizeMethod === false)
+					$resizeMethod = StoreImagesConfig::get('resizeThumbMethod');
+				$thumb->$resizeMethod($sizes[0],$sizes[1])->save($thumbPath);
+			}
+
+			return StoreImagesConfig::get('thumbUrl').$size.'/'.$imageName;
+		}
+
+		if ($random === true)
+			return StoreImagesConfig::get('url').$this->image.'?'.rand(1, 10000);
+		return StoreImagesConfig::get('url').$this->image;
+	}
+
 }

@@ -254,3 +254,5 @@ table.orderHistory tr td {
 table.orderHistory tr.even {
     background: #F9F9F9;
 }
+
+.hide{display: none}

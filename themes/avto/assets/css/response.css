@@ -1,0 +1,123 @@
+@media screen and (max-width: 1300px){
+    
+    .container
+    {
+    width: 1200px;
+    }
+    .content .container .left {
+        width: 930px;
+    }
+    .content .container .right {
+        width: 270px;
+    }
+    .content .container .right .search .text {
+        margin: 34px 0px 0px 27px;
+    }
+    .content .container .right form {
+        padding: 10px 0px 0px 0px;
+    }
+    .content .container .right .search form .form_group input {
+        margin: 0px 15px 0px 0px;
+}
+.car_model_block ul {
+  margin: 10px 50px 45px 0px;
+  }
+
+
+}
+
+@media screen and (max-width: 1200px){
+    
+    .container
+    {
+        width: 1100px;
+    }
+    .content .container .left {
+        width: 850px;
+    }
+    .content .container .right {
+        width: 250px;
+    }
+    
+    .car_model_block ul {
+        margin: 10px 40px 45px 0px;
+    }
+    content .container .right .search .text {
+        margin: 34px 0px 0px 5px;
+    }
+    .content .container .right .search .sbHolder {
+        margin: 5px 0px 0px 5px;
+    }
+    .content .container .right .search .form_group {
+        margin: 10px 0px 0px 5px;
+    }
+    .content .container .right .search form .form_group input {
+        margin: 0px 8px 0px 0px;
+    }
+    .btn-search {
+        margin: 20px 0px 0px 5px;
+        width: 223px;
+    }
+    .right_box .text {
+        margin: 38px 0px 0px 5px;}
+    
+    .right_box img {
+        margin: 1px 0px 0px 5px;
+    }
+    
+    .content .container .right .search .sbHolder {
+        width: 223px;
+    }
+    .content .container .right .search .sbHolder .sbOptions {
+        width: 223px;
+    }
+    .content .container .right .search form .form_group #prior {
+        left: 209px;}
+        
+    .last_add .row {
+        width: 840px;
+    }  
+    .last_add .row .item {
+        width: 33%;
+    }
+    .last_add .row .item .image img {
+        width: 100%;
+    }
+    .last_add .row .item .info {
+        top: 153px; 
+    } 
+    .last_add .row .item:hover .info {
+      top: 138px;
+    }
+    .styled-select {
+        width: 223px;
+        margin: 5px 0px 0px 5px;
+    }
+    .styled-select select {
+        width: 223px;
+    }
+    footer .container ul {
+        margin: 35px 0px 0px 50px;  
+    }
+    footer .social {
+        margin: 35px 0px 0px 50px;
+    }
+    footer .social ul {
+        margin: 2px 0px 0px 0px;
+    }   
+        
+        
+}
+
+@media screen and (max-width: 1100px){
+    
+    .container
+    {
+    
+    }
+    
+    .in-short {
+        margin: 42px 0px 0px 1px;
+    }
+
+}

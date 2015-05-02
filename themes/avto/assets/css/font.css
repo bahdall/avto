@@ -21,4 +21,9 @@
     font-style: normal;
 
 }
-
+@font-face {
+  font-family: 'MyriadPro';
+  src: url('../font/MYRIADPRO-REGULAR.OTF');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -61,6 +61,8 @@ class CategoryController extends Controller
 	{
 		$this->allowedPageLimit=explode(',',Yii::app()->settings->get('core', 'productsPerPage'));
 
+		$data = array();
+
 		if(Yii::app()->request->getPost('min_price') || Yii::app()->request->getPost('max_price'))
 		{
 			$data=array();
@@ -68,7 +70,59 @@ class CategoryController extends Controller
 				$data['min_price']=(int)Yii::app()->request->getPost('min_price');
 			if(Yii::app()->request->getPost('max_price'))
 				$data['max_price']=(int)Yii::app()->request->getPost('max_price');
+		}
 
+
+		if( Yii::app()->request->getPost('currency') )
+		{
+			$data['currency'] = (int)Yii::app()->request->getPost('currency');
+		}
+
+
+		if( Yii::app()->request->getPost('category') )
+		{
+			$category_id = Yii::app()->request->getPost('category');
+			$cat = (isset($category_id[1]) && $category_id[1]) ? $category_id[1] : $category_id[0];
+			$model = StoreCategory::model()->findByPk($cat);
+
+			if($model)
+				$data['url'] = $model->full_path;
+		}
+		else
+		{
+			$model = StoreCategory::model()
+				->excludeRoot()
+				->withFullPath(Yii::app()->request->getQuery('url'))
+				->find();
+		}
+
+		if($model)
+			$attributes = $model->getEavAttributes();
+
+
+
+		if($_POST)
+		{
+
+			foreach($attributes as $attr)
+			{
+				if( $attr->type )
+				{
+					if(Yii::app()->request->getPost($attr->name))
+					{
+						if( is_array(Yii::app()->request->getPost($attr->name)) )
+							$data[$attr->name] = implode(';',Yii::app()->request->getPost($attr->name));
+						else
+							$data[$attr->name] = Yii::app()->request->getPost($attr->name);
+					}
+				}
+			}
+		}
+
+
+
+		if($data)
+		{
 			if($this->action->id==='search')
 				$this->redirect(Yii::app()->request->addUrlParam('/store/category/search', $data));
 			else
@@ -86,6 +140,20 @@ class CategoryController extends Controller
 		$this->model = $this->_loadModel(Yii::app()->request->getQuery('url'));
 		$view = $this->setDesign($this->model, 'view');
 		$this->doSearch($this->model, $view);
+	}
+
+
+	public function actionHome()
+	{
+
+		$this->model = $this->_loadModel(Yii::app()->request->getQuery('url'));
+		$view = $this->setDesign($this->model, 'home');
+		$this->doSearch($this->model, $view, true);
+
+//		echo $this->renderPartial($view, array(
+//			'provider'=>$this->provider,
+//			'itemView'=>(isset($_GET['view']) && $_GET['view']==='wide') ? '_product_wide' : '_product'
+//		));
 	}
 
 	/**
@@ -106,7 +174,7 @@ class CategoryController extends Controller
 	 * @param $data StoreCategory|string
 	 * @param string $view
 	 */
-	public function doSearch($data, $view)
+	public function doSearch($data, $view, $partial = false)
 	{
 		$this->query = new StoreProduct(null);
 		$this->query->attachBehaviors($this->query->behaviors());
@@ -153,10 +221,23 @@ class CategoryController extends Controller
 
 		$this->provider->sort = StoreProduct::getCSort();
 
-		$this->render($view, array(
-			'provider'=>$this->provider,
-			'itemView'=>(isset($_GET['view']) && $_GET['view']==='wide') ? '_product_wide' : '_product'
-		));
+
+
+		if($partial)
+		{
+			echo $this->renderPartial($view, array(
+				'provider'=>$this->provider,
+				'itemView'=>(isset($_GET['view']) && $_GET['view']==='wide') ? '_product_wide' : '_product'
+			));
+			return true;
+		}
+		else
+		{
+			$this->render($view, array(
+				'provider'=>$this->provider,
+				'itemView'=>(isset($_GET['view']) && $_GET['view']==='wide') ? '_product_wide' : '_product'
+			));
+		}
 	}
 
 	/**
@@ -225,7 +306,9 @@ class CategoryController extends Controller
 	{
 		if($this->_minPrice!==null)
 			return $this->_minPrice;
+
 		$this->_minPrice=$this->aggregatePrice();
+
 		return $this->_minPrice;
 	}
 
@@ -246,6 +329,7 @@ class CategoryController extends Controller
 	public function aggregatePrice($function = 'MIN')
 	{
 		$current_query = clone $this->currentQuery;
+
 		$current_query->select =  $function.'(t.price) as aggregation_price';
 		$current_query->limit = 1;
 
@@ -268,9 +352,18 @@ class CategoryController extends Controller
 	{
 		$minPrice=Yii::app()->request->getQuery('min_price');
 		$maxPrice=Yii::app()->request->getQuery('max_price');
+		$currency=Yii::app()->request->getQuery('currency');
 
 		$cm=Yii::app()->currency;
-		if($cm->active->id!==$cm->main->id && ($minPrice>0||$maxPrice>0))
+
+		if($currency)
+			$activeCurr = StoreCurrency::model()->findByPk($currency);
+
+		if(!$activeCurr)
+			$activeCurr = $cm->active;
+
+
+		if($activeCurr->id!==$cm->main->id && ($minPrice>0||$maxPrice>0))
 		{
 			$minPrice=$cm->activeToMain($minPrice);
 			$maxPrice=$cm->activeToMain($maxPrice);
@@ -300,4 +393,8 @@ class CategoryController extends Controller
 
 		return $model;
 	}
+
+
+
+
 }

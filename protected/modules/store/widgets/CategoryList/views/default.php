@@ -13,5 +13,8 @@ foreach($items as $item){
     </li>
 <?php
     if( ($index+1) %4 == 0) echo '</ul>';
-}?>
+    $index++;
+}
+if($index%4 != 0) echo '</ul>';
+?>
 <div style="clear: both;"></div>

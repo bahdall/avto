@@ -539,14 +539,20 @@ class EEavBehavior extends CActiveRecordBehavior {
 				$attribute = $conn->quoteValue($attribute);
 				if (!is_array($values)) $values = array($values);
 
-				foreach ($values as $value) {
-					$value = $conn->quoteValue($value);
-					$criteria->join .= "\nJOIN {$this->tableName} eavb$i"
-						.  "\nON t.{$pk} = eavb$i.{$this->entityField}"
-						.  "\nAND eavb$i.{$this->attributeField} = $attribute"
-						.  "\nAND eavb$i.{$this->valueField} = $value";
-					$i++;
-				}
+//				foreach ($values as $value) {
+//					$value = $conn->quoteValue($value);
+//					$criteria->join .= "\nJOIN {$this->tableName} eavb$i"
+//						.  "\nON t.{$pk} = eavb$i.{$this->entityField}"
+//						.  "\nAND eavb$i.{$this->attributeField} = $attribute"
+//						.  "\nAND eavb$i.{$this->valueField} = $value";
+//					$i++;
+//				}
+//				$value = $conn->quoteValue($value);
+				$criteria->join .= "\nJOIN {$this->tableName} eavb$i"
+					.  "\nON t.{$pk} = eavb$i.{$this->entityField}"
+					.  "\nAND eavb$i.{$this->attributeField} = $attribute"
+					.  "\nAND eavb$i.{$this->valueField} IN (".implode(',',$values).")";
+				$i++;
 			}
 			// If search models with attribute name with anything values.
 			elseif (is_int($attribute)) {

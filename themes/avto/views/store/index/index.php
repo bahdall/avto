@@ -19,6 +19,8 @@
 
 		$index++;
 	}
+
+	if( $index%3 != 0)echo '</div>';
 	?>
 
 

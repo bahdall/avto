@@ -40,6 +40,18 @@ class StoreCategory extends BaseModel
 	public $meta_keywords;
 	public $description;
 
+	public $children;
+
+	public static $levelNames = array(
+		1 => 'Марка',
+		2 => 'Марка',
+		3 => 'Марка',
+		4 => 'Модель',
+	);
+
+
+	protected $_eavAttributes;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return StoreCategory the static model class
@@ -283,6 +295,63 @@ class StoreCategory extends BaseModel
 		return $result;
 	}
 
+
+	/**
+	 * @return array
+	 */
+	public static function treeArray($level = 1)
+	{
+		$result = array();
+		$categories = StoreCategory::model()->findAll(array(
+			'condition' => 'level>'.$level,
+			'order'=>'lft',
+		));
+
+		$result = StoreCategory::tree($categories,$level+1);
+
+		return $result;
+	}
+
+	public static function tree($array,$parentLevel,$parentArray = array())
+	{
+		$result = array();
+		$prev_id = false;
+		$childFlag = false;
+		foreach($array as $key => $val)
+		{
+			if($val->level < $parentLevel)break;
+
+
+
+			if($val->level > $parentLevel)
+			{
+				if($childFlag)
+				{
+					unset($array[$key]);
+					continue;
+				}
+				$childFlag = true;
+				$children = StoreCategory::tree($array,$val->level);
+				if($children && $prev_id)$result[$prev_id]->children = $children;
+				unset($array[$key]);
+				continue;
+
+			}
+
+
+
+			if($val->level == $parentLevel)
+			{
+				$result[$val->id] = $val;
+				$prev_id = $val->id;
+				$childFlag = false;
+			}
+			unset($array[$key]);
+
+		}
+		return $result;
+	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -355,6 +424,60 @@ class StoreCategory extends BaseModel
 		if ($random === true)
 			return StoreImagesConfig::get('url').$this->image.'?'.rand(1, 10000);
 		return StoreImagesConfig::get('url').$this->image;
+	}
+
+
+
+	public function getEavAttributes()
+	{
+		if(is_array($this->_eavAttributes))
+			return $this->_eavAttributes;
+
+		// Find category types
+		$model = new StoreProduct(null);
+		$criteria = $model
+			->applyCategories($this)
+			->active()
+			->getDbCriteria();
+
+		unset($model);
+
+		$builder = new CDbCommandBuilder(Yii::app()->db->getSchema());
+
+		$criteria->select    = 'type_id';
+		$criteria->group     = 'type_id';
+		$criteria->distinct  = true;
+		$typesUsed = $builder->createFindCommand(StoreProduct::model()->tableName(), $criteria)->queryColumn();
+
+		// Find attributes by type
+		$criteria = new CDbCriteria;
+		$criteria->addInCondition('types.type_id', $typesUsed);
+		$query = StoreAttribute::model()
+			->useInFilter()
+			->with(array('types', 'options'))
+			->findAll($criteria);
+
+		$this->_eavAttributes = array();
+		foreach($query as $attr)
+			$this->_eavAttributes[$attr->name] = $attr;
+		return $this->_eavAttributes;
+	}
+
+
+	public function getParents($maxLevel = 1)
+	{
+
+		$parents = StoreCategory::model()->findAll(array(
+			'condition' => 't.lft <= '.$this->lft.' AND
+							t.`level` >= '.$maxLevel.' AND
+							t.lft = (SELECT MAX(lft) FROM StoreCategory WHERE `level` = t.`level` AND lft <= '.$this->lft.')',
+			'order' => 'lft DESC'
+		));
+		$result = array();
+		foreach($parents as $parent)$result[$parent->id] = $parent;
+
+		return $result;
+
 	}
 
 }

@@ -43,22 +43,6 @@ if(!empty($active))
 	</div>
 <?php
 	$cm=Yii::app()->currency;
-	echo $this->widget('zii.widgets.jui.CJuiSlider', array(
-		'options'=>array(
-			'range'=>true,
-			'min'=>(int)floor($cm->convert($this->controller->getMinPrice())),
-			'max'=>(int)ceil($cm->convert($this->controller->getMaxPrice())),
-			'disabled'=>(int)$this->controller->getMinPrice()===(int)$this->controller->getMaxPrice(),
-			'values'=>array($this->currentMinPrice, $this->currentMaxPrice),
-			'slide'=>'js: function( event, ui ) {
-				$("#min_price").val(ui.values[0]);
-				$("#max_price").val(ui.values[1]);
-			}',
-		),
-		'htmlOptions'=>array(
-			'style'=>'margin:5px',
-		),
-	), true);
 ?>
 <?php echo CHtml::form() ?>
 	от <?php echo CHtml::textField('min_price', (isset($_GET['min_price'])) ? (int)$this->getCurrentMinPrice():null ) ?>

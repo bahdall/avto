@@ -21,73 +21,123 @@ foreach($ancestors as $c)
 
 $this->breadcrumbs[] = $this->model->name;
 
+if($this->model->image)
+	$img = $this->model->getImage('80x40');
+elseif($this->model->getParent()->image)
+	$img = $this->model->getParent()->getImage('80x40');
+else
+	$img = false;
 ?>
 
-<div class="catalog_with_sidebar">
-	<div id="filter">
-		<?php
-			$this->widget('application.modules.store.widgets.filter.SFilterRenderer', array(
-				'model'=>$this->model,
-				'attributes'=>$this->eavAttributes,
-			));
-		?>
-	</div>
+<div class="title">
+	<?php if( $img ):?>
+		<img src="<?php echo $img?>" />
+	<?php endif;?>
+	<?php echo CHtml::encode($this->model->name); ?>
+</div>
 
-	<div class="products_list <?php if($itemView==='_product_wide') echo 'wide'; ?>">
-		<?php
-			$this->widget('zii.widgets.CBreadcrumbs', array(
-				'links'=>$this->breadcrumbs,
-			));
-		?>
-
-		<h1><?php echo CHtml::encode($this->model->name); ?></h1>
-
-		<?php if(!empty($this->model->description)): ?>
-			<div>
-				<?php echo $this->model->description ?>
-			</div>
-		<?php endif ?>
-
-		<div class="actions">
+<div class="filter">
+	<ul>
+		<li>
 			<?php
-				echo Yii::t('StoreModule.core', 'Сортировать:');
+			if( !isset($_GET['sort']) || $_GET['sort'] == 'created' || $_GET['sort'] == 'created.desc' )
+			{
 				echo CHtml::dropDownList('sorter', Yii::app()->request->url, array(
-					Yii::app()->request->removeUrlParam('/store/category/view', 'sort')  => '---',
-					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'price'))  => Yii::t('StoreModule.core', 'Сначала дешевые'),
-					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'price.desc')) => Yii::t('StoreModule.core', 'Сначала дорогие'),
-				), array('onchange'=>'applyCategorySorter(this)'));
+					Yii::app()->request->removeUrlParam('/store/category/view', 'sort')  => 'Дата добавления',
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'created'))  => Yii::t('StoreModule.core', 'Сначала старые'),
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'created.desc')) => Yii::t('StoreModule.core', 'Сначала новые'),
+				), array(
+					'onchange'=>'applyCategorySorter(this)',
+					'class' => 'select',
+				));
+			}
+			else
+			{
+				echo CHtml::link('Дата добавления', Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'created')));
+			}
 			?>
 
+		</li>
+		<li>
 			<?php
-				$limits=array(Yii::app()->request->removeUrlParam('/store/category/view', 'per_page')  => $this->allowedPageLimit[0]);
-				array_shift($this->allowedPageLimit);
-				foreach($this->allowedPageLimit as $l)
-					$limits[Yii::app()->request->addUrlParam('/store/category/view', array('per_page'=> $l))]=$l;
-
-				echo Yii::t('StoreModule.core', 'На странице:');
-				echo CHtml::dropDownList('per_page', Yii::app()->request->url, $limits, array('onchange'=>'applyCategorySorter(this)'));
+			if( $_GET['sort'] == 'price' || $_GET['sort'] == 'price.desc' )
+			{
+				echo CHtml::dropDownList('sorter', Yii::app()->request->url, array(
+					Yii::app()->request->removeUrlParam('/store/category/view', 'sort')  => 'Цена',
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'price'))  => Yii::t('StoreModule.core', 'Сначала Дешевые'),
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'price.desc')) => Yii::t('StoreModule.core', 'Сначала Дорогие'),
+				), array(
+					'onchange'=>'applyCategorySorter(this)',
+					'class' => 'select',
+				));
+			}
+			else
+			{
+				echo CHtml::link('Цена', Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'price')));
+			}
 			?>
+		</li>
+		<li>
+			<?php
+			if( $_GET['sort'] == 'year' || $_GET['sort'] == 'year.desc' )
+			{
+				echo CHtml::dropDownList('sorter', Yii::app()->request->url, array(
+					Yii::app()->request->removeUrlParam('/store/category/view', 'sort')  => 'Году выпуска',
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'year'))  => Yii::t('StoreModule.core', 'Сначала Старые'),
+					Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'year.desc')) => Yii::t('StoreModule.core', 'Сначала Новые'),
+				), array(
+					'onchange'=>'applyCategorySorter(this)',
+					'class' => 'select',
+				));
+			}
+			else
+			{
+				echo CHtml::link('Году выпуска', Yii::app()->request->addUrlParam('/store/category/view', array('sort'=>'year')));
+			}
+			?>
+		</li>
+	</ul>
+</div>
+<div style="clear: both;"></div>
 
-			<div class="buttons">
-				<div class="silver_clean silver_button <?php if($itemView==='_product_wide') echo 'active'; ?>">
-					<a <?php if($itemView==='_product_wide') echo 'class="active"'; ?> href="<?php echo Yii::app()->request->addUrlParam('/store/category/view',  array('view'=>'wide')) ?>"><span class="icon lines"></span>Списком</a>
-				</div>
-				<div class="silver_clean silver_button <?php if($itemView==='_product') echo 'active'; ?>">
-					<a <?php if($itemView==='_product') echo 'class="active"'; ?> href="<?php echo Yii::app()->request->removeUrlParam('/store/category/view', 'view') ?>"><span class="icon dots"></span>Картинками</a>
-				</div>
-			</div>
-		</div>
+<?php if( $this->model->children()->findAll() ): ?>
+	<div class="car_model_block">
+		<div class="text">Марка автомобилей</div>
+		<?$this->widget('application.modules.store.widgets.CategoryList.CategoryList' , array(
+			'parent' => $this->model->id
+		))?>
+	</div>
+<?php endif ?>
+
+<div class="car_list">
 
 		<?php
 			$this->widget('zii.widgets.CListView', array(
 				'dataProvider'=>$provider,
 				'ajaxUpdate'=>false,
-				'template'=>'{items} {pager} {summary}',
+				'template'=>'{items} {pager}',
+				'emptyText' => 'К сожалению по вашему запросу не найдено подходящей машины.',
 				'itemView'=>$itemView,
 				'sortableAttributes'=>array(
 					'name', 'price'
 				),
+				'htmlOptions' => array(
+					'class' => '',
+				),
+				'pagerCssClass' => '',
+				'pager' => array(
+					'htmlOptions' => array(
+						'class' => 'pager',
+					),
+					'selectedPageCssClass' => 'active',
+					'lastPageLabel' => ' ',
+					'firstPageLabel' => ' ',
+					'nextPageLabel' => '<span></span>',
+					'nextPageCssClass' => 'next',
+					'prevPageLabel' => '<span></span>',
+					'previousPageCssClass' => 'previous',
+				),
 			));
 		?>
-	</div>
+
 </div><!-- catalog_with_sidebar end -->

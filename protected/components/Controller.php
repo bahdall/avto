@@ -117,5 +117,12 @@ class Controller extends RController
 	}
 
 
+	public function beforeAction($action)
+	{
+		Yii::app()->currency->setActive(2);
+		return parent::beforeAction($action);
+	}
+
+
 
 }

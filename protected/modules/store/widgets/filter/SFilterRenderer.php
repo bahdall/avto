@@ -101,7 +101,7 @@ class SFilterRenderer extends CWidget
 		}
 
 		// Process eav attributes
-		$activeAttributes = $this->getOwner()->activeAttributes;
+		$activeAttributes = isset($this->getOwner()->activeAttributes) ? $this->getOwner()->activeAttributes : array();
 		if(!empty($activeAttributes))
 		{
 			foreach($activeAttributes as $attributeName=>$value)
@@ -179,6 +179,7 @@ class SFilterRenderer extends CWidget
 
 		foreach($current as $key=>$row)
 		{
+			if($attribute->name == $key)continue;
 			if(!isset($newData[$key])) $newData[$key] = array();
 			if(is_array($row))
 			{
@@ -203,6 +204,9 @@ class SFilterRenderer extends CWidget
 		$cr->group  = 't.manufacturer_id';
 		$cr->addCondition('t.manufacturer_id IS NOT NULL');
 
+		if( isset($this->getOwner()->activeAttributes) )$activeAttributes = $this->getOwner()->activeAttributes;
+		else $activeAttributes = array();
+
 		//@todo: Fix manufacturer translation
 		$manufacturers = StoreProduct::model()
 			->active()
@@ -214,7 +218,7 @@ class SFilterRenderer extends CWidget
 							'scopes'=>array(
 								'active',
 								'applyCategories' => array($this->model, null),
-								'applyAttributes' => array($this->getOwner()->activeAttributes),
+								'applyAttributes' => array($activeAttributes),
 								'applyMinPrice'   => array($this->convertCurrency(Yii::app()->request->getQuery('min_price'))),
 								'applyMaxPrice'   => array($this->convertCurrency(Yii::app()->request->getQuery('max_price'))),
 							))
@@ -241,7 +245,7 @@ class SFilterRenderer extends CWidget
 						->applyCategories($this->model)
 						->applyMinPrice($this->convertCurrency(Yii::app()->request->getQuery('min_price')))
 						->applyMaxPrice($this->convertCurrency(Yii::app()->request->getQuery('max_price')))
-						->applyAttributes($this->getOwner()->activeAttributes)
+						->applyAttributes($activeAttributes)
 						->applyManufacturers($m->id);
 
 					$data['filters'][] = array(
@@ -299,5 +303,52 @@ class SFilterRenderer extends CWidget
 		if($cm->active->id!=$cm->main->id)
 			return $cm->activeToMain($sum);
 		return $sum;
+	}
+
+
+	public function renderCategories($level = 1)
+	{
+		$parent = StoreCategory::model()->findByPk(238);
+		$parents = $this->model->getParents($level+1);
+
+
+
+		echo CHtml::openTag('div',array('class' => 'j-category-block'));
+
+		$this->renderCategory($level+1, $parent, $parents);
+
+		echo CHtml::closeTag('div');
+	}
+
+	/**
+	 * @param int $level
+	 * @param array $parents
+     */
+	public function renderCategory($level = 2, $parent, $parents = array())
+	{
+		$categories = StoreCategory::model()->findAll(array(
+			'condition' => 'lft > '.$parent->lft.' AND rgt < '.$parent->rgt.' AND level = '.$level,
+			'order' => 'cat_translate.name'
+		));
+		$value = false;
+		foreach($categories as $category)
+		{
+			if( array_key_exists($category->id,$parents))$value = $category->id;
+		}
+
+		if($categories)
+		{
+			$data = array( '0' => StoreCategory::$levelNames[$level]);
+			$data += CHtml::listData($categories,'id','name');
+			echo CHtml::openTag('div',array(
+				'class' => 'styled-select',
+				'data-level' => $level,
+			));
+			echo CHtml::dropDownList('category[]',$value,$data, array('class' => 'j-category'));
+			echo CHtml::closeTag('div');
+
+			if($this->model->level >= $level) $this->renderCategory($level+1, $parents[$value], $parents);
+		}
+
 	}
 }

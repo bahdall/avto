@@ -18,12 +18,41 @@
     }
     .content .container .right .search form .form_group input {
         margin: 0px 15px 0px 0px;
-}
-.car_model_block ul {
-  margin: 10px 50px 45px 0px;
-  }
-
-
+    }
+    .car_model_block ul {
+        margin: 5px 0px 5px 0px;
+      }
+    .car_model_block ul li {
+        margin: 0px 50px 0px 0px;
+     } 
+    .car_list .row .item .item_left {
+      width: 605px;
+    }
+    .car_list .row .item .item_right {
+      width: 300px;
+    }
+    .car_list .row .item {
+      height: 555px;
+    }
+    .car_details .details .details_right {
+      width: 300px;
+    }
+    .car_details .details .details_left {
+        width: 605px;
+    }
+    .car_details .details {
+      height: 550px;
+    }
+    .car_list .row .item .price {
+      margin: 43px 0px 0px 0px;
+    }
+     .car_details .details .details_right .price {
+      margin: 87px 0px 0px 0px;
+    }
+    
+    .form_contact {
+      width: 395px;
+    }
 }
 
 @media screen and (max-width: 1200px){
@@ -40,7 +69,10 @@
     }
     
     .car_model_block ul {
-        margin: 10px 40px 45px 0px;
+        margin: 5px 0px 5px 0px;
+    }
+    .car_model_block ul li {
+      margin: 0px 25px 0px 0px;
     }
     content .container .right .search .text {
         margin: 34px 0px 0px 5px;
@@ -49,13 +81,13 @@
         margin: 5px 0px 0px 5px;
     }
     .content .container .right .search .form_group {
-        margin: 10px 0px 0px 5px;
+        margin: 10px 0px 0px 15px;
     }
     .content .container .right .search form .form_group input {
         margin: 0px 8px 0px 0px;
     }
     .btn-search {
-        margin: 20px 0px 0px 5px;
+        margin: 20px 0px 0px 15px;
         width: 223px;
     }
     .right_box .text {
@@ -91,7 +123,7 @@
     }
     .styled-select {
         width: 223px;
-        margin: 5px 0px 0px 5px;
+        margin: 5px 0px 0px 15px;
     }
     .styled-select select {
         width: 223px;
@@ -105,8 +137,50 @@
     footer .social ul {
         margin: 2px 0px 0px 0px;
     }   
-        
-        
+    
+    .car_list .row .item .item_left {
+      width: 565px;
+    }
+    .car_list .row .item .item_right {
+      width: 260px;
+    } 
+    .car_list .row .item .btn-calculate {
+      background: url("../images/calculate.png") no-repeat 192px 11px;
+    }
+    .car_list .row .item {
+      height: 520px;
+    }
+    .car_details .details .details_right {
+        width: 260px;
+    }
+    .car_details .details .details_left {
+      width: 565px;
+    }
+    .car_details .details .details_right .btn-calculate {
+          background: url("../images/calculate.png") no-repeat 195px 10px;
+    }
+    .car_list .row .item .price {
+      margin: 34px 0px 0px 0px;
+    }
+    .lt-ie9 .car_list .row .item .price {
+      margin: 0px 0px 0px 0px;
+    }
+    .lt-ie9 .car_list .row .item .read_more {
+      margin: 60px 0px 0px 0px;
+    }
+    .car_list .row .item .btn-order {
+        margin: 20px 0px 9px 0px;
+    }
+    
+    .car_details .details .details_right .btn-order {
+       margin: 20px 0px 10px 0px;
+    }
+    .car_details .details .details_right .price {
+      margin: 77px 0px 0px 0px;
+    }
+    .form_contact {
+      width: 320px;
+    }
 }
 
 @media screen and (max-width: 1100px){

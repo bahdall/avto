@@ -131,10 +131,10 @@ class StoreProduct extends BaseModel
 	{
 		return array(
 			array('price', 'commaToDot'),
-			array('price, type_id, manufacturer_id, main_category_id', 'numerical'),
+			array('price, type_id, manufacturer_id, main_category_id, user_id, year', 'numerical'),
 			array('is_active', 'boolean'),
 			array('use_configurations', 'boolean', 'on'=>'insert'),
-			array('quantity, availability, manufacturer_id', 'numerical', 'integerOnly'=>true),
+			array('quantity, availability, manufacturer_id, user_id', 'numerical', 'integerOnly'=>true),
 			array('name, price', 'required'),
 			array('url', 'LocalUrlValidator'),
 			array('name, url, meta_title, meta_keywords, meta_description, layout, view, sku, auto_decrease_quantity', 'length', 'max'=>255),
@@ -282,6 +282,7 @@ class StoreProduct extends BaseModel
 	{
 		return array(
 			'id'                     => 'ID',
+			'user_id'                => Yii::t('StoreModule.core', 'Добавил'),
 			'manufacturer_id'        => Yii::t('StoreModule.core', 'Производитель'),
 			'type_id'                => Yii::t('StoreModule.core', 'Тип'),
 			'use_configurations'     => Yii::t('StoreModule.core', 'Использовать конфигурации'),
@@ -304,6 +305,7 @@ class StoreProduct extends BaseModel
 			'updated'                => Yii::t('StoreModule.core', 'Дата обновления'),
 			'discount'               => Yii::t('StoreModule.core', 'Скидка'),
 			'main_category_id'       => Yii::t('StoreModule.core', 'Категория'),
+			'year'			         => Yii::t('StoreModule.core', 'Год выпуска'),
 		);
 	}
 
@@ -423,6 +425,9 @@ class StoreProduct extends BaseModel
 		// Check if url available
 		if($this->isNewRecord)
 		{
+
+			$this->user_id = Yii::app()->user->id;
+
 			$test = StoreProduct::model()
 				->withUrl($this->url)
 				->count();

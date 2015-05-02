@@ -15,7 +15,7 @@ class CategoryList extends CWidget
     public function run()
     {
         $model = StoreCategory::model()->findByPk($this->parent);
-        $items = $model->children()->findAll();
+        $items = $model->children()->findAll(array('order' => 'cat_translate.name'));
 
         $this->render($this->view,array(
             'items' => $items,

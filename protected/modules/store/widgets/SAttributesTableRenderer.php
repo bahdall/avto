@@ -24,6 +24,8 @@ class SAttributesTableRenderer extends CWidget
 	 */
 	public $htmlOptions = array();
 
+	public $limit = false;
+
 	/**
 	 * @var array model attributes loaded with getEavAttributes method
 	 */
@@ -45,15 +47,25 @@ class SAttributesTableRenderer extends CWidget
 		foreach($this->getModels() as $model)
 			$data[$model->title] = $model->renderValue($this->_attributes[$model->name]);
 
+		$i = 0;
 		if(!empty($data))
 		{
 			echo CHtml::openTag('table', $this->htmlOptions);
+			if($this->model->year)
+			{
+				echo CHtml::openTag('tr');
+				echo '<td>Год выпуска</td>';
+				echo '<td>'.CHtml::encode($this->model->year).'</td>';
+				echo CHtml::closeTag('tr');
+			}
 			foreach($data as $title=>$value)
 			{
 				echo CHtml::openTag('tr');
 				echo '<td>'.CHtml::encode($title).'</td>';
 				echo '<td>'.CHtml::encode($value).'</td>';
 				echo CHtml::closeTag('tr');
+
+//				if($this->limit != false && (++$i >= $this->limit ))break;
 			}
 			echo CHtml::closeTag('table');
 		}
@@ -69,6 +81,7 @@ class SAttributesTableRenderer extends CWidget
 
 		$this->_models = array();
 		$cr = new CDbCriteria;
+		$cr->limit = $this->limit;
 		$cr->addInCondition('StoreAttribute.name', array_keys($this->_attributes));
 		$query = StoreAttribute::model()
 			->displayOnFront()

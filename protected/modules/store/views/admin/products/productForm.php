@@ -36,6 +36,9 @@ return array(
 					'items'=>CHtml::listData(StoreManufacturer::model()->findAll(), 'id', 'name'),
 					'empty'=>Yii::t('StoreModule.admin', 'Выберите производителя'),
 				),
+				'year'=>array(
+					'type'=>'text',
+				),
 				'short_description'=>array(
 					'type'=>'SRichTextarea',
 				),

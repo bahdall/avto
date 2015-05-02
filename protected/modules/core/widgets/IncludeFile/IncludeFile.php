@@ -70,7 +70,7 @@ class IncludeFile extends CWidget
     {
         if(Yii::app()->user->checkAccess('admin') )
         {
-            if(!$this->content)
+            if(! trim($this->content))
                 $style = "style='width: ".$this->width."; height: ".$this->height."; border: 2px solid red'";
             else
                 $style = "";
@@ -118,6 +118,17 @@ class IncludeFile extends CWidget
         if(is_dir($assets)){
             Yii::app()->clientScript->registerCoreScript('jquery');
             Yii::app()->clientScript->registerCoreScript('jquery.ui');
+
+            Yii::app()->clientScript->registerCssFile(
+                Yii::app()->clientScript->getCoreScriptUrl().'/jui/css/base/jquery-ui.css'
+            );
+
+
+            // Enable jquery-ui default theme
+//            Yii::app()->assetManager->scriptMap=array(
+//                'jquery-ui.css'=>true,
+//            );
+
             Yii::app()->clientScript->registerCssFile($baseUrl . '/css/includefile.css');
             Yii::app()->clientScript->registerCssFile($baseUrl . '/css/fontello.css');
             Yii::app()->clientScript->registerCssFile($baseUrl . '/css/animation.css');

@@ -9,12 +9,18 @@
 $this->pageTitle       = ($model->meta_title) ? $model->meta_title : $model->title;
 $this->pageKeywords    = $model->meta_keywords;
 $this->pageDescription = $model->meta_description;
+$this->breadcrumbs[] = $model->title;
 ?>
 
-<h1 class="has_background"><?php echo $model->title; ?></h1>
-<p>
-	<?php echo $model->short_description; ?>
-</p>
-<p>
-	<?php echo $model->full_description; ?>
-</p>
+
+<div class="title"><?php echo $model->title ?></div>
+<div style="clear: both;"></div>
+<div class="contact" style="margin: 36px;">
+
+	<?php
+	if( $model->full_description )
+		echo $model->full_description;
+	else
+		echo $model->short_description;
+	?>
+</div>

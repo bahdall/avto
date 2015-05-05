@@ -15,7 +15,7 @@ class RestProductController extends RestController
     public function actionList()
     {
         //searching only for current users places (defaultScope returns appropriate condition)
-        $models = StoreProduct::model()->findAll();
+        $models = StoreProduct::model()->findAll('user_id = '.Yii::app()->user->id);
 
         // Did we get some results?
         if(empty($models)) {
@@ -25,8 +25,12 @@ class RestProductController extends RestController
         } else {
             // Prepare response
             $rows = array();
+            $i = 0;
             foreach($models as $model)
-                $rows[] = $model->attributes;
+            {
+                $rows[$i] = $this->renderModel($model);
+                $i++;
+            }
             // Send the response
             $this->_sendResponse(200, CJSON::encode($rows));
         }
@@ -34,7 +38,6 @@ class RestProductController extends RestController
     }
     public function actionView($id)
     {
-
         // Check if id was submitted via GET
         if(!isset($id) || empty($id))
             $this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
@@ -44,12 +47,14 @@ class RestProductController extends RestController
         if(is_null($model))
             $this->_sendResponse(404, 'No Item found with id '.$id);
         else
-            $this->_sendResponse(200, CJSON::encode($model));
+            $this->_sendResponse(200, CJSON::encode($this->renderModel($model)));
 
     }
     public function actionCreate()
     {
+        die("IS METHOD DON'T WORK!");
         $model = new Post;
+
 
         // Try to assign POST values to attributes
         foreach($_POST as $var=>$value) {
@@ -129,5 +134,40 @@ class RestProductController extends RestController
         else
             $this->_sendResponse(500,
                 sprintf("Error: Couldn't delete model <b>Product</b> with ID <b>%s</b>.", $_GET['id']) );
+    }
+
+
+    protected function renderModel($model)
+    {
+        if(!$model)return false;
+        $result = array();
+        $result['id'] = $model->id;
+        $result['name'] = $model->name;
+        $result['price'] = $model->price;
+        $result['year'] = $model->year;
+        $result['category_id'] = $model->mainCategory->id;
+        $result['category_name'] = $model->mainCategory->name;
+
+        //Изображения товара
+        foreach($model->images as $image)
+        {
+            $result['images'][] = Yii::app()->getBaseUrl(true).$image->getUrl();
+        }
+
+        //Атрибуты товара
+        $attributes = $model->type->storeAttributes;
+        foreach($attributes as $a)
+        {
+            $value = $model->getEavAttribute($a->name);
+            $attr = array(
+                'code' => $a->name,
+                'title' => $a->attr_translate->title,
+                'valueCode' => $value,
+                'value' => $a->renderValue($value),
+            );
+
+            $result['attributes'][] = $attr;
+        }
+        return $result;
     }
 }

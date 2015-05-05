@@ -25,7 +25,7 @@
 	<meta name="description" content="<?php echo CHtml::encode($this->pageDescription) ?>">
 	<meta name="keywords" content="<?php echo CHtml::encode($this->pageKeywords) ?>">
 
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>
+<!--	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>-->
 
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/fotorama-4.6.3/fotorama.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/style.css" />
@@ -33,6 +33,7 @@
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/fontello.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/jquery.selectbox.css" />
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/magnific-popup/magnific-popup.css" media="all"/>
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/calc.css" />
 
 
 	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/fotorama-4.6.3/fotorama.js"></script>
@@ -40,6 +41,7 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jquery.validate.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/additional-methods.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/modal.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/calc.js"></script>
 
 
 	<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jquery.selectbox-0.2.js"></script>
@@ -100,7 +102,7 @@
 						array('label'=>Yii::t('core', 'Как сделать заказ'), 'url'=>array('/pages/pages/view', 'url'=>'how-to-create-order')),
 						array('label'=>Yii::t('core', 'Гарантия'), 'url'=>array('/pages/pages/view', 'url'=>'garantiya')),
 						array('label'=>Yii::t('core', 'Доставка и оплата'), 'url'=>array('/pages/pages/view', 'url'=>'dostavka-i-oplata')),
-						array('label'=>Yii::t('core', 'Обратная связь'), 'url'=>array('/feedback/default/index')),
+						array('label'=>Yii::t('core', 'Контакты'), 'url'=>array('/feedback/default/index')),
 					),
 					'htmlOptions' => array('class' => 'nav-list',),
 				));

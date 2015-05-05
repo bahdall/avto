@@ -49,9 +49,39 @@ $(function(){
         {
           $(this).css({"border":"0","background":"#eceff1"});  
         }
-   })
+   });
+
+
+
+
+   //$(".j-order-form").submit(function(e){
+   //    e.preventDefault();
+   //    alert("DSADSADSA");
+   //    var form = $(this);
+   //
+   //    var data = $(this).serialize();
+   //
+   //    $.post( $(this).attr('action') , data , function(result){
+   //        console.log(result);
+   //        var container = form.parent();
+   //        if(result.errors)
+   //        {
+   //            var errorMsg = "";
+   //            for(error in result['errors'])
+   //            {
+   //                errorMsg += "<li class='error'><i class='icon-info-4'></i> "+result['errors'][error]+"</li>";
+   //            }
+   //            //container.find(".error .error_container").html(errorMsg);
+   //        }
+   //        else
+   //        {
+   //            container.find('.successful').removeClass('hidden');
+   //        }
+   //    },'json');
+   //});
    
 });
+
 
 /*------------------RADIO------------------*/
 
@@ -105,3 +135,32 @@ function applyCategorySorter(el)
 {
     window.location = $(el).val();
 }
+
+
+function createOrder(form){
+
+    var data = form.serialize();
+
+    $.post( form.attr('action') , data , function(result){
+        var container = form.parent();
+        if(result.errors)
+        {
+            var errorMsg = "";
+            for(error in result['errors'])
+            {
+                errorMsg += "<li class='error'><i class='icon-info-4'></i> "+result['errors'][error]+"</li>";
+            }
+            //container.find(".error .error_container").html(errorMsg);
+        }
+        else
+        {
+            container.find('.successful').removeClass('hidden');
+            form.trigger('reset'); //jquery
+        }
+    },'json');
+}
+
+
+
+
+

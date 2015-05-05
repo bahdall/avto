@@ -19,6 +19,11 @@ class FeedbackForm extends CFormModel
 	/**
 	 * @var string
 	 */
+	public $phone;
+
+	/**
+	 * @var string
+	 */
 	public $message;
 
 	/**
@@ -46,7 +51,7 @@ class FeedbackForm extends CFormModel
 	public function rules()
 	{
 		return array(
-			array('name, email, message', 'required'),
+			array('name, email, message, phone', 'required'),
 			array('email', 'email'),
 			array('message', 'length', 'max'=>Yii::app()->settings->get('feedback', 'max_message_length')),
 			array('code','captcha','allowEmpty'=>!Yii::app()->settings->get('feedback', 'enable_captcha')),
@@ -60,6 +65,7 @@ class FeedbackForm extends CFormModel
 	{
 		return array(
 			'name'=>Yii::t('FeedbackModule.core', 'Ваше имя'),
+			'phone'=>Yii::t('FeedbackModule.core', 'Телефон'),
 			'email'=>Yii::t('FeedbackModule.core', 'Email'),
 			'message'=>Yii::t('FeedbackModule.core', 'Сообщение'),
 		);
@@ -70,11 +76,14 @@ class FeedbackForm extends CFormModel
 	 */
 	public function sendMessage()
 	{
+		$message = "Телефон: ".$this->phone."\n";
+		$message .= "Сообщение: \n".CHtml::encode($this->message);
+
 		$mailer           = Yii::app()->mail;
 		$mailer->From     = 'noreply@'.Yii::app()->request->serverName;
 		$mailer->FromName = Yii::t('FeedbackModule.core', 'Форма обратной связи');
 		$mailer->Subject  = Yii::t('FeedbackModule.core', 'Сообщение от {name}', array('{name}'=>CHtml::encode($this->name)));
-		$mailer->Body     = CHtml::encode($this->message);
+		$mailer->Body     = $message;
 		$mailer->AddAddress(Yii::app()->settings->get('feedback', 'admin_email'));
 		$mailer->AddReplyTo($this->email);
 		$mailer->Send();

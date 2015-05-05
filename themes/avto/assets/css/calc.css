@@ -1,0 +1,36 @@
+/* overlay at start */
+.mfp-fade.j-calc.mfp-bg {
+    opacity: 0;
+
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+/* overlay animate in */
+.mfp-fade.j-calc.mfp-bg.mfp-ready {
+    opacity: 0.8;
+}
+/* overlay animate out */
+.mfp-fade.j-calc.mfp-bg.mfp-removing{
+    opacity: 0;
+}
+
+/* content at start */
+.mfp-fade.j-calc.mfp-wrap .mfp-content {
+    opacity: 0;
+    left: -600px;
+
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+/* content animate it */
+.mfp-fade.j-calc.mfp-wrap.mfp-ready .mfp-content {
+    opacity: 1;
+    left: 0px;
+}
+/* content animate out */
+.mfp-fade.j-calc.mfp-wrap.mfp-removing .mfp-content {
+    opacity: 0;
+    left: -600px;
+}

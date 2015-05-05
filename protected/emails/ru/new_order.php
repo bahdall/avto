@@ -2,14 +2,7 @@
 <body>
 
   <p>Здравствуйте, <?=$order->user_name?>.</p>
-  <p>Ваш заказ номер <?=$order->id?> принят.</p>
-
-  <p>
-    Детали заказа вы можете просмотреть на странице:<br>
-	 <a href="<?= $this->createAbsoluteUrl('view', array('secret_key'=>$order->secret_key)) ?>">
-		 <?= $this->createAbsoluteUrl('view', array('secret_key'=>$order->secret_key)) ?>
-	 </a>
-  </p>
+  <p>Ваш заказ принят.</p>
 
   <p>
     <ul>

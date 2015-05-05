@@ -52,13 +52,13 @@ class Order extends BaseModel
 	public function rules()
 	{
 		return array(
-			array('user_name, user_email, delivery_id', 'required'),
+			array('user_name, user_email', 'required'),
 			array('user_name, user_email, discount', 'length', 'max'=>100),
 			array('user_phone', 'length', 'max'=>30),
 			array('user_email', 'email'),
 			array('user_comment, admin_comment', 'length', 'max'=>500),
 			array('user_address', 'length', 'max'=>255),
-			array('delivery_id', 'validateDelivery'),
+//			array('delivery_id', 'validateDelivery'),
 			array('status_id', 'validateStatus'),
 			array('paid', 'boolean'),
 			// Search

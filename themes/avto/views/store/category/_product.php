@@ -57,61 +57,7 @@
 
 
 <!------------------------  ORDER MODEL -------------------------------->
-<div id="modal-order-<?php echo $data->id ?>" class="modal mfp-hide modal-order">
-	<div class="modal__header">
-	</div>
-	<div class="row row--nopad">
-
-		<div class="modal__main">
-			<div class="modal__main__header modal_title">
-				<div class="title">Форма заявки</div>
-				<button title="Close (Esc)" type="button" class="mfp-close">×</button>
-			</div>
-
-			<div class="madal_body">
-				<div class="error">
-					<ol class="error_container">
-					</ol>
-				</div>
-				<div class="successful">
-					<ol class="successful_container">
-						<li><i class="icon-ok-circled"></i>Ваш запрос успешно отправлен, скоро мы с Вами свяжемся.</li>
-					</ol>
-				</div>
-
-
-
-
-				<form class="form" id="form-<?php echo $data->id?>">
-					<div class="form_group">
-						<div class="label">ФИО</div>
-						<input type="text" name="name" id="order_input_name"  class="input_"  />
-					</div>
-					<div class="form_group">
-						<div class="label">Эл. почта</div>
-						<input type="email" name="email"  class="input_" />
-					</div>
-					<div class="form_group">
-						<div class="label">Телефон</div>
-						<input type="text" name="phone"  class="input_"  />
-					</div>
-					<div class="form_group">
-						<div class="label" >Сообщение</div>
-						<textarea  class="input_" name="message"  ></textarea>
-					</div>
-					<div class="line"></div>
-					<div class="message" >
-						<i class="icon-info-circled-alt"></i> Все поля обязательны для заполнения<br />
-					</div>
-					<div class="bottom">
-						<input type="submit" class="btn" value="Посчитать" />
-					</div>
-				</form>
-			</div>
-
-		</div>
-	</div>
-</div>
+<?php $this->renderPartial('../frontProduct/_orderForm', array('model' => $data)) ?>
 
 <!------------------------  ORDER CALCULATE -------------------------------->
 <div id="modal-calculate-<?php echo $data->id?>" class="modal mfp-hide modal-calculate">
@@ -185,43 +131,3 @@
 		</div>
 	</div>
 </div>
-
-
-<script>
-	var product_id = <?php echo $data->id?>;
-	var rules = {
-		rules: {
-			name: {
-				required: true
-			},
-			email: {
-				required: true
-			},
-			phone: {
-				required: true,
-				minlength: 13
-			}
-
-		},
-		messages: {
-			name: {
-				required: '<i class="icon-info-4"></i>Поле <span>ФИО</span> обязательно для заполнения'
-			},
-			email: {
-				required: '<i class="icon-info-4"></i>Поле <span>Эл. почта</span> обязательно для заполнения',
-				email:'<i class="icon-info-4"></i>Поле <span>Эл. почта</span> должна быть вида example@mail.ru'
-			},
-			phone: {
-				required: '<i class="icon-info-4"></i>Поле <span>Телефон</span> обязательно для заполнения',
-				number:'<i class="icon-info-4"></i>error phone',
-				minlength: '<i class="icon-info-4"></i>Please enter at least {0} characters.',
-			}
-		},
-		errorElement : 'li',
-		errorLabelContainer: '.error_container'
-	};
-
-
-	/*------------------Validate------------------*/
-	$("#form-"+product_id).validate(rules);
-</script>

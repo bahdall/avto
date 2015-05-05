@@ -22,6 +22,30 @@ abstract class RestController extends Controller
         return array();
     }
 
+    private function _checkAuth()
+    {
+        // Check if we have the USERNAME and PASSWORD HTTP headers set?
+        if(!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
+            // Error: Unauthorized
+            $this->_sendResponse(401);
+        }
+        $username = $_SERVER['PHP_AUTH_USER'];
+        $password = $_SERVER['PHP_AUTH_PW'];
+
+        $identity = new UserIdentity($username, $password);
+
+        if (!$identity->authenticate()) {
+            $this->_sendResponse(401, 'Error: User Name or Password is invalid');
+        }
+
+        Yii::app()->user->login($identity);
+
+        if( !Yii::app()->user->checkAccess('apiUser') )
+        {
+            $this->_sendResponse(401, 'Error: Permission deny');
+        }
+    }
+
     // Actions
     abstract public function actionList();
 
@@ -113,5 +137,12 @@ abstract class RestController extends Controller
             501 => 'Not Implemented',
         );
         return (isset($codes[$status])) ? $codes[$status] : '';
+    }
+
+
+    public function beforeAction($action)
+    {
+        $this->_checkAuth();
+        return parent::beforeAction($action);
     }
 }

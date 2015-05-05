@@ -1,4 +1,6 @@
 <?php
+Yii::import("application.modules.orders.OrdersModule");
+Yii::import("application.modules.orders.models.*");
 
 /**
  * Handle ajax requests
@@ -6,6 +8,7 @@
 class AjaxController extends Controller
 {
 	public $form;
+	public $errors = false;
 	
 	/**
 	 * Set currency for user session.
@@ -65,21 +68,34 @@ class AjaxController extends Controller
 
 	public function actionCreateOrder()
 	{
-		$this->form = new OrderCreateForm();
+		$this->form = new OrderForm();
 		// Make order
 		if( Yii::app()->request->isPostRequest )
 		{
-			if(isset($_POST['OrderCreateForm']))
+			if(isset($_POST['OrderForm']))
 			{
-				$this->form->attributes = $_POST['OrderCreateForm'];
+				$this->form->attributes = $_POST['OrderForm'];
 
 				if($this->form->validate())
 				{
-					$order = $this->createOrder();
-					$this->addFlashMessage(Yii::t('OrdersModule.core', 'Спасибо. Ваш заказ принят.'));
+					if($this->createOrder())
+					{
+						$result['success'] = true;
+					}
+					else
+					{
+						$result['errors'] = $this->errors;
+					}
+				}
+				else
+				{
+					$result['errors'] = $this->form->getErrors();
 				}
 			}
 		}
+
+		echo json_encode($result);
+		Yii::app()->end();
 	}
 
 
@@ -98,7 +114,6 @@ class AjaxController extends Controller
 		$order->user_name    = $this->form->name;
 		$order->user_email   = $this->form->email;
 		$order->user_phone   = $this->form->phone;
-		$order->user_address = $this->form->address;
 		$order->user_comment = $this->form->comment;
 
 		$model = StoreProduct::model()->findByPk($this->form->product_id);
@@ -106,7 +121,10 @@ class AjaxController extends Controller
 		if($order->validate())
 			$order->save();
 		else
-			throw new CHttpException(503, Yii::t('OrdersModule.core', 'Ошибка создания заказа'));
+		{
+			$this->errors = $order->getErrors();
+			return false;
+		}
 
 		// Process products
 		$ordered_product = new OrderProduct;
@@ -126,7 +144,13 @@ class AjaxController extends Controller
 		// Send email to user.
 		$this->sendEmail($order);
 
-		return $order;
+		if( $ordered_product->getErrors() )
+		{
+			$this->errors = $ordered_product->getErrors();
+			return false;
+		}
+
+		return true;
 	}
 
 
@@ -135,7 +159,7 @@ class AjaxController extends Controller
 	 */
 	private function sendEmail(Order $order)
 	{
-		$theme=Yii::t('OrdersModule', 'Ваш заказ #').$order->id;
+		$theme=Yii::t('OrdersModule', 'Ваш заказ').$order->id;
 
 		$lang=Yii::app()->language;
 		$emailBodyFile=Yii::getPathOfAlias("application.emails.$lang").DIRECTORY_SEPARATOR.'new_order.php';

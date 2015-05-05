@@ -5,7 +5,7 @@ Yii::import('store.models.StoreDeliveryMethod');
 /**
  * Used in cart to create new order.
  */
-class OrderCreateForm extends CFormModel
+class OrderForm extends CFormModel
 {
     public $product_id;
     public $name;
@@ -35,11 +35,11 @@ class OrderCreateForm extends CFormModel
     public function attributeLabels()
     {
         return array(
-            'name'        => Yii::t('OrdersModule.core', 'Имя'),
-            'email'       => Yii::t('OrdersModule.core', 'Email'),
-            'comment'     => Yii::t('OrdersModule.core', 'Комментарий'),
-            'product_id'     => Yii::t('OrdersModule.core', 'Товар'),
-            'phone'       => Yii::t('OrdersModule.core', 'Номер телефона'),
+            'name'        => Yii::t('core', 'Имя'),
+            'email'       => Yii::t('core', 'Email'),
+            'comment'     => Yii::t('core', 'Комментарий'),
+            'product_id'     => Yii::t('core', 'Товар'),
+            'phone'       => Yii::t('core', 'Номер телефона'),
         );
     }
 }

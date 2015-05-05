@@ -8,7 +8,8 @@ return array(
 	'product/captcha'                         => array('store/frontProduct/captcha'),
 	'store/ajax/activateCurrency/<id>'        => array('store/ajax/activateCurrency'),
 	'store/ajax/rateProduct/<id>'             => array('store/ajax/rateProduct'),
-	'store/ajax/getSubCatergories'             => array('store/ajax/getSubCatergories'),
+	'store/ajax/getSubCatergories'            => array('store/ajax/getSubCatergories'),
+	'store/ajax/createOrder'             	  => array('store/ajax/createOrder'),
 	'store/index/renderProductsBlock/<scope>' => array('store/index/renderProductsBlock'),
 	array(
 		'class' => 'application.modules.store.components.SStoreCategoryUrlRule'

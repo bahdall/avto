@@ -1422,6 +1422,12 @@ footer .social ul li a
     background: #ffcdd2!important;
 }
 
+.modal-order .form_group textarea.error
+{
+    border: 1px solid #f00!important;
+    background: #ffcdd2!important;
+}
+
 .modal-order .form_group textarea
 {
   width: 680px;

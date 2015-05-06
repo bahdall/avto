@@ -40,7 +40,7 @@ abstract class RestController extends Controller
 
         Yii::app()->user->login($identity);
 
-        if( !Yii::app()->user->checkAccess('apiUser') )
+        if( !Yii::app()->user->checkAccess('api') )
         {
             $this->_sendResponse(401, 'Error: Permission deny');
         }

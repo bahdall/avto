@@ -25,7 +25,7 @@
 	<meta name="description" content="<?php echo CHtml::encode($this->pageDescription) ?>">
 	<meta name="keywords" content="<?php echo CHtml::encode($this->pageKeywords) ?>">
 
-<!--	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>-->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>
 
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/fotorama-4.6.3/fotorama.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/style.css" />

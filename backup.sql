@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `ActionLog` (
   KEY `event` (`event`),
   KEY `datetime` (`datetime`),
   KEY `model_name` (`model_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы avto.loc.ActionLog: 91 rows
+-- Дамп данных таблицы avto.loc.ActionLog: 121 rows
 /*!40000 ALTER TABLE `ActionLog` DISABLE KEYS */;
 INSERT INTO `ActionLog` (`id`, `username`, `event`, `model_name`, `model_title`, `datetime`) VALUES
 	(1, 'admin', 3, 'SystemModules', 'pages', '2015-03-25 13:28:08'),
@@ -136,7 +136,37 @@ INSERT INTO `ActionLog` (`id`, `username`, `event`, `model_name`, `model_title`,
 	(88, 'admin', 2, 'StoreAttribute', 'weight', '2015-04-25 12:31:30'),
 	(89, 'admin', 2, 'StoreProduct', 'Apple iPad 2 64Gb Wi-Fi + 3G', '2015-04-27 11:00:09'),
 	(90, 'admin', 2, 'StoreCurrency', 'Доллары', '2015-04-27 17:57:29'),
-	(91, 'admin', 2, 'StoreCurrency', 'UZS', '2015-04-27 17:58:40');
+	(91, 'admin', 2, 'StoreCurrency', 'UZS', '2015-04-27 17:58:40'),
+	(92, 'admin', 3, 'Order', '1', '2015-05-04 14:32:26'),
+	(93, 'admin', 3, 'Order', '2', '2015-05-04 14:32:26'),
+	(94, 'admin', 3, 'Order', '3', '2015-05-04 14:32:26'),
+	(95, 'admin', 3, 'Order', '4', '2015-05-04 14:32:26'),
+	(96, 'admin', 3, 'Order', '5', '2015-05-04 14:32:26'),
+	(97, 'admin', 3, 'Order', '6', '2015-05-04 14:32:26'),
+	(98, 'admin', 3, 'Order', '7', '2015-05-04 14:32:26'),
+	(99, 'admin', 3, 'Order', '8', '2015-05-04 14:32:26'),
+	(100, 'admin', 3, 'Order', '9', '2015-05-04 14:32:26'),
+	(101, 'admin', 3, 'Order', '10', '2015-05-04 14:32:26'),
+	(102, 'admin', 3, 'Order', '11', '2015-05-04 14:32:26'),
+	(103, 'admin', 3, 'Order', '12', '2015-05-04 14:32:26'),
+	(104, 'admin', 3, 'Order', '13', '2015-05-04 14:32:26'),
+	(105, 'admin', 3, 'Order', '14', '2015-05-04 14:32:26'),
+	(106, 'admin', 3, 'Order', '15', '2015-05-04 14:32:26'),
+	(107, 'admin', 3, 'Order', '16', '2015-05-04 14:32:26'),
+	(108, 'admin', 3, 'Order', '17', '2015-05-04 14:32:26'),
+	(109, 'admin', 3, 'Order', '18', '2015-05-04 14:32:26'),
+	(110, 'admin', 3, 'Order', '19', '2015-05-04 14:32:26'),
+	(111, 'admin', 3, 'Order', '20', '2015-05-04 14:32:26'),
+	(112, 'admin', 3, 'Order', '21', '2015-05-04 14:32:26'),
+	(113, 'admin', 3, 'Order', '22', '2015-05-04 14:32:26'),
+	(114, 'admin', 3, 'Order', '23', '2015-05-04 14:32:26'),
+	(115, 'admin', 3, 'Order', '24', '2015-05-04 14:32:26'),
+	(116, 'admin', 3, 'Order', '25', '2015-05-04 14:32:26'),
+	(117, 'admin', 3, 'Order', '26', '2015-05-04 14:32:26'),
+	(118, 'admin', 3, 'Order', '27', '2015-05-04 14:32:26'),
+	(119, 'admin', 3, 'Order', '28', '2015-05-04 14:32:26'),
+	(120, 'admin', 1, 'User', 'api', '2015-05-04 18:19:26'),
+	(121, 'admin', 2, 'User', 'apitest', '2015-05-04 18:19:54');
 /*!40000 ALTER TABLE `ActionLog` ENABLE KEYS */;
 
 
@@ -150,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   PRIMARY KEY (`itemname`,`userid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы avto.loc.AuthAssignment: 8 rows
+-- Дамп данных таблицы avto.loc.AuthAssignment: 10 rows
 /*!40000 ALTER TABLE `AuthAssignment` DISABLE KEYS */;
 INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 	('Admin', '1', NULL, NULL),
@@ -160,7 +190,9 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 	('Orders.Statuses.*', '56', NULL, 'N;'),
 	('Authenticated', '56', NULL, 'N;'),
 	('Authenticated', '62', NULL, 'N;'),
-	('Authenticated', '63', NULL, 'N;');
+	('Authenticated', '63', NULL, 'N;'),
+	('Authenticated', '2', NULL, 'N;'),
+	('apiUser', '2', NULL, 'N;');
 /*!40000 ALTER TABLE `AuthAssignment` ENABLE KEYS */;
 
 
@@ -175,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `AuthItem` (
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы avto.loc.AuthItem: 18 rows
+-- Дамп данных таблицы avto.loc.AuthItem: 19 rows
 /*!40000 ALTER TABLE `AuthItem` DISABLE KEYS */;
 INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 	('Admin', 2, NULL, NULL, 'N;'),
@@ -195,7 +227,8 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 	('Orders.Statuses.Index', 0, NULL, NULL, 'N;'),
 	('Orders.Statuses.Create', 0, NULL, NULL, 'N;'),
 	('Orders.Statuses.Update', 0, NULL, NULL, 'N;'),
-	('Orders.Statuses.Delete', 0, NULL, NULL, 'N;');
+	('Orders.Statuses.Delete', 0, NULL, NULL, 'N;'),
+	('apiUser', 2, 'apiUser', NULL, 'N;');
 /*!40000 ALTER TABLE `AuthItem` ENABLE KEYS */;
 
 
@@ -428,7 +461,7 @@ CREATE TABLE IF NOT EXISTS `Order` (
   KEY `secret_key` (`secret_key`),
   KEY `delivery_id` (`delivery_id`),
   KEY `status_id` (`status_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы avto.loc.Order: 0 rows
 /*!40000 ALTER TABLE `Order` DISABLE KEYS */;
@@ -474,7 +507,7 @@ CREATE TABLE IF NOT EXISTS `OrderProduct` (
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`),
   KEY `configurable_id` (`configurable_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы avto.loc.OrderProduct: 0 rows
 /*!40000 ALTER TABLE `OrderProduct` DISABLE KEYS */;
@@ -2164,7 +2197,7 @@ CREATE TABLE IF NOT EXISTS `SystemSettings` (
 /*!40000 ALTER TABLE `SystemSettings` DISABLE KEYS */;
 INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 	(9, 'feedback', 'max_message_length', '1000'),
-	(8, 'feedback', 'enable_captcha', '1'),
+	(8, 'feedback', 'enable_captcha', '0'),
 	(7, 'feedback', 'admin_email', 'admin@localhost.local'),
 	(10, '17_WebMoneyPaymentSystem', 'LMI_PAYEE_PURSE', 'Z123456578811'),
 	(11, '17_WebMoneyPaymentSystem', 'LMI_SECRET_KEY', 'theSercretPassword'),
@@ -2180,7 +2213,7 @@ INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 	(25, 'yandexMarket', 'company', 'Демо кампания'),
 	(26, 'yandexMarket', 'url', 'http://demo-company.loc/'),
 	(27, 'yandexMarket', 'currency_id', '2'),
-	(28, 'core', 'siteName', 'cms'),
+	(28, 'core', 'siteName', 'avtokredit.uz'),
 	(29, 'core', 'productsPerPage', '12,18,24'),
 	(30, 'core', 'productsPerPageAdmin', '30'),
 	(31, 'core', 'theme', 'avto'),
@@ -2271,12 +2304,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `discount` varchar(255) DEFAULT NULL,
   `banned` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Saves user accounts';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Saves user accounts';
 
--- Дамп данных таблицы avto.loc.user: 1 rows
+-- Дамп данных таблицы avto.loc.user: 2 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `created_at`, `last_login`, `login_ip`, `recovery_key`, `recovery_password`, `discount`, `banned`) VALUES
-	(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@mail.ru', '2015-03-25 12:44:10', '2015-04-27 10:51:51', '127.0.0.1', NULL, NULL, NULL, 0);
+	(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@mail.ru', '2015-03-25 12:44:10', '2015-05-06 14:28:17', '127.0.0.1', NULL, NULL, NULL, 0),
+	(2, 'apitest', '444528fc68f99ea0f4fe027cb6cbd262f2a707fe', 'api@mail.ru', '2015-05-04 18:19:26', '2015-05-04 18:30:09', '127.0.0.1', NULL, NULL, '', 0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
@@ -2290,12 +2324,13 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `delivery_address` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы avto.loc.user_profile: 1 rows
+-- Дамп данных таблицы avto.loc.user_profile: 2 rows
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
 INSERT INTO `user_profile` (`id`, `user_id`, `full_name`, `phone`, `delivery_address`) VALUES
-	(1, 1, 'admin', NULL, NULL);
+	(1, 1, 'admin', NULL, NULL),
+	(2, 2, 'api test', '', '');
 /*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

@@ -74,8 +74,8 @@ $(function(){
         };
 
         mfp = $('.open-calculate-modal');
-        mfp.magnificPopup(options).magnificPopup('open',0);
-        //mfp = $.magnificPopup.open(options, 0);
+        //mfp.magnificPopup(options).magnificPopup('open',0);
+        mfp = $.magnificPopup.open(options, 0);
 
     });
 

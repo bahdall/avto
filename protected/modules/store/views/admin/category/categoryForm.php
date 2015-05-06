@@ -18,7 +18,7 @@ return array(
 					'type'=>'textarea',
 				),
 				'image' => array(
-					'type' => 'ext.elFinder.ServerFileInput',
+					'type' => 'ext.elfinder.ServerFileInput',
 					'attributes' => array(
 						'connectorRoute' => 'filemanager/elfinderconnector',
 					),

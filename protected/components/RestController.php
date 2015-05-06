@@ -35,15 +35,58 @@ abstract class RestController extends Controller
         $identity = new UserIdentity($username, $password);
 
         if (!$identity->authenticate()) {
-            $this->_sendResponse(401, 'Error: User Name or Password is invalid');
+            $error = array(
+                'success' => false,
+                'error' => 401,
+                'errorMessage' => 'User Name or Password is invalid',
+            );
+            $this->_sendResponse(200, CJSON::encode($error),$this->format);
         }
 
         Yii::app()->user->login($identity);
 
         if( !Yii::app()->user->checkAccess('api') )
         {
-            $this->_sendResponse(401, 'Error: Permission deny');
+            $error = array(
+                'success' => false,
+                'error' => 403,
+                'errorMessage' => 'Error: Permission deny',
+            );
+            $this->_sendResponse(200, CJSON::encode($error),$this->format);
         }
+    }
+
+    public  function checkAuth()
+    {
+        // Check if we have the USERNAME and PASSWORD HTTP headers set?
+        if(!(isset($_SERVER['PHP_AUTH_USER']) and isset($_SERVER['PHP_AUTH_PW']))) {
+            // Error: Unauthorized
+            $this->_sendResponse(401);
+        }
+        $username = $_SERVER['PHP_AUTH_USER'];
+        $password = $_SERVER['PHP_AUTH_PW'];
+
+        $identity = new UserIdentity($username, $password);
+        $error = false;
+
+        if (!$identity->authenticate()) {
+            $error = array(
+                'error' => 401,
+                'errorMessage' => 'User Name or Password is invalid',
+            );
+
+        }
+
+        Yii::app()->user->login($identity);
+
+        if( !Yii::app()->user->checkAccess('api') )
+        {
+            $error = array(
+                'error' => 403,
+                'errorMessage' => 'Error: Permission deny',
+            );
+        }
+        return $error;
     }
 
     // Actions

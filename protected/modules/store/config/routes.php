@@ -30,6 +30,7 @@ return array(
 	'manufacturer/<url>'   => array('/store/manufacturer/index'),
 
 	// REST patterns
+	array('store/RestProduct/auth', 'pattern'=>'api/auth', 'verb'=>'GET'),
 	array('store/RestProduct/list', 'pattern'=>'api/products', 'verb'=>'GET'),
 	array('store/RestProduct/view', 'pattern'=>'api/products/<id:\d+>', 'verb'=>'GET'),
 	array('store/RestProduct/update', 'pattern'=>'api/products/<id:\d+>', 'verb'=>'PUT'),

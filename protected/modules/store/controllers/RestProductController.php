@@ -11,6 +11,20 @@ class RestProductController extends RestController
      */
     public $model;
 
+    public function actionAuth()
+    {
+        $result = array(
+            'success' => true,
+        );
+        if($error = $this->checkAuth())
+        {
+            $result = $error;
+        }
+
+        $this->_sendResponse(200, CJSON::encode($result),$this->format);
+
+    }
+
     // Actions
     public function actionList()
     {

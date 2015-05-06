@@ -77,6 +77,9 @@ $(function(){
         //mfp.magnificPopup(options).magnificPopup('open',0);
         mfp = $.magnificPopup.open(options, 0);
 
+        mfp.open(options);
+        console.log(mfp);
+
     });
 
 

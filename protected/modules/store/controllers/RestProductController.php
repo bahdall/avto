@@ -32,7 +32,7 @@ class RestProductController extends RestController
                 $i++;
             }
             // Send the response
-            $this->_sendResponse(200, CJSON::encode($rows));
+            $this->_sendResponse(200, CJSON::encode($rows),$this->format);
         }
 
     }
@@ -47,7 +47,7 @@ class RestProductController extends RestController
         if(is_null($model))
             $this->_sendResponse(404, 'No Item found with id '.$id);
         else
-            $this->_sendResponse(200, CJSON::encode($this->renderModel($model)));
+            $this->_sendResponse(200, CJSON::encode($this->renderModel($model)),$this->format);
 
     }
     public function actionCreate()

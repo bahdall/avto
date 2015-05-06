@@ -156,7 +156,7 @@ MagnificPopup.prototype = {
 	 * @param  data [description]
 	 */
 	open: function(data) {
-alert("DSADSADSA");
+
 		var i;
 
 		if(data.isObj === false) { 
@@ -380,7 +380,7 @@ alert("DSADSADSA");
 		mfp.updateSize(windowHeight);
 		_mfpTrigger(OPEN_EVENT);
 
-		return data;
+		return mfp;
 	},
 
 	/**
@@ -493,7 +493,7 @@ alert("DSADSADSA");
 			item = mfp.parseEl( mfp.index );
 		}
 
-		var type = item.type;	
+		var type = item.type;
 
 		_mfpTrigger('BeforeChange', [mfp.currItem ? mfp.currItem.type : '', type]);
 		// BeforeChange event works like so:
@@ -533,8 +533,8 @@ alert("DSADSADSA");
 		
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
-
-		_mfpTrigger('AfterChange');
+		alert("NEXT");alert("NEXT");
+		//_mfpTrigger('AfterChange');alert("NEXT");
 	},
 
 

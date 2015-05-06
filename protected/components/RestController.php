@@ -13,7 +13,7 @@ abstract class RestController extends Controller
      * Default response format
      * either 'json' or 'xml'
      */
-    private $format = 'json';
+    public $format = 'application/json';
     /**
      * @return array action filters
      */

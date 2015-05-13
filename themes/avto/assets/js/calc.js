@@ -9,9 +9,12 @@ $(function(){
 
 
 
+
+
     function calculateCredit(form , options)
     {
         form = $(form);
+        var id = form.data('id');
         var commission = options['commission'];
         var ocenka = options['ocenka'];
         var notarius = options['notarius'];
@@ -20,10 +23,10 @@ $(function(){
         var sbor_gai = options['sbor_gai'];
 
 
-        var downPayment = form.find('input[name=sum]:checked').val(), //Первоначальный взнос
-            rate = form.find('input[name=procent]:checked').val(), // Процентная ставка
+        var downPayment = form.find('input[name="sum['+id+']"]:checked').val(), //Первоначальный взнос
+            rate = form.find('input[name="procent['+id+']"]:checked').val(), // Процентная ставка
             price = form.find('input[name=price]').val(), // Сумма автомобиля
-            time = form.find('input[name=year]:checked').val(), // Срок кредита
+            time = form.find('input[name="year['+id+']"]:checked').val(), // Срок кредита
             creditSumm, // Сумма кредита
             surcharge = {12: 0.106, 24: 0.113, 36: 12.5}; // процентная надбавка
 
@@ -181,6 +184,10 @@ $(function(){
         calcModal = "#modal-calculate-"+itemId;
         resultModal = "#modal-calculate-result-"+itemId;
         descModal = "#modal-calculate-desc-"+itemId;
+
+        customRadio("year["+itemId+"]");
+        customRadio("sum["+itemId+"]");
+        customRadio("procent["+itemId+"]");
 
         options = {
             items: [

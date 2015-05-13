@@ -3,7 +3,7 @@ $k = 1000000; //коэффициент для перевода из млн. Су
 ?>
 
 <!------------------------  ORDER CALCULATE -------------------------------->
-<div id="modal-calculate-<?php echo $model->id?>" class="modal mfp-hide modal-calculate j-calc-content">
+<div id="modal-calculate-<?php echo $model->id?>" data-id="<?php echo $model->id ?>" class="modal mfp-hide modal-calculate j-calc-content">
     <div class="modal__header">
     </div>
     <div class="row row--nopad">
@@ -25,12 +25,12 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                         <td>Собственные средства<br />(процент от полной  стоимости)</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="sum" value="0.25" checked>25%</label></li>
-                                <li><label><input type="radio" name="sum" value="0.30">30%</label></li>
-                                <li><label><input type="radio" name="sum" value="0.35">35%</label></li>
-                                <li><label><input type="radio" name="sum" value="0.40">40%</label></li>
-                                <li><label><input type="radio" name="sum" value="0.45">45%</label></li>
-                                <li><label><input type="radio" name="sum" value="0.5">50%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.25" checked="checked">25%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.30">30%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.35">35%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.40">40%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.45">45%</label></li>
+                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.5">50%</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -38,9 +38,9 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                         <td>Срок кредита (месяцев)</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="year" value="12" checked> 12</label></li>
-                                <li><label><input type="radio" name="year" value="24"> 24</label></li>
-                                <li><label><input type="radio" name="year" value="36"> 36</label></li>
+                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="12" checked="checked"> 12</label></li>
+                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="24"> 24</label></li>
+                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="36"> 36</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -48,10 +48,10 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                         <td>Процентная ставка по кредиту, <br />% годовых</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="procent" value="0.19" checked> 19%</label></li>
-                                <li><label><input type="radio" name="procent" value="0.20"> 20%</label></li>
-                                <li><label><input type="radio" name="procent" value="0.21"> 21%</label></li>
-                                <li><label><input type="radio" name="procent" value="0.22"> 22%</label></li>
+                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.19" checked="checked"> 19%</label></li>
+                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.20"> 20%</label></li>
+                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.21"> 21%</label></li>
+                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.22"> 22%</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -130,6 +130,7 @@ $k = 1000000; //коэффициент для перевода из млн. Су
         </div>
     </div>
 </div>
+
 
 
 <script>

@@ -141,3 +141,4 @@ else
 		?>
 
 </div><!-- catalog_with_sidebar end -->
+

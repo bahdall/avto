@@ -40,11 +40,13 @@ $cur = StoreCurrency::model()->findAll();
 
             <?php echo CHtml::textField('min_price', (isset($_GET['min_price'])) ? (int)$this->getCurrentMinPrice():null, array(
                 'placeholder' => 'от',
+                'data-close'  => 'from',
             ) ) ?>
             <div id="from"></div>
 
             <?php echo CHtml::textField('max_price', (isset($_GET['max_price'])) ? (int)$this->getCurrentMaxPrice():null, array(
                 'placeholder' => 'до',
+                'data-close'  => 'prior',
             ) ) ?>
             <div id="prior"></div>
 
@@ -69,8 +71,15 @@ $cur = StoreCurrency::model()->findAll();
 
         <?php
         // Display attributes
+        $i=0;
+        $flag = false;
         foreach($attributes as $attrData)
         {
+            if( $i >= 3 && $flag == false)
+            {
+                $flag = true;
+                echo "<div class='j-more-block' style='display: none'>";
+            }
             echo CHtml::openTag('div',array('class' => 'form_group'));
 
             echo CHtml::openTag('label');
@@ -104,8 +113,8 @@ $cur = StoreCurrency::model()->findAll();
                 }
                 else
                 {
-                    echo CHtml::checkBox($attrName, false, array('disabled' => 'disabled'));
-                    echo CHtml::label($filter['title'],$filter['queryKey']."_".$key).' (0)';
+//                    echo CHtml::checkBox($attrName, false, array('disabled' => 'disabled' ));
+//                    echo CHtml::label($filter['title'],$filter['queryKey']."_".$key).' (0)';
                 }
 
                 echo CHtml::closeTag('li');
@@ -113,6 +122,14 @@ $cur = StoreCurrency::model()->findAll();
             echo CHtml::closeTag('ul');
 
             echo CHtml::closeTag('div');
+
+            $i++;
+        }
+
+        if($i > 3)
+        {
+            echo "</div>";
+            echo "<a class='e-more-btn j-more-btn'>ЕЩЕ<i class='icon-down-1'></i></a>";
         }
         ?>
 

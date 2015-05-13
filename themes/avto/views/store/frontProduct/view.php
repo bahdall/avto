@@ -20,11 +20,13 @@ if($model->mainCategory)
 	$ancestors = $model->mainCategory->excludeRoot()->ancestors()->findAll();
 
 	foreach($ancestors as $c)
-		$this->breadcrumbs[$c->name] = $c->getViewUrl();
+		$this->breadcrumbs[$c->name] = array($c->getViewUrl());
 
 	// Do not add root category to breadcrumbs
 	if ($model->mainCategory->id != 1)
-		$this->breadcrumbs[$model->mainCategory->name] = $model->mainCategory->getViewUrl();
+	{
+		$this->breadcrumbs[$model->mainCategory->name] = array($model->mainCategory->getViewUrl());
+	}
 
 	$this->breadcrumbs[] = $model->name;
 

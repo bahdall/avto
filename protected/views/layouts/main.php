@@ -41,6 +41,7 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/jquery.validate.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/additional-methods.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/modal.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/date.format.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/calc.js"></script>
 
 
@@ -119,19 +120,31 @@
 					<ul class="in-short">
 						<li>
 							<span class="in-short_icon">1</span>
-							<div class="in-short_text">Оформите заявку<br /> онлайн</div>
+							<div class="in-short_text">
+								<?php $this->widget("application.modules.core.widgets.IncludeFile.IncludeFile",array(
+									'file'	=> 'step_1'
+								));?>
+							</div>
 							<div class="short_pointer"></div>
 							<div class="short_pointer_mini"></div>
 						</li>
 						<li>
 							<span class="in-short_icon">2</span>
-							<div class="in-short_text">Широкий выбор <br />кредитных программ</div>
+							<div class="in-short_text">
+								<?php $this->widget("application.modules.core.widgets.IncludeFile.IncludeFile",array(
+									'file'	=> 'step_2'
+								));?>
+							</div>
 							<div class="short_pointer"></div>
 							<div class="short_pointer_mini"></div>
 						</li>
 						<li>
 							<span class="in-short_icon">3</span>
-							<div class="in-short_text">Оплачивайте как <br />вам удобно</div>
+							<div class="in-short_text">
+								<?php $this->widget("application.modules.core.widgets.IncludeFile.IncludeFile",array(
+									'file'	=> 'step_3'
+								));?>
+							</div>
 
 						</li>
 					</ul>
@@ -142,7 +155,7 @@
 					'links'=>$this->breadcrumbs,
 					'htmlOptions' => array('class' => 'breadcrumb'),
 					'tagName' => 'ol',
-					'homeLink' => "<li>".CHtml::link(Yii::t('zii','Home'),Yii::app()->homeUrl)."</li>",
+					'homeLink' => "<li>".CHtml::link(Yii::t('zii','Home'),Yii::app()->homeUrl)."<span></span></li>",
 					'activeLinkTemplate' => '<li><a href="{url}">{label}</a> <span></span></li>',
 					'inactiveLinkTemplate' => '<li class="active">{label}</li>',
 					'separator' => false,

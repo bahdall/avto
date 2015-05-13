@@ -1,5 +1,14 @@
 $(function(){
 
+    $(".j-more-btn").click(function(){
+        var btn = $(this);
+        $(".j-more-block").toggle('slow',function(){
+            if( $(this).css('display') == 'none' )btn.html('ЕЩЕ<i class="icon-down-1"></i>');
+            else btn.html('СКРЫТЬ<i class="icon-up-1"></i>');
+        });
+
+    });
+
  if ($('html').hasClass('lt-ie9') || $('html').hasClass('lt-ie8'))
     {
         $(".main_search").addClass("form_ie8");
@@ -21,23 +30,23 @@ $(function(){
         if($.trim($(this).val()) == "")
         {
             $(this).css({"background-color":"#cfd8dc","border":"0"});
-            $("#"+$(this).attr("name")).css({"display":"none"});
+            $("#"+$(this).data("close")).css({"display":"none"});
         }
     })
    
    $(".input_text").keypress(function(){
-      $("#"+$(this).attr("name")).css({"display":"block"});
+      $("#"+$(this).data("close")).css({"display":"block"});
    })
    
    $("#from").click(function(){
     $(this).hide();
-    $("input[name*='from']").val("");
-    $("input[name*='from']").css({"background-color":"#cfd8dc","border":"0"});
+    $("input[name*='min_price']").val("");
+    $("input[name*='min_price']").css({"background-color":"#cfd8dc","border":"0"});
    })
    $("#prior").click(function(){
     $(this).hide();
-    $("input[name*='prior']").val("");
-    $("input[name*='prior']").css({"background-color":"#cfd8dc","border":"0"});
+    $("input[name*='max_price']").val("");
+    $("input[name*='max_price']").css({"background-color":"#cfd8dc","border":"0"});
    })
    
    $(".input_").blur(function(){
@@ -105,7 +114,8 @@ $(function(){
     $(document).ready(function (){
         customRadio("year");
         customRadio("sum");
-        
+        customRadio("procent");
+
     
     
     

@@ -533,8 +533,8 @@ MagnificPopup.prototype = {
 		
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
-		alert("NEXT");alert("NEXT");
-		//_mfpTrigger('AfterChange');alert("NEXT");
+
+		_mfpTrigger('AfterChange');
 	},
 
 

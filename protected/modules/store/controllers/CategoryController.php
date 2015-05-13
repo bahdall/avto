@@ -78,8 +78,8 @@ class CategoryController extends Controller
 			$data['currency'] = (int)Yii::app()->request->getPost('currency');
 		}
 
-
-		if( Yii::app()->request->getPost('category') )
+		$categories = Yii::app()->request->getPost('category');
+		if( $categories && isset($categories[0]) && $categories[0] != 0 )
 		{
 			$category_id = Yii::app()->request->getPost('category');
 			$cat = (isset($category_id[1]) && $category_id[1]) ? $category_id[1] : $category_id[0];

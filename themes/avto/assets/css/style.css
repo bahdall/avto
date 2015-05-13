@@ -69,7 +69,7 @@ header .container .phone a
 {
   border: 0px solid;
   background-color: #37474f;
-  margin: 21px 0px 0px 0px;
+  margin: -43px 0px 0px 0px;
   padding: 0px 0px 0px 19px;
   float: left;
   height: 50px;
@@ -118,7 +118,6 @@ header .container .phone a
   margin: 0px 55px 0px 20px;
   display: inline-block;
   position: relative;
-  width: 250px;
 }
 .in-short_text
 {
@@ -145,7 +144,7 @@ header .container .phone a
   height: 10px;
   position: absolute;
   top: 45px;
-  left: 225px;   
+  left: 91%;
 }
 .short_pointer_mini
 {
@@ -154,7 +153,7 @@ header .container .phone a
   height: 20px;
   position: absolute;
   top: 188px;
-  left: 111px;   
+  left: 47%;
 }
 .content .container
 {
@@ -171,8 +170,12 @@ header .container .phone a
 {
    background-color: #fff;
 }
+.content .inner .left .title > img{
+  position: relative;
+  top: 7px;
+}
 .content .inner .left .title
-{ 
+{
   float: left;
   margin: 20px 0px 0px 40px;
   font-size: 36px;
@@ -1045,7 +1048,8 @@ footer .social ul li a
 {
   margin: 0px 25px 0px 0px;
   background: #455a64;
-  height: 370px;  
+  min-height: 370px;
+  overflow: hidden;
 }
 .car_details  .details_bottom .attribute
 {
@@ -1276,15 +1280,15 @@ footer .social ul li a
   background: #fff;
 }
 
-.madal_body table
+.madal_body table.table-form
 {
    margin: 20px 0px 0px 30px;
 }
-.madal_body table tr
+.madal_body table.table-form tr
 {
    height: 60px;
 }
-.madal_body table tr td
+.madal_body table.table-form tr td
 {
   padding: 20px 0px 0px 10px;
   font-size: 13.5px;
@@ -1292,50 +1296,50 @@ footer .social ul li a
   font-weight: initial;
   vertical-align: top;
 }
-.madal_body table .calculate_sum td:first-child
+.madal_body table.table-form .calculate_sum td:first-child
 {
   padding: 29px 0px 0px 9px;  
 }
-.madal_body table .calculate_sum input
+.madal_body table.table-form .calculate_sum input
 {
     margin: 19px 0px 0px 15px;
 }
 
-.madal_body table .calculate_percentage td:first-child
+.madal_body table.table-form .calculate_percentage td:first-child
 {
   padding: 30px 0px 0px 10px;
 }
-.madal_body table .calculate_percentage ul
+.madal_body table.table-form .calculate_percentage ul
 {
   margin: 27px 0px 0px 15px; 
 }
-.madal_body table .calculate_time td:first-child
+.madal_body table.table-form .calculate_time td:first-child
 {
     padding: 15px 0px 0px 10px;
 }
-.madal_body table .calculate_time td ul
+.madal_body table.table-form .calculate_time td ul
 {
   margin: 10px 0px 0px 15px;  
 }
-.madal_body table .calculate_rate td:first-child 
+.madal_body table.table-form .calculate_rate td:first-child
 {
   padding: 11px 0px 0px 9px    
 }
-.madal_body table .calculate_rate td input
+.madal_body table.table-form .calculate_rate td input
 {
   margin: 3px 0px 0px 15px;
 }
-.madal_body table .calculate_type td:first-child 
+.madal_body table.table-form .calculate_type td:first-child
 {
   padding: 22px 0px 0px 8px;    
 }
-.madal_body table tr td:last-child
+.madal_body table.table-form tr td:last-child
 {
     padding: 0px;
     width: 470px;  
 }
 
-.madal_body table tr td ul li
+.madal_body table.table-form tr td ul li
 {
   display: inline-block;
   position: relative;
@@ -1574,5 +1578,10 @@ footer .social ul li a
   font-weight: bold;
 }
 
-
+.e-more-btn{
+  display: block;
+  font-weight: bold;
+  margin: 10px 30px;
+  cursor: pointer;
+}
 

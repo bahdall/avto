@@ -85,6 +85,36 @@ return array(
 					'type'=>'text'
 				),
 			)
+		),
+		'credit'=>array(
+			'type'     => 'form',
+			'title'    => Yii::t('CoreModule.admin', 'Кредитный калькулятор'),
+			'elements' => array(
+				'core_commission'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 0.005')
+				),
+				'core_ocenka'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 100000')
+				),
+				'core_notarius'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 510000')
+				),
+				'core_gai'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 0.06')
+				),
+				'core_sbor_gai'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 180000')
+				),
+				'core_polis'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 0.015')
+				),
+			)
 		)
 	)
 );

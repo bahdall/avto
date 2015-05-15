@@ -42,7 +42,7 @@ class RestProductController extends RestController
             $i = 0;
             foreach($models as $model)
             {
-                $rows[$i] = $this->renderModel($model);
+                $rows[$i] = $this->renderModel($model, '360x255' ,'cropFromCenter');
                 $i++;
             }
             // Send the response
@@ -61,7 +61,7 @@ class RestProductController extends RestController
         if(is_null($model))
             $this->_sendResponse(404, 'No Item found with id '.$id);
         else
-            $this->_sendResponse(200, CJSON::encode($this->renderModel($model)),$this->format);
+            $this->_sendResponse(200, CJSON::encode($this->renderModel($model , '720x510')),$this->format);
 
     }
     public function actionCreate()
@@ -151,7 +151,7 @@ class RestProductController extends RestController
     }
 
 
-    protected function renderModel($model)
+    protected function renderModel($model,$imgSize = false)
     {
         if(!$model)return false;
         $result = array();
@@ -165,7 +165,7 @@ class RestProductController extends RestController
         //Изображения товара
         foreach($model->images as $image)
         {
-            $result['images'][] = Yii::app()->getBaseUrl(true).$image->getUrl();
+            $result['images'][] = Yii::app()->getBaseUrl(true).$image->getUrl($imgSize);
         }
 
         //Атрибуты товара

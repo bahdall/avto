@@ -64,38 +64,117 @@ class RestProductController extends RestController
             $this->_sendResponse(200, CJSON::encode($this->renderModel($model , '720x510')),$this->format);
 
     }
+
+    public function actionAttributes()
+    {
+        $model = new StoreProduct();
+        $model->type_id = 7;
+        $attributes = $model->type->storeAttributes;
+        $result = array();
+        foreach($attributes as $attr)
+        {
+            $result[$attr->id] = $this->renderAttribute($attr);
+
+        }
+
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
+    }
+
+    protected function  renderAttribute($attribute)
+    {
+        $options = array();
+        if($attribute->options)
+        {
+            foreach($attribute->options as $option)
+            {
+                $options[] = array(
+                    'id' => $option->id,
+                    'attribute_id' => $option->attribute_id,
+                    'value' => $option->value,
+                );
+            }
+        }
+
+
+        $result = array(
+            'id' => $attribute->id,
+            'name' => $attribute->name,
+            'title' => $attribute->attr_translate->title,
+            'type' => $attribute->type,
+            /*
+                TYPE_TEXT          = 1;
+                TYPE_TEXTAREA      = 2;
+                TYPE_DROPDOWN      = 3;
+                TYPE_SELECT_MANY   = 4;
+                TYPE_RADIO_LIST    = 5;
+                TYPE_CHECKBOX_LIST = 6;
+                TYPE_YESNO         = 7;
+            */
+            'required' => $attribute->required,
+            'options' => $options,
+        );
+        return $result;
+    }
+
+
     public function actionCreate()
     {
-        die("IS METHOD DON'T WORK!");
-        $model = new Post;
+        $model = new StoreProduct();
+
+        $model->type_id = 7;
+        $model->use_configurations = 0;
+        $model->is_active = 1;
+
+        // Set main category id to have categories drop-down selected value
+        if($model->mainCategory)
+            $model->main_category_id = $model->mainCategory->id;
 
 
-        // Try to assign POST values to attributes
-        foreach($_POST as $var=>$value) {
-            // Does the model have this attribute? If not raise an error
-            if($model->hasAttribute($var))
-                $model->$var = $value;
-            else
-                $this->_sendResponse(500,
-                    sprintf('Parameter <b>%s</b> is not allowed for model <b>Products</b>', $var) );
-        }
-        // Try to save the model
-        if($model->save())
-            $this->_sendResponse(200, CJSON::encode($model));
-        else {
-            // Errors occurred
-            $msg = "<h1>Error</h1>";
-            $msg .= sprintf("Couldn't create model <b>%s</b>", $_GET['model']);
-            $msg .= "<ul>";
-            foreach($model->errors as $attribute=>$attr_errors) {
-                $msg .= "<li>Attribute: $attribute</li>";
-                $msg .= "<ul>";
-                foreach($attr_errors as $attr_error)
-                    $msg .= "<li>$attr_error</li>";
-                $msg .= "</ul>";
+        if (Yii::app()->request->isPostRequest)
+        {
+            $model->attributes = $_POST;
+
+            // Handle related products
+            $model->setRelatedProducts(Yii::app()->getRequest()->getPost('RelatedProductId', array()));
+
+            if ($model->validate() && $this->validateAttributes($model))
+            {
+                $model->save();
+                // Process categories
+                $mainCategoryId = 1;
+                if(isset($_POST['main_category_id']))
+                    $mainCategoryId=$_POST['main_category_id'];
+
+                $model->setCategories(Yii::app()->request->getPost('categories', array()), $mainCategoryId);
+
+                // Process attributes
+                $this->processAttributes($model);
+
+                // Process variants
+                $this->processVariants($model);
+
+                // Process configurations
+                $this->processConfigurations($model);
+
+                // Handle images
+                $this->handleUploadedImages($model);
+
+                // Set main image
+                $this->updateMainImage($model);
+
+                // Update image titles
+                $this->updateImageTitles();
+
+                $model->save();
             }
-            $msg .= "</ul>";
-            $this->_sendResponse(500, $msg );
+            else
+            {
+                echo "<pre>";
+                print_r($model->getErrors());
+                echo "</pre>";
+            }
         }
 
     }
@@ -183,5 +262,183 @@ class RestProductController extends RestController
             $result['attributes'][] = $attr;
         }
         return $result;
+    }
+
+
+    /**
+     * Save model attributes
+     * @param StoreProduct $model
+     * @return boolean
+     */
+    protected function processAttributes(StoreProduct $model)
+    {
+        $attributes = new CMap(Yii::app()->request->getPost('StoreAttribute', array()));
+        if(empty($attributes))
+            return false;
+
+        $deleteModel = StoreProduct::model()->findByPk($model->id);
+        $deleteModel->deleteEavAttributes(array(), true);
+
+        // Delete empty values
+        foreach($attributes as $key=>$val)
+        {
+            if(is_string($val) && $val === '')
+                $attributes->remove($key);
+        }
+
+        return $model->setEavAttributes($attributes->toArray(), true);
+    }
+
+    /**
+     * Save product variants
+     * @param StoreProduct $model
+     */
+    protected function processVariants(StoreProduct $model)
+    {
+        $dontDelete = array();
+
+        if(!empty($_POST['variants']))
+        {
+            foreach($_POST['variants'] as $attribute_id=>$values)
+            {
+                $i=0;
+                foreach($values['option_id'] as $option_id)
+                {
+                    // Try to load variant from DB
+                    $variant = StoreProductVariant::model()->findByAttributes(array(
+                        'product_id'   => $model->id,
+                        'attribute_id' => $attribute_id,
+                        'option_id'    => $option_id
+                    ));
+                    // If not - create new.
+                    if(!$variant)
+                        $variant = new StoreProductVariant;
+
+                    $variant->setAttributes(array(
+                        'attribute_id' => $attribute_id,
+                        'option_id'    => $option_id,
+                        'product_id'   => $model->id,
+                        'price'        => $values['price'][$i],
+                        'price_type'   => $values['price_type'][$i],
+                        'sku'          => $values['sku'][$i],
+                    ), false);
+
+                    $variant->save(false);
+                    array_push($dontDelete, $variant->id);
+                    $i++;
+                }
+            }
+        }
+
+        if(!empty($dontDelete))
+        {
+            $cr = new CDbCriteria;
+            $cr->addNotInCondition('id', $dontDelete);
+            $cr->addCondition('product_id='.$model->id);
+            StoreProductVariant::model()->deleteAll($cr);
+        }else
+            StoreProductVariant::model()->deleteAllByAttributes(array('product_id'=>$model->id));
+    }
+
+    /**
+     * Save product configurations
+     * @param StoreProduct $model
+     * @return mixed
+     */
+    protected function processConfigurations(StoreProduct $model)
+    {
+        $productPks = Yii::app()->request->getPost('ConfigurationsProductGrid_c0', array());
+
+        // Clear relations
+        Yii::app()->db->createCommand()->delete('StoreProductConfigurations', 'product_id=:id', array(':id'=>$model->id));
+
+        if(!sizeof($productPks))
+            return;
+
+        foreach($productPks as $pk)
+        {
+            Yii::app()->db->createCommand()->insert('StoreProductConfigurations', array(
+                'product_id'      => $model->id,
+                'configurable_id' => $pk
+            ));
+        }
+    }
+
+
+    /**
+     * Validate required store attributes
+     * @param StoreProduct $model
+     * @return bool
+     */
+    public function validateAttributes(StoreProduct $model)
+    {
+        $attributes = $model->type->storeAttributes;
+
+        if(empty($attributes) || $model->use_configurations)
+            return true;
+
+        $errors = false;
+        foreach($attributes as $attr)
+        {
+            if($attr->required && !isset($_POST['StoreAttribute'][$attr->name]))
+            {
+                $errors = true;
+                $model->addError($attr->name, Yii::t('StoreModule.admin', 'Поле %s обязательно для заполнения', array('%s'=>$attr->title)));
+            }
+        }
+
+        return !$errors;
+    }
+
+
+    /**
+     * Updates image titles
+     */
+    public function updateImageTitles()
+    {
+        if(sizeof(Yii::app()->request->getPost('image_titles', array())))
+        {
+            foreach(Yii::app()->request->getPost('image_titles', array()) as $id=>$title)
+            {
+                StoreProductImage::model()->updateByPk($id, array(
+                    'title'=>$title
+                ));
+            }
+        }
+    }
+
+
+    /**
+     * @param StoreProduct $model
+     */
+    public function updateMainImage(StoreProduct $model)
+    {
+        if(Yii::app()->request->getPost('mainImageId'))
+        {
+            // Clear current main image
+            StoreProductImage::model()->updateAll(array('is_main'=>0), 'product_id=:pid', array(':pid'=>$model->id));
+            // Set new main image
+            StoreProductImage::model()->updateByPk(Yii::app()->request->getPost('mainImageId'),array('is_main'=>1));
+        }
+    }
+
+    /**
+     * @param StoreProduct $model
+     */
+    public function handleUploadedImages(StoreProduct $model)
+    {
+        $images = CUploadedFile::getInstancesByName('StoreProductImages');
+
+        if($images && sizeof($images) > 0)
+        {
+            /** var $image CUploadedFile */
+            foreach($images as $image)
+            {
+                if(!StoreUploadedImage::hasErrors($image))
+                    $model->addImage($image);
+                else
+                    $this->setFlashMessage(Yii::t('StoreModule.admin', 'Ошибка загрузки изображения {name}', array('{name}'=>$image->getName())));
+            }
+        }
     }
 }

@@ -607,7 +607,6 @@ class StoreProduct extends BaseModel
 
 		if(!in_array($main_category, $categories))
 			array_push($categories, $main_category);
-
 		foreach($categories as $c)
 		{
 			$count = StoreProductCategoryRef::model()->countByAttributes(array(

@@ -38,4 +38,5 @@ return array(
 	array('store/RestProduct/update', 'pattern'=>'api/products/<id:\d+>', 'verb'=>'PUT'),
 	array('store/RestProduct/delete', 'pattern'=>'api/products/<id:\d+>', 'verb'=>'DELETE'),
 	array('store/RestProduct/create', 'pattern'=>'api/products', 'verb'=>'POST'),
+	array('store/RestProduct/addimages', 'pattern'=>'api/products/addimages', 'verb'=>'POST'),
 );

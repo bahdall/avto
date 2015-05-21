@@ -179,6 +179,8 @@ class RestProductController extends RestController
                 $this->updateImageTitles();
 
                 $model->save();
+
+                $result = $this->renderModel($model);
             }
             else
             {
@@ -191,6 +193,36 @@ class RestProductController extends RestController
         $this->_sendResponse(200, CJSON::encode($result),$this->format);
 
     }
+
+
+
+    public function actionAddimages()
+    {
+        $product_id = Yii::app()->request->getPost('product_id', array());
+        $model = StoreProduct::model()->findByPk($product_id);
+
+        if(!$model)
+        {
+            $result = array(
+                'errors' => 'No Item found'
+            );
+
+            $this->_sendResponse(200, CJSON::encode($result),$this->format);
+        }
+
+        // Handle images
+        $this->handleUploadedImages($model);
+
+        // Set main image
+        $this->updateMainImage($model);
+
+        $result = $this->renderModel($model);
+
+        $this->_sendResponse(200, CJSON::encode($result),$this->format);
+    }
+
+
+
     public function actionUpdate($id)
     {
         // Parse the PUT parameters. This didn't work: parse_str(file_get_contents('php://input'), $put_vars);

@@ -65,6 +65,14 @@ class RestProductController extends RestController
 
     }
 
+
+    public function actionCategories()
+    {
+        $categories = StoreCategory::flatTree();
+        $this->_sendResponse(200, CJSON::encode($categories),$this->format);
+    }
+
+
     public function actionAttributes()
     {
         $model = new StoreProduct();
@@ -74,12 +82,12 @@ class RestProductController extends RestController
         foreach($attributes as $attr)
         {
             $result[$attr->id] = $this->renderAttribute($attr);
-
         }
 
-        echo "<pre>";
-        print_r($result);
-        echo "</pre>";
+        if(is_null($result))
+            $this->_sendResponse(404, 'No Items found');
+        else
+            $this->_sendResponse(200, CJSON::encode($result),$this->format);
     }
 
     protected function  renderAttribute($attribute)
@@ -135,6 +143,9 @@ class RestProductController extends RestController
         if (Yii::app()->request->isPostRequest)
         {
             $model->attributes = $_POST;
+            $result = array(
+                'success' => 'success'
+            );
 
             // Handle related products
             $model->setRelatedProducts(Yii::app()->getRequest()->getPost('RelatedProductId', array()));
@@ -171,11 +182,13 @@ class RestProductController extends RestController
             }
             else
             {
-                echo "<pre>";
-                print_r($model->getErrors());
-                echo "</pre>";
+                $result = array(
+                    'errors' => $model->getErrors()
+                );
             }
         }
+
+        $this->_sendResponse(200, CJSON::encode($result),$this->format);
 
     }
     public function actionUpdate($id)

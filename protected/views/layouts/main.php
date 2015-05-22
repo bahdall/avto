@@ -25,7 +25,7 @@
 	<meta name="description" content="<?php echo CHtml::encode($this->pageDescription) ?>">
 	<meta name="keywords" content="<?php echo CHtml::encode($this->pageKeywords) ?>">
 
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>
+<!--	<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext,vietnamese' rel='stylesheet' type='text/css'/>-->
 
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/js/fotorama-4.6.3/fotorama.css" />
 	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl ?>/assets/css/style.css" />
@@ -101,8 +101,14 @@
 					'items'=>array(
 						array('label'=>Yii::t('core', 'Каталог автомобилей'), 'url'=>array('/store/category/view', 'url'=>'catalog')),
 						array('label'=>Yii::t('core', 'Как сделать заказ'), 'url'=>array('/pages/pages/view', 'url'=>'how-to-create-order')),
-						array('label'=>Yii::t('core', 'Гарантия'), 'url'=>array('/pages/pages/view', 'url'=>'garantiya')),
-						array('label'=>Yii::t('core', 'Доставка и оплата'), 'url'=>array('/pages/pages/view', 'url'=>'dostavka-i-oplata')),
+						array(
+							'label'=>Yii::t('core', 'Калькулятор'),
+							'url'=> '#modal-calculate-main',
+							'linkOptions' => array(
+								'data-itemid' => 'main',
+								'class' => 'open-calculate-modal',
+							)
+						),
 						array('label'=>Yii::t('core', 'Контакты'), 'url'=>array('/feedback/default/index')),
 					),
 					'htmlOptions' => array('class' => 'nav-list',),
@@ -206,7 +212,14 @@
 				'items'=>array(
 					array('label'=>Yii::t('core', 'Каталог автомобилей'), 'url'=>array('/store/category/view', 'url'=>'catalog')),
 					array('label'=>Yii::t('core', 'Как сделать заказ'), 'url'=>array('/pages/pages/view', 'url'=>'how-to-create-order')),
-					array('label'=>Yii::t('core', 'Гарантия'), 'url'=>array('/pages/pages/view', 'url'=>'garantiya')),
+					array(
+						'label'=>Yii::t('core', 'Калькулятор'),
+						'url'=> '#modal-calculate-main',
+						'linkOptions' => array(
+							'data-itemid' => 'main',
+							'class' => 'open-calculate-modal',
+						)
+					),
 					array('label'=>Yii::t('core', 'Контакты'), 'url'=>array('/feedback/default/index')),
 				),
 				'htmlOptions' => array('class' => 'nav-list',),
@@ -228,10 +241,17 @@
 			</div>
 			<div style="clear: both;"></div>
 		</div>
+
+
 	</footer>
 
 
-
+<!------------------------  ORDER CALCULATE -------------------------------->
+<?php $this->renderPartial('//store/frontProduct/_calcModal', array(
+//	'model' => $data,
+	'price' => 0,
+	'id'    => 'main',
+)) ?>
 
 
 </body>

@@ -111,10 +111,41 @@ $(function(){
             });
         });
     }
+
+
+    function customRadioByClass(className)
+    {
+        var radioButton = $(className);
+        $(radioButton).each(function(){
+            $(this).wrap( "<span class='custom-radio'></span>" );
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+        });
+        $(radioButton).click(function(){
+            if($(this).is(':checked')){
+                $(this).parent().addClass("selected");
+            }
+            var name = radioButton.attr("name");
+            $(radioButton).each(function(){
+
+                if( ! $(this).is(':checked')){
+                    $(this).parent().removeClass("selected");
+                }
+            });
+        });
+    }
+
+
     $(document).ready(function (){
         customRadio("year");
         customRadio("sum");
         customRadio("procent");
+
+        customRadioByClass(".styled_radio");
+
+
+
 
     
     

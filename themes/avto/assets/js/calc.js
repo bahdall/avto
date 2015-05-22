@@ -20,6 +20,7 @@ $(function(){
         var notarius = options['notarius'];
         var gai = options['gai'];
         var polis = options['polis'];
+        var fin_risk = options['fin_risk'];
         var sbor_gai = options['sbor_gai'];
 
 
@@ -37,7 +38,7 @@ $(function(){
         //creditBalance = creditBalance.toFixed(0);
 
         var rashod_gai = gai*price + sbor_gai;
-        var strahovoy_polis = price*polis*time/12;
+        var strahovoy_polis = (price*polis*time/12) + (fin_risk*price*3);
 
         var resultTable = "<table class='table table-bordered table-hover center'>";
         resultTable += "<tr class='gray'>";
@@ -53,15 +54,15 @@ $(function(){
 
         var nowDate = new Date();
         var nowTime = nowDate.getTime();
-
-        resultTable += "<tr>";
-        resultTable += "<td> - </td>";
-        resultTable += "<td> "+nowDate.format("dd.mm.yyyy")+" </td>";
-        resultTable += "<td> "+number_format(creditBalance,0,',',' ')+" </td>";
-        resultTable += "<td>  </td>";
-        resultTable += "<td> "+number_format((creditBalance*commission),0,',',' ')+" </td>";
-        resultTable += "<td> "+number_format((creditBalance*commission),0,',',' ')+" </td>";
-        resultTable += "</tr>";
+        //
+        //resultTable += "<tr>";
+        //resultTable += "<td> - </td>";
+        //resultTable += "<td> "+nowDate.format("dd.mm.yyyy")+" </td>";
+        //resultTable += "<td> "+number_format(creditBalance,0,',',' ')+" </td>";
+        //resultTable += "<td>  </td>";
+        //resultTable += "<td> "+number_format((creditBalance*commission),0,',',' ')+" </td>";
+        //resultTable += "<td> "+number_format((creditBalance*commission),0,',',' ')+" </td>";
+        //resultTable += "</tr>";
 
         var tmp = Math.pow((1+rate/12),time);
         var itog = creditSumm*(rate/12*tmp)/(tmp-1);
@@ -185,9 +186,9 @@ $(function(){
         resultModal = "#modal-calculate-result-"+itemId;
         descModal = "#modal-calculate-desc-"+itemId;
 
-        customRadio("year["+itemId+"]");
-        customRadio("sum["+itemId+"]");
-        customRadio("procent["+itemId+"]");
+        //customRadio("year["+itemId+"]");
+        //customRadio("sum["+itemId+"]");
+        //customRadio("procent["+itemId+"]");
 
         options = {
             items: [

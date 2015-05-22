@@ -114,6 +114,10 @@ return array(
 					'type'=>'text',
 					'hint'=>Yii::t('CoreModule.admin', 'Например 0.015')
 				),
+				'core_fin_risk'        => array(
+					'type'=>'text',
+					'hint'=>Yii::t('CoreModule.admin', 'Например 0.0016')
+				),
 			)
 		)
 	)

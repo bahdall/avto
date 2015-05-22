@@ -54,6 +54,7 @@ class SystemSettingsForm extends CFormModel
 	public $core_gai;
 	public $core_sbor_gai;
 	public $core_polis;
+	public $core_fin_risk;
 
 	public function init()
 	{
@@ -83,7 +84,7 @@ class SystemSettingsForm extends CFormModel
 		return array(
 			array('core_siteName, core_productsPerPage, core_productsPerPageAdmin, core_theme, core_editorTheme, core_editorHeight, core_editorAutoload', 'required'),
 			array('images_path, images_thumbPath, images_url, images_thumbUrl, images_maxFileSize, images_maximum_image_size', 'required'),
-			array('core_commission, core_ocenka ,core_notarius ,core_gai ,core_sbor_gai ,core_polis', 'required'),
+			array('core_commission, core_ocenka ,core_notarius ,core_gai ,core_sbor_gai ,core_polis, core_fin_risk', 'required'),
 			array('images_watermark_image', 'validateWatermarkFile'),
 			array('images_watermark_active', 'boolean'),
 			array('images_watermark_position_vertical', 'in', 'range'=>array_keys($this->getImageVerticalPositions())),
@@ -125,6 +126,7 @@ class SystemSettingsForm extends CFormModel
 			'core_gai'             => Yii::t('CoreModule.admin', ' ГАИ, 6%'),
 			'core_sbor_gai'             => Yii::t('CoreModule.admin', ' Сбор ГАИ'),
 			'core_polis'             => Yii::t('CoreModule.admin', ' Страховой полис, 1,5%'),
+			'core_fin_risk'             => Yii::t('CoreModule.admin', 'Страхование фин рисков на 3 мес, 0,16%'),
 		);
 	}
 

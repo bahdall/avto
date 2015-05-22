@@ -252,6 +252,7 @@ class RestProductController extends RestController
             $this->_sendResponse(200, CJSON::encode($model));
         else
             // prepare the error $msg
+
             // see actionCreate
             // ...
             $this->_sendResponse(500, CJSON::encode($model->getErrors()) );

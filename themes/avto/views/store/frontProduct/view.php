@@ -119,7 +119,11 @@ if($model->mainCategory)
 
 
 <!------------------------  ORDER CALCULATE -------------------------------->
-<?php $this->renderPartial('_calcModal', array('model' => $model)) ?>
+<?php $this->renderPartial('_calcModal', array(
+	'model' => $model,
+	'price' => StoreProduct::formatPrice($model->toCurrentCurrency())*1000000,
+	'id'    => $model->id,
+)) ?>
 
 
 

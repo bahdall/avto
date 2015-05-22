@@ -1,9 +1,11 @@
 <?php
 $k = 1000000; //коэффициент для перевода из млн. Сум в Суммы
+//$price = StoreProduct::formatPrice($model->toCurrentCurrency())*$k;
+//$id = $model->id;
 ?>
 
 <!------------------------  ORDER CALCULATE -------------------------------->
-<div id="modal-calculate-<?php echo $model->id?>" data-id="<?php echo $model->id ?>" class="modal mfp-hide modal-calculate j-calc-content">
+<div id="modal-calculate-<?php echo $id?>" data-id="<?php echo $id ?>" class="modal mfp-hide modal-calculate j-calc-content">
     <div class="modal__header">
     </div>
     <div class="row row--nopad">
@@ -18,19 +20,19 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                 <table class="table-form">
                     <tr class="calculate_sum">
                         <td>Стоимость приобретаемого автомобиля</td>
-                        <td class="td" ><input type="text" name="price" value="<?php echo StoreProduct::formatPrice($model->toCurrentCurrency())*$k ?>" class="input_"/></td>
+                        <td class="td" ><input type="text" name="price" value="<?php echo $price ?>" class="input_"/></td>
 <!--                        <td class="td" ><input type="text" name="price" value="33600000" class="input_"/></td>-->
                     </tr>
                     <tr class="calculate_percentage">
                         <td>Собственные средства<br />(процент от полной  стоимости)</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.25" checked="checked">25%</label></li>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.30">30%</label></li>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.35">35%</label></li>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.40">40%</label></li>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.45">45%</label></li>
-                                <li><label><input type="radio" name="sum[<?php echo $model->id ?>]" value="0.5">50%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.25" checked="checked">25%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.30">30%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.35">35%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.40">40%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.45">45%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="sum[<?php echo $id ?>]" value="0.5">50%</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -38,9 +40,9 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                         <td>Срок кредита (месяцев)</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="12" checked="checked"> 12</label></li>
-                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="24"> 24</label></li>
-                                <li><label><input type="radio" name="year[<?php echo $model->id ?>]" value="36"> 36</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="year[<?php echo $id ?>]" value="12" checked="checked"> 12</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="year[<?php echo $id ?>]" value="24"> 24</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="year[<?php echo $id ?>]" value="36"> 36</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -48,10 +50,10 @@ $k = 1000000; //коэффициент для перевода из млн. Су
                         <td>Процентная ставка по кредиту, <br />% годовых</td>
                         <td class="td">
                             <ul>
-                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.19" checked="checked"> 19%</label></li>
-                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.20"> 20%</label></li>
-                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.21"> 21%</label></li>
-                                <li><label><input type="radio" name="procent[<?php echo $model->id ?>]" value="0.22"> 22%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="procent[<?php echo $id ?>]" value="0.19" checked="checked"> 19%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="procent[<?php echo $id ?>]" value="0.20"> 20%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="procent[<?php echo $id ?>]" value="0.21"> 21%</label></li>
+                                <li><label><input type="radio" class="styled_radio" name="procent[<?php echo $id ?>]" value="0.22"> 22%</label></li>
                             </ul>
                         </td>
                     </tr>
@@ -79,7 +81,7 @@ $k = 1000000; //коэффициент для перевода из млн. Су
 
 
 <!------------------------  ORDER CALCULATE RESULT -------------------------------->
-<div id="modal-calculate-result-<?php echo $model->id?>" class="modal mfp-hide modal-calculate">
+<div id="modal-calculate-result-<?php echo $id?>" class="modal mfp-hide modal-calculate">
     <div class="modal__header">
     </div>
     <div class="row row--nopad">
@@ -95,8 +97,8 @@ $k = 1000000; //коэффициент для перевода из млн. Су
 
                 </div>
                 <div class="bottom">
-                    <a href="#modal-calculate-result-<?php echo $model->id ?>" class="btn e-return-calc j-goto-calc">Вернуться на калькулятор</a>
-                    <a href="#modal-calculate-result-<?php echo $model->id ?>" class="btn e-goto-desc j-goto-desc">Подробности</a>
+                    <a href="#modal-calculate-result-<?php echo $id ?>" class="btn e-return-calc j-goto-calc">Вернуться на калькулятор</a>
+                    <a href="#modal-calculate-result-<?php echo $id ?>" class="btn e-goto-desc j-goto-desc">Подробности</a>
                 </div>
             </div>
 
@@ -106,7 +108,7 @@ $k = 1000000; //коэффициент для перевода из млн. Су
 
 
 <!------------------------  ORDER CALCULATE DESCRIPTION -------------------------------->
-<div id="modal-calculate-desc-<?php echo $model->id?>" class="modal mfp-hide modal-calculate">
+<div id="modal-calculate-desc-<?php echo $id?>" class="modal mfp-hide modal-calculate">
     <div class="modal__header">
     </div>
     <div class="row row--nopad">
@@ -122,8 +124,8 @@ $k = 1000000; //коэффициент для перевода из млн. Су
 
                 </div>
                 <div class="bottom">
-                    <a href="#modal-calculate-result-<?php echo $model->id ?>" class="btn e-return-calc j-goto-calc">Вернуться на калькулятор</a>
-                    <a href="#modal-calculate-result-<?php echo $model->id ?>" class="btn e-goto-desc j-goto-result">График выплат</a>
+                    <a href="#modal-calculate-result-<?php echo $id ?>" class="btn e-return-calc j-goto-calc">Вернуться на калькулятор</a>
+                    <a href="#modal-calculate-result-<?php echo $id ?>" class="btn e-goto-desc j-goto-result">График выплат</a>
                 </div>
             </div>
 
@@ -140,6 +142,7 @@ $k = 1000000; //коэффициент для перевода из млн. Су
         'notarius': <?php echo Yii::app()->settings->get('core','notarius')?>,
         'gai': <?php echo Yii::app()->settings->get('core','gai')?>,
         'sbor_gai': <?php echo Yii::app()->settings->get('core','sbor_gai')?>,
-        'polis' : <?php echo Yii::app()->settings->get('core','polis')?>
+        'polis' : <?php echo Yii::app()->settings->get('core','polis')?>,
+        'fin_risk' : <?php echo Yii::app()->settings->get('core','fin_risk')?>
     };
 </script>

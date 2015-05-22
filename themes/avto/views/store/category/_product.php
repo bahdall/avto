@@ -61,4 +61,8 @@
 <?php $this->renderPartial('../frontProduct/_orderForm', array('model' => $data)) ?>
 
 <!------------------------  ORDER CALCULATE -------------------------------->
-<?php $this->renderPartial('../frontProduct/_calcModal', array('model' => $data)) ?>
+<?php $this->renderPartial('../frontProduct/_calcModal', array(
+	'model' => $data,
+	'price' => StoreProduct::formatPrice($data->toCurrentCurrency())*1000000,
+	'id'    => $data->id,
+)) ?>

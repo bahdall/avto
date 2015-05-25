@@ -88,7 +88,8 @@ $this->breadcrumbs[] = Yii::t('FeedbackModule.core', 'Контакты');
 				<?php $this->endWidget(); ?>
 			</div>
 			<div class="map">
-				<img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/images/map.png" />
+<!--				<img src="--><?php //echo Yii::app()->theme->baseUrl ?><!--/assets/images/map.png" />-->
+				<script type="text/javascript" charset="utf-8" src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=WNWnkgxehJoR_lL_iNNFAs6RYQR6j9oz&width=480&height=450"></script>
 			</div>
 		</div>
 	</div>

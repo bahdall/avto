@@ -227,11 +227,11 @@
 			?>
 
 			<div class="social">
-				<div class="text">Мы в соц. сетях</div>
-				<ul class="nav-list">
-					<li><a href="#"><i class="icon-facebook"></i></a></li>
-					<li><a href="#"><i class="icon-twitter" ></i></a></li>
-				</ul>
+<!--				<div class="text">Мы в соц. сетях</div>-->
+<!--				<ul class="nav-list">-->
+<!--					<li><a href="#"><i class="icon-facebook"></i></a></li>-->
+<!--					<li><a href="#"><i class="icon-twitter" ></i></a></li>-->
+<!--				</ul>-->
 			</div>
 			<div style="clear: both;"></div>
 			<div class="footer_bottom">

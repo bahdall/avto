@@ -82,7 +82,7 @@ class RestProductController extends RestController
                 'id' => $category->id,
                 'level' => $category->level,
                 'name' => $category->name,
-                'image' => $img,
+                'image' => Yii::app()->getBaseUrl(true).$img,
             );
         }
         $this->_sendResponse(200, CJSON::encode($result),$this->format);

@@ -29,7 +29,7 @@ class RestProductController extends RestController
     public function actionList()
     {
         //searching only for current users places (defaultScope returns appropriate condition)
-        $models = StoreProduct::model()->findAll('user_id = '.Yii::app()->user->id);
+        $models = StoreProduct::model()->newest()->findAll('user_id = '.Yii::app()->user->id);
 
         // Did we get some results?
         if(empty($models)) {
@@ -68,8 +68,24 @@ class RestProductController extends RestController
 
     public function actionCategories()
     {
-        $categories = StoreCategory::flatTree();
-        $this->_sendResponse(200, CJSON::encode($categories),$this->format);
+        $categories = StoreCategory::model()->findAll(array('order'=>'lft','condition' => 'level > 2'));
+        $result = array();
+        foreach($categories as $category)
+        {
+            if($category->image)
+                $img = $category->getImage('100x100');
+            elseif($category->getParent()->image)
+                $img = $category->getParent()->getImage('100x100');
+            else
+                $img = false;
+            $result[] = array(
+                'id' => $category->id,
+                'level' => $category->level,
+                'name' => $category->name,
+                'image' => $img,
+            );
+        }
+        $this->_sendResponse(200, CJSON::encode($result),$this->format);
     }
 
 

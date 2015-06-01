@@ -15,7 +15,7 @@
 					// Display additional images
 					foreach($data->images as $image)
 					{
-						echo CHtml::image($image->getUrl('600x400'), $image->title);
+						echo CHtml::image($image->getUrl('600x400','newResize'), $image->title);
 					}
 					?>
 				</div>

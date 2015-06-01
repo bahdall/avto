@@ -149,6 +149,63 @@ class GdThumb extends ThumbBase
 	##############################
 	# ----- API FUNCTIONS ------ #
 	##############################
+
+
+
+	public function newResize($width = 0, $height = 0)
+	{
+
+		if (!$this->currentDimensions['width'] || !$this->currentDimensions['height']) {
+			return $this;
+		}
+
+		$xpos = 0;
+		$ypos = 0;
+		$scale = 1;
+
+		$scale_w = $width / $this->currentDimensions['width'];
+		$scale_h = $height / $this->currentDimensions['height'];
+
+		$scale = min($scale_w, $scale_h);
+
+
+		if ($scale == 1 && $scale_h == $scale_w && $this->format != 'PNG') {
+			return $this;
+		}
+
+		$new_width = (int)($this->currentDimensions['width'] * $scale);
+		$new_height = (int)($this->currentDimensions['height'] * $scale);
+		$xpos = (int)(($width - $new_width) / 2);
+		$ypos = (int)(($height - $new_height) / 2);
+
+		$this->workingImage = imagecreatetruecolor($width, $height);
+
+		if (isset($this->format) && $this->format == 'PNG') {
+			imagealphablending($this->workingImage, false);
+			imagesavealpha($this->workingImage, true);
+			$background = imagecolorallocatealpha($this->workingImage, 255, 255, 255, 127);
+			imagecolortransparent($this->workingImage, $background);
+		} else {
+			$background = imagecolorallocate($this->workingImage, 255, 255, 255);
+		}
+
+		imagefilledrectangle($this->workingImage, 0, 0, $width, $height, $background);
+
+		imagecopyresampled($this->workingImage, $this->oldImage, $xpos, $ypos, 0, 0, $new_width, $new_height, $this->currentDimensions['width'], $this->currentDimensions['height']);
+		imagedestroy($this->oldImage);
+
+		$this->info['width']  = $width;
+		$this->info['height'] = $height;
+
+		// update all the variables and resources to be correct
+		$this->oldImage 					= $this->workingImage;
+		$this->currentDimensions['width'] 	= $width;
+		$this->currentDimensions['height'] 	= $height;
+
+		return $this;
+
+	}
+
 	
 	/**
 	 * Resizes an image to be no larger than $maxWidth or $maxHeight

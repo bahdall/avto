@@ -10,7 +10,7 @@
 		<div class="image">
 			<?php
 			if($data->mainImage)
-				$imgSource = $data->mainImage->getUrl('300x200','cropFromCenter');
+				$imgSource = $data->mainImage->getUrl('300x200','newResize');
 			else
 				$imgSource = 'http://placehold.it/300x200';
 			echo CHtml::image($imgSource, $data->mainImageTitle);

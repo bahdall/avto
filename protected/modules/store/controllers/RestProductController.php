@@ -158,7 +158,9 @@ class RestProductController extends RestController
                 if(isset($_POST['main_category_id']))
                     $mainCategoryId=$_POST['main_category_id'];
 
-                $model->setCategories(Yii::app()->request->getPost('categories', array()), $mainCategoryId);
+                $categories = $this->getParentCategories($mainCategoryId);
+
+                $model->setCategories(Yii::app()->request->getPost('categories', $categories), $mainCategoryId);
 
                 // Process attributes
                 $this->processAttributes($model);
@@ -308,6 +310,28 @@ class RestProductController extends RestController
             $result['attributes'][] = $attr;
         }
         return $result;
+    }
+
+    protected function getParentCategories($id)
+    {
+        $model = StoreCategory::model()->findByPk($id);
+
+        if(!$model)return array();
+
+        $categories = array();
+
+        $parent = $model->getParent();
+
+        if( $parent && $parent->level > 1)$categories[] = $parent->id;
+        else return $categories;
+
+        while(true)
+        {
+            $parent = $parent->getParent();
+
+            if( $parent && $parent->level > 1)$categories[] = $parent->id;
+            else return $categories;
+        }
     }
 
 

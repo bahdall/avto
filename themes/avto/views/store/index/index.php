@@ -25,6 +25,6 @@
 
 
 
-	<div class="text_all" ><a href="#">Все автомобили <span></span></a></div>
+	<div class="text_all" ><a href="<?php echo Yii::app()->createUrl('/store/category/view', array('url'=>'catalog')) ?>">Все автомобили <span></span></a></div>
 	<div style="clear: both;"></div>
 </div>
